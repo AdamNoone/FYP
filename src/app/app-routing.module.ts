@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ProfileComponent } from './pages/profile/profile.component';
+import {FeedComponent} from './pages/feed/feed.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,12 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    pathMatch: 'full'
+  },
+
+  {
+    path: 'feed',
+    component: FeedComponent,
     pathMatch: 'full'
   }
 ];

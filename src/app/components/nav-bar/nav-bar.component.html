@@ -24,18 +24,20 @@
             <li class="nav-item">
               <a routerLink="/" class="nav-link">Home</a>
             </li>
+            <li class="nav-item">
+              <a routerLink="/feed" class="nav-link">Feed</a>
+            </li>
           </ul>
 
           <ul class="navbar-nav d-none d-md-block">
             <!-- Login button: show if NOT authenticated -->
             <li class="nav-item" *ngIf="auth.loggedIn === false">
-              <button
-                id="qsLoginBtn"
-                class="btn btn-primary btn-margin"
-                (click)="auth.login()"
-              >
-                Log in
-              </button>
+                <button
+                    id="qsLoginBtn"
+                    class="btn btn-primary btn-margin"
+                    (click)="auth.login()">
+                  Log in
+                </button>
             </li>
             <!-- / Login button -->
 

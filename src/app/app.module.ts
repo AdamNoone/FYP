@@ -13,6 +13,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeContentComponent } from './components/home-content/home-content.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import {FeedComponent} from './pages/feed/feed.component';
+import {PostsApiService} from './pages/feed/posts-api.service';
 
 export function hljsLanguages() {
   return [{ name: 'json', func: json }];
@@ -26,7 +28,8 @@ export function hljsLanguages() {
     NavBarComponent,
     FooterComponent,
     HomeContentComponent,
-    LoadingComponent
+    LoadingComponent,
+    FeedComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,7 @@ export function hljsLanguages() {
     }),
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [PostsApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
