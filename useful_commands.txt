@@ -1,0 +1,11 @@
+1. go into env --- a. pipenv shell
+
+2. run flask - a. Go into backend directory
+               b.  run ./bootstrap.sh &
+                |
+                |
+                | > May have to kill bootstrap a. ps -ef | grep python
+                                               b. kill (process num)
+
+3.run project by pressing green arrow
+

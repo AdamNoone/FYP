@@ -1,4 +1,12 @@
 
 <div class="container" *ngIf="auth.auth0Client$ | async">
-  <H1></H1>
+  <div style="text-align:center">
+    <h1>Posts</h1>
+  </div>
+  <h2>Here are the posts in your area: </h2>
+  <ul>
+    <li *ngFor="let post of postsList">
+      {{post.title}} : {{post.description}}<p></p>
+    </li>
+  </ul>
 </div>

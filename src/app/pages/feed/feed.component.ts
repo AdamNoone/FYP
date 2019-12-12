@@ -1,37 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
-
-@Component({
-  selector: 'app-home',
-  templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.css']
-})
-export class FeedComponent implements OnInit {
-
-  constructor(public auth: AuthService) {}
-
-  ngOnInit() {
-  }
-
-}
-
-/*
-import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
-import {PostsApiService} from './posts-api.service';
-import {Post} from './post.model';
+import {PostsApiService} from 'src/app/pages/feed/posts-api.service';
+import {Post} from 'src/app/pages/feed/post.model';
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.css']
 })
+
+
 export class FeedComponent implements OnInit, OnDestroy {
   title = 'app';
   postsListSubs: Subscription;
   postsList: Post[];
 
-  constructor(private postsApi: PostsApiService) {
+
+  constructor(private postsApi: PostsApiService, public auth: AuthService ) {
   }
 
   ngOnInit() {
@@ -47,5 +34,23 @@ export class FeedComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.postsListSubs.unsubscribe();
   }
+}
+
+
+/*import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './feed.component.html',
+  styleUrls: ['./feed.component.css']
+})
+export class FeedComponent implements OnInit {
+
+  constructor(public auth: AuthService) {}
+
+  ngOnInit() {
+  }
+
 }
 */

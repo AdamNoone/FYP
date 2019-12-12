@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HighlightModule } from 'ngx-highlightjs';
 import json from 'highlight.js/lib/languages/json';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +36,7 @@ export function hljsLanguages() {
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    HttpClientModule,
     HighlightModule.forRoot({
       languages: hljsLanguages
     }),

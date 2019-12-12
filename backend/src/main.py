@@ -16,7 +16,7 @@ CORS(app)
 Base.metadata.create_all(engine)
 
 
-@app.route('/exams')
+@app.route('/feed')
 def get_posts():
     # fetching from the database
     session = Session()
@@ -31,7 +31,7 @@ def get_posts():
     return jsonify(posts)
 
 
-@app.route('/exams', methods=['POST'])
+@app.route('/feed', methods=['POST'])
 def add_post():
     # mount post object
     posted_post = PostSchema(only=('title', 'description'))\
