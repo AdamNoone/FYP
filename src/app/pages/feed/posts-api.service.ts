@@ -24,5 +24,10 @@ export class PostsApiService {
       .get< Post[] >(`${API_URL}/feed`)
       .catch(PostsApiService._handleError);
   }
+
+  savePost(post: Post): Observable<any> {
+    return this.http
+      .post(`${API_URL}/feed`, post);
+  }
 }
 
