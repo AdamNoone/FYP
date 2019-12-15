@@ -16,6 +16,7 @@ import { HomeContentComponent } from './components/home-content/home-content.com
 import { LoadingComponent } from './components/loading/loading.component';
 import {FeedComponent} from './pages/feed/feed.component';
 import {PostsApiService} from './pages/feed/posts-api.service';
+import { MakepostComponent } from './pages/makepost/makepost.component';
 
 export function hljsLanguages() {
   return [{ name: 'json', func: json }];
@@ -31,6 +32,7 @@ export function hljsLanguages() {
     HomeContentComponent,
     LoadingComponent,
     FeedComponent,
+    MakepostComponent,
   ],
   imports: [
     BrowserModule,

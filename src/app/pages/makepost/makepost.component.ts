@@ -25,6 +25,8 @@ export class MakepostComponent {
     this.post.description = event.target.value;
   }
 
+
+
   savePost() {
     this.postsApi
       .savePost(this.post)

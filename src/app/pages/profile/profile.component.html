@@ -1,4 +1,40 @@
-<div class="container mt-5" *ngIf="auth.userProfile$ | async as profile">
+
+
+
+
+
+
+<h1>How Many Meals Have You Saved ?</h1>
+<figure aria-hidden="true">
+  <div class="graph">
+    <span class="graphRowLabel">10</span>
+    <span class="graphRowLabel">9</span>
+    <span class="graphRowLabel">8</span>
+    <span class="graphRowLabel">7</span>
+    <span class="graphRowLabel">6</span>
+    <span class="graphRowLabel">5</span>
+    <span class="graphRowLabel">4</span>
+    <span class="graphRowLabel">3</span>
+    <span class="graphRowLabel">2</span>
+    <span class="graphRowLabel">1</span>
+    <div class="graphBar"></div>
+    <div class="graphBar"></div>
+    <div class="graphBar"></div>
+    <div class="graphBar"></div>
+    <div class="graphBar"></div>
+    <span><sup>Y </sup>&frasl;<sub> X</sub></span>
+    <span class="graphColumnLabel">January</span>
+    <span class="graphColumnLabel">Febuary</span>
+    <span class="graphColumnLabel">March️</span>
+    <span class="graphColumnLabel">April</span>
+    <span class="graphColumnLabel">May</span>
+  </div>
+
+</figure>
+
+
+
+<!---<div class="container mt-5" *ngIf="auth.userProfile$ | async as profile">
   <div
     class="row align-items-center profile-header mb-5 text-center text-md-left"
   >
@@ -17,4 +53,4 @@
   <div class="row" *ngIf="profileJson">
     <pre class="rounded"><code class="json" [highlight]="profileJson"></code></pre>
   </div>
-</div>
+</div>--->
