@@ -12,7 +12,8 @@ body{
   padding:20px 30px;
   max-width:calc(100vw - 40px);
   box-sizing:border-box;font-family:'Montserrat',sans-serif;
-  position:relative
+  position:relative;
+  autocomplete:"off";
 }
 h2{
   margin:10px 0;
@@ -21,7 +22,7 @@ h2{
   color:#78788c;
   border-bottom:3px solid #78788c
 }
-input{width:100%;padding:10px;box-sizing:border-box;background:none;outline:none;resize:none;border:0;font-family:'Montserrat',sans-serif;transition:all .3s;border-bottom:2px solid #bebed2}
+input{autocomplete:"off";width:100%;padding:10px;box-sizing:border-box;background:none;outline:none;resize:none;border:0;font-family:'Montserrat',sans-serif;transition:all .3s;border-bottom:2px solid #bebed2}
 input:focus{border-bottom:2px solid #78788c}
 p:before{content:attr(type);display:block;margin:28px 0 0;font-size:14px;color:#5a5a5a}
 button{height:50px;margin-bottom:140px;;margin-left:680px;font-family:'Montserrat',sans-serif;border:2px solid #000000;background:0;color: #000000;cursor:pointer;transition:all .3s}

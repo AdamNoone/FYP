@@ -4,8 +4,11 @@
   <h2>New Post</h2>
   <label for="post-title">Title</label>
   <label for="post-title"></label>
-  <input id="post-title" (keyup)="updateTitle($event)">
+  <input id="post-title" (keyup)="updateTitle($event)" autocomplete="off">
   <label for="post-description">Description</label>
-  <input id="post-description" (keyup)="updateDescription($event)">
+  <input id="post-description" (keyup)="updateDescription($event)" autocomplete="off">
+
+  <label for="post-picture">Please upload a Photo</label>
+  <input id="post-picture" (keyup)="updateDescription($event)" autocomplete="off">
 </form>
 <button (click)="savePost()">Make Post</button>
