@@ -4,7 +4,7 @@
 
 
 
-<h1>How Many Meals Have You Saved ?</h1>
+<!---<h1>How Many Meals Have You Saved ?</h1>
 <figure aria-hidden="true">
   <div class="graph">
     <span class="graphRowLabel">10</span>
@@ -30,27 +30,91 @@
     <span class="graphColumnLabel">May</span>
   </div>
 
-</figure>
+</figure>--->
 
 
 
 <!---<div class="container mt-5" *ngIf="auth.userProfile$ | async as profile">
   <div
-    class="row align-items-center profile-header mb-5 text-center text-md-left"
-  >
+    class="row align-items-center profile-header mb-5 text-center text-md-left">
     <div class="col-md-2">
       <img
         [src]="profile.picture"
         class="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
       />
     </div>
-    <div class="col-md">
-      <h2>{{ profile.name }}</h2>
-      <p class="lead text-muted">{{ profile.email }}</p>
+  </div>
+  <div class="col-md">
+        <h2>{{ profile.sub }}</h2>
+        <p class="lead text-muted">{{ profile.sub }}</p>
+      </div>
     </div>
-  </div>
 
-  <div class="row" *ngIf="profileJson">
-    <pre class="rounded"><code class="json" [highlight]="profileJson"></code></pre>
+    <div class="row" *ngIf="profileJson">
+       <pre class="rounded"><code class="json" [highlight]="profileJson"></code></pre>
+
+     </div>--->
+
+<!---<button class="open-button" (click)="openForm()">Open Form</button>--->
+
+
+<div class="type_of_user-popup" id="TypeUserForm">
+  <form class="TypeUserForm-container">
+    <h1>Are you a Business or a General User ? </h1>
+    Business<input type="radio" name="yesno" id="yesBusiness">
+    User<input type="radio" name="yesno" id="yesUser">
+    <br>
+    <div id="ifBusiness">
+
+        <label id="name"><b>Name of your Business</b></label>
+        <input type="text" placeholder="Enter Name of Business" (keyup)="updateName($event)" autocomplete="off" name="name" required>
+
+        <label id="business type"><b>Type of Business</b></label>
+        <input type="text" placeholder="Enter Type of Business" (keyup)="updateType($event)" autocomplete="off" name="Business_type" required>
+
+        <label id="Address"><b>Business Address</b></label>
+        <input type="text" placeholder="Enter Type of Food" (keyup)="updateAddress($event)" autocomplete="off" name="Food_type" required>
+
+      <label id="Desc"><b>Please describe your Business</b></label>
+      <textarea type='text' id='description' (keyup)="updateDescription($event)" autocomplete="off"name='description' required></textarea><br>
+
+
+    </div>
+
+    <div id="ifUser">
+      If no can you sepcify form and dimensions:<br>
+      <textarea type='text' id='other3' name='other3'></textarea><br>
+    </div>
+
+  </form>
+  <div class="container mt-5" *ngIf="auth.userProfile$ | async as profile">
+  <button (click)="SaveBusiness(profile.sub)">Make Post</button>
   </div>
+</div>
+
+
+
+<!---<div class="form-popup" id="myForm">
+  <form class="form-container">
+    <h1>Please provide some more details about your profile</h1>
+
+    <label id="email"><b>Name of your Business</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required>
+
+    <label id="business type"><b>Type of Business</b></label>
+    <input type="text" placeholder="Enter Type of Business" name="Business_type" required>
+
+
+    <label id="food_type"><b>Type of Food You Sell</b></label>
+    <input type="text" placeholder="Enter Type of Food" name="Food_type" required>
+
+    <label id="Address"><b>Business Address</b></label>
+    <input type="text" placeholder="Enter Type of Food" name="Food_type" required>
+
+    <button type="submit" class="btn">Login</button>
+   <button type="button" class="btn cancel" (click)="closeForm()">Close</button>
+  </form>
 </div>--->
+
+
+

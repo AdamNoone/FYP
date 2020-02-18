@@ -7,9 +7,13 @@
 
   <div class="container" *ngIf="auth.auth0Client$ | async">
       <div class="container2" *ngFor="let post of postsList">
-        <img src="../../../assets/food_placeholder.png" alt="Food waste picture">
+
+        <div id="blah">
+        <img id="pic"  [src]="post.picture" alt="your image">
+       </div>
+
         <div id = "title"> <H2>{{post.title}}</H2> </div>
-        <div id = "description"><H3> -- {{post.description}}</H3></div>
+        <div id = "description"  > <p> -- {{post.description}}</div>
 
       </div>
 

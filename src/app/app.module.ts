@@ -16,6 +16,7 @@ import { HomeContentComponent } from './components/home-content/home-content.com
 import { LoadingComponent } from './components/loading/loading.component';
 import {FeedComponent} from './pages/feed/feed.component';
 import {PostsApiService} from './pages/feed/posts-api.service';
+import {BusinessApiService} from 'src/app/pages/profile/userdetails-api.service';
 import { MakepostComponent } from './pages/makepost/makepost.component';
 
 export function hljsLanguages() {
@@ -44,7 +45,7 @@ export function hljsLanguages() {
     }),
     FontAwesomeModule
   ],
-  providers: [PostsApiService],
+  providers: [PostsApiService, BusinessApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

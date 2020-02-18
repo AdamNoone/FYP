@@ -31,7 +31,16 @@ export class FeedComponent implements OnInit, OnDestroy {
       );
   }
 
+  GetPicture(picture: string) {
+
+    const image: HTMLImageElement = document.getElementById('pic') as HTMLImageElement;
+    image.src = picture;
+
+  }
   ngOnDestroy() {
     this.postsListSubs.unsubscribe();
   }
+
 }
+
+

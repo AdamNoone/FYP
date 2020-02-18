@@ -4,7 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ProfileComponent } from './pages/profile/profile.component';
 import {FeedComponent} from './pages/feed/feed.component';
-import {MakepostComponent} from "./pages/makepost/makepost.component";
+import {MakepostComponent} from './pages/makepost/makepost.component';
 
 const routes: Routes = [
   {

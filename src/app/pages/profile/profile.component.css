@@ -115,4 +115,158 @@ h1 {
 }
 
 
+/* The popup form - hidden by default */
+.type_of_user-popup {
+  display: none;
+  width: 40%;
 
+}
+
+
+
+/* Add styles to the form container */
+.TypeUserForm-container {
+  width: 440px;
+  height: 740px;
+  background: #e6e6e6;
+  border-radius: 8px;
+  box-shadow: 0 0 40px -10px #000;
+  margin: calc(50vh - 340px) auto;
+  margin-left: 500px;
+  padding: 20px 30px;
+  max-width: calc(100vw - 40px);
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  autocomplete: "off";
+
+}
+
+/* Set a style for the submit/login button */
+.TypeUserForm-container .btn {
+  background-color: #000000;
+  color: white;
+  padding: 16px 20px;
+  border: 4px solid black;
+  cursor: pointer;
+  width: 40%;
+  opacity: 0.8;
+  display: inline-block;
+  margin-left:  25px;
+  margin-top: 10px;
+}
+
+
+/* Add some hover effects to buttons */
+.TypeUserForm-container .btn:hover {
+  opacity: 1;
+}
+
+.TypeUserForm-container input[type=text], .TypeUserForm-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.TypeUserForm-container input[type=text]:focus, .TypeUserForm-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: table;
+  width: 40%;
+
+}
+
+/* Add styles to the form container */
+.form-container {
+  width:440px;
+  height:740px;
+  background:#e6e6e6;
+  border-radius:8px;
+  box-shadow:0 0 40px -10px #000;
+  padding:20px 30px;
+  max-width:calc(100vw - 40px);
+  box-sizing:border-box;font-family:'Montserrat',sans-serif;
+  position:relative;
+  autocomplete:"off";}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+
+.reveal-if-active {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+#ifBusiness, #ifUser { display: none;}
+#yesBusiness:checked ~ #ifBusiness {display: block;}
+#yesUser:checked ~ #ifUser{display: block;}

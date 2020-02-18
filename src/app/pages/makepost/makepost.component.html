@@ -8,7 +8,13 @@
   <label for="post-description">Description</label>
   <input id="post-description" (keyup)="updateDescription($event)" autocomplete="off">
 
-  <label for="post-picture">Please upload a Photo</label>
-  <input id="post-picture" (keyup)="updateDescription($event)" autocomplete="off">
+
+  <input id="file" type="file" (change)="updatePicture()"/>
 </form>
-<button (click)="savePost()">Make Post</button>
+<p id = base64></p>
+
+
+
+<button (click)="SavePost()">Make Post</button>
+
+

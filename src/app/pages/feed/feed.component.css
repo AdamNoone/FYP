@@ -1,10 +1,4 @@
-.p{
-  border-radius: 100px;
-  display: block;
-  height: 100px;
-  margin: 0 auto;
-  width: 100px;
-}
+
 
 
 .container {
@@ -39,6 +33,10 @@ img {
 
 }
 
+#picture{
+
+
+}
 
 h1 {
   text-align: center;
@@ -75,7 +73,7 @@ h2 {
   text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 }
 
-h3{
+p{
   text-align: left;
   margin-bottom: 40px;
 
