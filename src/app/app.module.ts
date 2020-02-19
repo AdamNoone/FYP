@@ -15,9 +15,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeContentComponent } from './components/home-content/home-content.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import {FeedComponent} from './pages/feed/feed.component';
-import {PostsApiService} from './pages/feed/posts-api.service';
-import {BusinessApiService} from 'src/app/pages/profile/userdetails-api.service';
 import { MakepostComponent } from './pages/makepost/makepost.component';
+import {PostsApiService} from './pages/feed/posts-api.service';
+import {BusinessApiService} from 'src/app/pages/profile/businessdetails-api.service';
+import {UserApiService} from "./pages/profile/userdetails-api.service";
 
 export function hljsLanguages() {
   return [{ name: 'json', func: json }];
@@ -45,7 +46,7 @@ export function hljsLanguages() {
     }),
     FontAwesomeModule
   ],
-  providers: [PostsApiService, BusinessApiService],
+  providers: [PostsApiService, BusinessApiService, UserApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

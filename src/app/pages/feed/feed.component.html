@@ -2,12 +2,10 @@
 
   <div style="text-align:center">
   </div>
-  <button routerLink="/makepost">Add a New Post</button>
   <H1>Here are the posts in your area</H1>
 
   <div class="container" *ngIf="auth.auth0Client$ | async">
       <div class="container2" *ngFor="let post of postsList">
-
         <div id="blah">
         <img id="pic"  [src]="post.picture" alt="your image">
        </div>

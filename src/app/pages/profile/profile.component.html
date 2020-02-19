@@ -73,22 +73,21 @@
         <input type="text" placeholder="Enter Type of Business" (keyup)="updateType($event)" autocomplete="off" name="Business_type" required>
 
         <label id="Address"><b>Business Address</b></label>
-        <input type="text" placeholder="Enter Type of Food" (keyup)="updateAddress($event)" autocomplete="off" name="Food_type" required>
+        <input type="text" placeholder="Enter The Address of your Business" (keyup)="updateAddress($event)" autocomplete="off" name="Address" required>
 
       <label id="Desc"><b>Please describe your Business</b></label>
       <textarea type='text' id='description' (keyup)="updateDescription($event)" autocomplete="off"name='description' required></textarea><br>
 
-
     </div>
 
     <div id="ifUser">
-      If no can you sepcify form and dimensions:<br>
-      <textarea type='text' id='other3' name='other3'></textarea><br>
+      <label id="User_Address"><b>Your Address</b></label>
+      <input type="text" placeholder="Enter Your Address" (keyup)="updateUserAddress($event)" autocomplete="off" name="Food_type" required>
     </div>
 
   </form>
   <div class="container mt-5" *ngIf="auth.userProfile$ | async as profile">
-  <button (click)="SaveBusiness(profile.sub)">Make Post</button>
+  <button (click)="SavePerson(profile.sub,profile.email,profile.name)">Save</button>
   </div>
 </div>
 

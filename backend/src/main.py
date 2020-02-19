@@ -9,6 +9,7 @@ from .entities.entity import Session, engine, Base
 from .entities.blog import Post, PostSchema
 from .entities.food import Food, FoodSchema
 from .entities.business import Business, BusinessSchema
+from .entities.user import User, UserSchema
 
 # creating the Flask application
 app = Flask(__name__)
@@ -127,3 +128,35 @@ def add_business():
         return jsonify(new_business), 201
 
 
+@app.route('/users')
+def get_users():
+        # fetching from the database
+        session = Session()
+        user_objects = session.query(User).all()
+
+        # transforming into JSON-serializable objects
+        schema = UserSchema(many=True)
+        users = schema.dump(user_objects)
+
+        # serializing as JSON
+        session.close()
+        return jsonify(users)
+
+
+@app.route('/users', methods=['POST'])
+def add_user():
+        # mount post object
+        posted_user = UserSchema(only=('user_id', 'user_email', 'user_name', 'user_address', 'user_coordinates', 'user_footprint'))\
+            .load(request.get_json())
+
+        user = User(**posted_user, created_by="HTTP post request")
+
+        # persist post
+        session = Session()
+        session.add(user)
+        session.commit()
+
+        # return created post
+        new_user = UserSchema().dump(user)
+        session.close()
+        return jsonify(new_user), 201
