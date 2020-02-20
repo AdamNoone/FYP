@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {PostsApiService} from '../feed/posts-api.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 
 @Component({
@@ -10,16 +11,27 @@ import {PostsApiService} from '../feed/posts-api.service';
 })
 
 
-export class MakepostComponent {
+export class MakepostComponent implements OnInit {
   post = {
     title: '',
     description: '',
     picture: '',
-  };
+    business: '',
 
-  constructor(private postsApi: PostsApiService, private router: Router) {
+  };
+  profileJson: string = null;
+
+
+
+  constructor(private postsApi: PostsApiService, private router: Router,public auth: AuthService) {
   }
 
+  ngOnInit() {
+    this.auth.userProfile$.subscribe(
+      profile => this.profileJson = JSON.stringify(profile, null, 2)
+    );
+    console.log("hello",this.profileJson);
+  }
   updateTitle(event: any) {
     this.post.title = event.target.value;
   }
@@ -44,9 +56,10 @@ export class MakepostComponent {
     }
   }
 
-  SavePost() {
+  SavePost(sub: string) {
 
     this.post.picture = document.getElementById('base64').innerHTML;
+    this.post.business=sub.replace(/\|/g, "");
     this.postsApi
       .savePost(this.post)
       .subscribe(

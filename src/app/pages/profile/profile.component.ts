@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/auth/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from 'src/app/auth/auth.service';
 import {BusinessApiService} from 'src/app/pages/profile/businessdetails-api.service';
 import {UserApiService} from 'src/app/pages/profile/userdetails-api.service';
-import {Business} from 'src/app/pages/profile/business.model';
-import {PostsApiService} from "../feed/posts-api.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -92,8 +90,8 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  SaveBusiness(sub:any) {
-    this.business.business_id = sub;
+  SaveBusiness(sub:string) {
+    this.business.business_id = sub.replace(/\|/g, "");
     this.business.business_coordinates = '53.3371633,-6.2675127';
     this.businessesApi
       .saveBusiness(this.business)
@@ -108,8 +106,9 @@ export class ProfileComponent implements OnInit {
     this.user.user_address = event.target.value;
   }
 
-  SaveUser(sub: any, email: any, name: any) {
-    this.user.user_id = sub;
+  SaveUser(sub: string, email: any, name: any) {
+
+    this.user.user_id = sub.replace(/\|/g, "");
     this.user.user_email = email;
     this.user.user_name = name;
     this.user.user_coordinates = '53.3371633,-6.2675127';
@@ -124,7 +123,5 @@ export class ProfileComponent implements OnInit {
   }
 
 
+
 }
-
-
-

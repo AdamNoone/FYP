@@ -11,14 +11,14 @@ class Post(Entity, Base):
     title = Column(String)
     description = Column(String)
     picture = Column(String)
+    business = Column(String)
 
-    def __init__(self, title, description, picture, created_by):
+    def __init__(self, title, description, picture , business, created_by):
         Entity.__init__(self, created_by)
         self.title = title
         self.description = description
         self.picture = picture
-
-
+        self.business= business
 
 class PostSchema(Schema):
     id = fields.Number()
@@ -28,3 +28,4 @@ class PostSchema(Schema):
     updated_at = fields.DateTime()
     last_updated_by = fields.Str()
     picture = fields.Str()
+    business = fields.Str()

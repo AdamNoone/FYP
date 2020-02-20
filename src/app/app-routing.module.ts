@@ -33,6 +33,10 @@ const routes: Routes = [
     path: 'detail/:id',
     component: PostDetailComponent
   },
+  {
+    path: 'businesses/:business_id',
+    component: PostDetailComponent
+  },
 
 ];
 

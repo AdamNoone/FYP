@@ -14,7 +14,8 @@
 <p id = base64></p>
 
 
-
-<button (click)="SavePost()">Make Post</button>
+<div id="profile_info"*ngIf="auth.userProfile$ | async as profile">
+<button (click)="SavePost(profile.sub)">Make Post</button>
+</div>
 
 

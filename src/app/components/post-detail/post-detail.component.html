@@ -22,10 +22,16 @@
     </div>
 
     <div id = "title"> <H2>{{post.title}}</H2> </div>
-    <div id = "description"  > <p> -- {{post.description}}</div>
-
-
+    <div class = "description" > <p> -- {{post.description}}</div>
   </div>
+
+  <div *ngIf="business">
+    <div class= "description"  > <p> -- {{business.business_name}}</div>
+    <div class= "description"  > <p> -- {{business.business_type}}</div>
+    <div class= "description"  > <p> -- {{business.business_description}}</div>
+    <div class = "description"  > <p> -- {{business.business_coordinates}}</div>
+
+
 </div>
 
 <button (click)="goBack()">Return To Feed</button>

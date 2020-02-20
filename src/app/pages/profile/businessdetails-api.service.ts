@@ -7,6 +7,7 @@ import {Business} from './business.model';
 
 @Injectable()
 export class BusinessApiService {
+  private id: any;
 
   constructor(private http: HttpClient) {
   }
@@ -16,6 +17,7 @@ export class BusinessApiService {
   }
 
   // GET list of public, future events
+  private BusinessesUrl = `${API_URL}/businesses`;
 
 
 
@@ -23,6 +25,13 @@ export class BusinessApiService {
     return this.http
       .get< Business[] >(`${API_URL}/businesses`)
       .catch(BusinessApiService._handleError);
+  }
+
+  /** GET business by business_id. Will 404 if id not found */
+  getBusinessbyBusinessID(business_id: string): Observable<Business> {
+    let businesses = this.http.get<Business>(`${this.BusinessesUrl}/${business_id}`);
+    console.log(businesses[business_id]);
+    return businesses ;
   }
 
   saveBusiness(business: Business): Observable<any> {

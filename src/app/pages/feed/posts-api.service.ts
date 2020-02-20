@@ -4,8 +4,11 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import {API_URL} from 'src/app/env';
 import {Post} from './post.model';
+import {Business} from "../profile/business.model";
+
 import {of} from "rxjs";
 import {map, catchError, tap} from 'rxjs/operators';
+
 
 @Injectable()
 export class PostsApiService {
@@ -19,6 +22,7 @@ export class PostsApiService {
 
   // GET list of public, future events
   private postsUrl = `${API_URL}/feed`;
+  private BusinessesUrl = `${API_URL}/businesses`;
 
 
   //old function
@@ -39,6 +43,7 @@ export class PostsApiService {
    console.log(posts[id]);
    return posts;
   }
+
 
 
   savePost(post: Post): Observable<any> {
