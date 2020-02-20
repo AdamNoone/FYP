@@ -1,0 +1,31 @@
+
+<!--<h1>hello</h1>
+<div *ngIf="post">
+
+  <h2>{{post.title | uppercase}} Details</h2>
+  <div><span>id: </span>{{post.title}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="post.title" placeholder="name"/>
+    </label>
+  </div>
+
+</div>
+
+<button (click)="goBack()">go back</button>-->
+
+
+<div id="post_details" style="text-align:center">
+<div *ngIf="post">
+    <div id="blah">
+      <img id="pic"  [src]="post.picture" alt="your image">
+    </div>
+
+    <div id = "title"> <H2>{{post.title}}</H2> </div>
+    <div id = "description"  > <p> -- {{post.description}}</div>
+
+
+  </div>
+</div>
+
+<button (click)="goBack()">Return To Feed</button>

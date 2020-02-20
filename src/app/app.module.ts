@@ -6,6 +6,7 @@ import json from 'highlight.js/lib/languages/json';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {HttpClientModule} from '@angular/common/http';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -19,6 +20,8 @@ import { MakepostComponent } from './pages/makepost/makepost.component';
 import {PostsApiService} from './pages/feed/posts-api.service';
 import {BusinessApiService} from 'src/app/pages/profile/businessdetails-api.service';
 import {UserApiService} from "./pages/profile/userdetails-api.service";
+import {PostDetailComponent } from './components/post-detail/post-detail.component';
+import {FormsModule} from "@angular/forms";
 
 export function hljsLanguages() {
   return [{ name: 'json', func: json }];
@@ -35,6 +38,7 @@ export function hljsLanguages() {
     LoadingComponent,
     FeedComponent,
     MakepostComponent,
+    PostDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,8 @@ export function hljsLanguages() {
     HighlightModule.forRoot({
       languages: hljsLanguages
     }),
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [PostsApiService, BusinessApiService, UserApiService],
   bootstrap: [AppComponent]

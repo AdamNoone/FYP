@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
     var str = this.profileJson;
     let n = str.slice(41, 45);
     console.log(n);
-    if (n === "fals") {
+    if (n === "true") {
       this.openForm();
     }
   }
@@ -53,13 +53,22 @@ export class ProfileComponent implements OnInit {
   }
 
 
+
+
   SavePerson(sub: any, email: any, name: any) {
     var business_check = document.getElementById('yesBusiness') as HTMLInputElement;
     var user_check = document.getElementById('yesUser') as HTMLInputElement;
+
+    function closeForm() {
+      document.getElementById("TypeUserForm").style.display = "none";
+    }
+
+
     if (business_check.checked) {
-      this.SaveBusiness(sub)
+      this.SaveBusiness(sub);
     } else if (user_check.checked) {
       this.SaveUser(sub,email,name)
+      closeForm();
     }
 
   }

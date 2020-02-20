@@ -16,6 +16,7 @@ export class FeedComponent implements OnInit, OnDestroy {
   title = 'app';
   postsListSubs: Subscription;
   postsList: Post[];
+  private posts: Post[];
 
 
   constructor(private postsApi: PostsApiService, public auth: AuthService ) {
@@ -39,6 +40,11 @@ export class FeedComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.postsListSubs.unsubscribe();
+  }
+
+  getPosts(): void {
+    this.postsApi.getPosts()
+      .subscribe(posts => this.postsList = posts);
   }
 
 }

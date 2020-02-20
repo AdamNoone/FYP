@@ -33,6 +33,25 @@ def get_posts():
     session.close()
     return jsonify(posts)
 
+
+
+@app.route('/feed/<id>')
+def get_postsbyID(id):
+    # fetching from the database
+    session = Session()
+    post_object = session.query(Post).get(id)
+
+    # transforming into JSON-serializable objects
+    schema = PostSchema()
+    post = schema.dump(post_object)
+
+    # serializing as JSON
+    session.close()
+    return jsonify(post)
+
+
+
+
 @app.route('/feed', methods=['POST'])
 def add_post():
     # mount post object

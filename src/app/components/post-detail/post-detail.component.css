@@ -1,17 +1,13 @@
 
 
 
-.container {
-  display: grid;
-  grid-gap: 12px;  /* Simply adjust this value !*/
-  grid-template-columns: repeat(3, 1fr); /* OR grid-template-columns: 1fr 1fr 1fr;*/
-  grid-auto-rows: 1fr;
-  border:1px solid #ffffff
-}
-
-.container>div {
+#post_details {
+  text-align: center;
   border: 3px solid #000000;
-  height: 480px;
+  height: 445px;
+  width: 400px;
+  margin: 0 auto;
+
 }
 
 img {
@@ -118,7 +114,7 @@ button{
   height:50px;
   margin-top:20px;
   margin-bottom:40px;
-  margin-left:680px;
+  margin-left:650px;
   font-family:'Montserrat',sans-serif;
   border:2px solid #000000;
   background:0;
@@ -129,49 +125,4 @@ button{
 button:hover{
   background: #ecb6ee;
   color: #000000;
-}
-
-/* HeroesComponent's private CSS styles */
-.heroes {
-  margin: 0 0 2em 0;
-  list-style-type: none;
-  padding: 0;
-  width: 15em;
-}
-.heroes li {
-  cursor: pointer;
-  position: relative;
-  left: 0;
-  background-color: #EEE;
-  margin: .5em;
-  padding: .3em 0;
-  height: 1.6em;
-  border-radius: 4px;
-}
-.heroes li:hover {
-  color: #607D8B;
-  background-color: #DDD;
-  left: .1em;
-}
-.heroes li.selected {
-  background-color: #CFD8DC;
-  color: white;
-}
-.heroes li.selected:hover {
-  background-color: #BBD8DC;
-  color: white;
-}
-.heroes .badge {
-  display: inline-block;
-  font-size: small;
-  color: white;
-  padding: 0.8em 0.7em 0 0.7em;
-  background-color:#405061;
-  line-height: 1em;
-  position: relative;
-  left: -1px;
-  top: -4px;
-  height: 1.8em;
-  margin-right: .8em;
-  border-radius: 4px 0 0 4px;
 }
