@@ -46,11 +46,12 @@
         <input type="text" placeholder="Enter Type of Business" (keyup)="updateType($event)" autocomplete="off" name="Business_type" required>
 
         <label id="Address"><b>Business Address</b></label>
-        <input type="text" placeholder="Enter The Address of your Business" (keyup)="updateAddress($event)" autocomplete="off" name="Address" required>
+        <input id ="Business_Address" type="text" placeholder="Enter The Address of your Business" (keyup)="updateAddress($event)" autocomplete="off" name="Address" required>
 
       <label id="Desc"><b>Please describe your Business</b></label>
       <textarea type='text' id='description' (keyup)="updateDescription($event)" autocomplete="off"name='description' required></textarea><br>
 
+      <div class="card-block" id="geometry"></div>
     </div>
 
     <div id="ifUser">
@@ -60,7 +61,7 @@
 
   </form>
   <div class="container mt-5" *ngIf="auth.userProfile$ | async as profile">
-  <button (click)="SavePerson(profile.sub,profile.email,profile.name)">Save</button>
+  <button (click)="SavePerson(profile.sub,profile.email,profile.name,profile.address)">Save</button>
   </div>
 </div>
 

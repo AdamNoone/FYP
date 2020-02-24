@@ -19,6 +19,8 @@ CORS(app)
 Base.metadata.create_all(engine)
 
 
+#AJAX CALLS FOR GETTING POSTS FROM THE DATABASE & POSTING TO THE DATABASE --> ,GET_ALL, BYid, POST
+
 @app.route('/feed')
 def get_posts():
     # fetching from the database
@@ -52,9 +54,6 @@ def get_postsbyID(id):
 
 
 
-
-
-
 @app.route('/feed', methods=['POST'])
 def add_post():
     # mount post object
@@ -75,6 +74,9 @@ def add_post():
 
 
 
+
+
+#AJAX CALLS FOR GETTING FOODS FROM THE DATABASE & POSTING TO THE DATABASE --> ,GET_ALL, POST
 
 @app.route('/food')
 def get_foods():
@@ -111,7 +113,7 @@ def add_food():
 
 
 
-
+#AJAX CALLS FOR GETTING BUSINESSES FROM THE DATABASE & POSTING TO THE DATABASE --> ,GET_ALL, GET_B_BUSINESS_ID, POST
 
 @app.route('/businesses')
 def get_businesses():
@@ -167,6 +169,10 @@ def add_business():
         session.close()
         return jsonify(new_business), 201
 
+
+
+
+#AJAX CALLS FOR GETTING USERS FROM THE DATABASE & POSTING TO THE DATABASE --> ,GET_ALL, POST
 
 @app.route('/users')
 def get_users():
