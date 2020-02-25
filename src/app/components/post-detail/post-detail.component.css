@@ -126,3 +126,17 @@ button:hover{
   background: #ecb6ee;
   color: #000000;
 }
+
+
+.main {
+  text-align:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#map {
+  height: 300px; /* like this */
+  width: 500px;
+}

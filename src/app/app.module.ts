@@ -22,6 +22,8 @@ import {BusinessApiService} from 'src/app/pages/profile/businessdetails-api.serv
 import {UserApiService} from "./pages/profile/userdetails-api.service";
 import {PostDetailComponent } from './components/post-detail/post-detail.component';
 import {FormsModule} from "@angular/forms";
+import { TypeofpostComponent } from './pages//typeofpost/typeofpost.component';
+import {FoodApiService} from "./pages/makepost/food-api.service";
 
 export function hljsLanguages() {
   return [{ name: 'json', func: json }];
@@ -39,6 +41,7 @@ export function hljsLanguages() {
     FeedComponent,
     MakepostComponent,
     PostDetailComponent,
+    TypeofpostComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,7 @@ export function hljsLanguages() {
     FontAwesomeModule,
     FormsModule
   ],
-  providers: [PostsApiService, BusinessApiService, UserApiService],
+  providers: [PostsApiService, BusinessApiService, UserApiService,FoodApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

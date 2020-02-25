@@ -93,6 +93,22 @@ def get_foods():
     return jsonify(foods)
 
 
+@app.route('/food/<food_group>')
+def get_foodbygroup(food_group):
+      # fetching from the database
+      session = Session()
+      food_object = session.query(Food).filter(Food.food_group== food_group)
+
+      # transforming into JSON-serializable objects
+      schema = FoodSchema(many=True)
+      food = schema.dump(food_object)
+
+      # serializing as JSON
+      session.close()
+      return jsonify(food)
+
+
+
 @app.route('/food', methods=['POST'])
 def add_food():
     # mount post object
@@ -110,6 +126,7 @@ def add_food():
     new_food = FoodSchema().dump(food)
     session.close()
     return jsonify(new_food), 201
+
 
 
 

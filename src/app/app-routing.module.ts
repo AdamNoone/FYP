@@ -6,6 +6,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import {FeedComponent} from './pages/feed/feed.component';
 import {MakepostComponent} from './pages/makepost/makepost.component';
 import { PostDetailComponent }  from './components/post-detail/post-detail.component';
+import { TypeofpostComponent } from './pages/typeofpost/typeofpost.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,14 @@ const routes: Routes = [
   {
     path: 'businesses/:business_id',
     component: PostDetailComponent
+  },
+  {
+    path: 'typeofpost',
+    component: TypeofpostComponent
+  },
+  {
+    path: 'food/:food_group:',
+    component: MakepostComponent,
   },
 
 ];

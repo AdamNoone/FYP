@@ -82,7 +82,7 @@ export class ProfileComponent implements OnInit {
 
   updateAddress(event: any) {
     this.business.business_address = event.target.value;
-    this.geocode()
+    this.Business_geocode()
   }
 
 
@@ -93,8 +93,8 @@ export class ProfileComponent implements OnInit {
 
   SaveBusiness(sub:string) {
     this.business.business_id = sub.replace(/\|/g, "");
-    console.log(document.getElementById('geometry').innerText);
-    this.business.business_coordinates = document.getElementById('geometry').innerText;
+    //console.log(document.getElementById('Business_geometry').innerText);
+    this.business.business_coordinates = document.getElementById('Business_geometry').innerText;
     this.businessesApi
       .saveBusiness(this.business)
       .subscribe(
@@ -106,6 +106,7 @@ export class ProfileComponent implements OnInit {
 
   updateUserAddress(event: any) {
     this.user.user_address = event.target.value;
+    this.User_geocode()
   }
 
   SaveUser(sub: string, email: any, name: any) {
@@ -113,6 +114,7 @@ export class ProfileComponent implements OnInit {
     this.user.user_id = sub.replace(/\|/g, "");
     this.user.user_email = email;
     this.user.user_name = name;
+    this.user.user_coordinates = document.getElementById('User_geometry').innerText;
     this.user.user_footprint = '0';
     this.usersApi
       .saveUser(this.user)
@@ -127,7 +129,7 @@ export class ProfileComponent implements OnInit {
 
 
 
-  geocode(){
+  Business_geocode(){
 
     var location = (<HTMLInputElement>document.getElementById('Business_Address')).value;
 
@@ -149,7 +151,37 @@ export class ProfileComponent implements OnInit {
           <p>${lat} ${lng} </p>
         `;
 
-        document.getElementById('geometry').innerHTML = geometryOutput;
+        document.getElementById('Business_geometry').innerHTML = geometryOutput;
+      })
+      .catch(function(error){
+        console.log(error);
+      });
+  }
+
+
+  User_geocode(){
+
+    var location = (<HTMLInputElement>document.getElementById('User_Address')).value;
+
+    axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
+      params:{
+        address:location,
+        key:'AIzaSyAtQd15O88p-QTIGHwkP1hq554j8PwPJMc'
+      }
+    })
+      .then(function(response){
+        // Log full response
+        console.log(response);
+
+
+        // Geometry
+        var lat = response.data.results[0].geometry.location.lat;
+        var lng = response.data.results[0].geometry.location.lng;
+        var geometryOutput = `
+          <p>${lat} ${lng} </p>
+        `;
+
+        document.getElementById('User_geometry').innerHTML = geometryOutput;
       })
       .catch(function(error){
         console.log(error);

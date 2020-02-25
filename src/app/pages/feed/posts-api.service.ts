@@ -32,7 +32,7 @@ export class PostsApiService {
       .catch(PostsApiService._handleError);
   }*/
 
-  /** GET heroes from the server */
+  /** GET posts from the server */
   getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(this.postsUrl);
   }

@@ -14,7 +14,6 @@
 
 <button (click)="goBack()">go back</button>-->
 
-
 <div id="post_details" style="text-align:center">
 <div *ngIf="post">
     <div id="blah">
@@ -26,12 +25,17 @@
   </div>
 
   <div *ngIf="business">
-    <div class= "description"  > <p> -- {{business.business_name}}</div>
-    <div class= "description"  > <p> -- {{business.business_type}}</div>
-    <div class= "description"  > <p> -- {{business.business_description}}</div>
-    <div class = "description"  > <p> -- {{business.business_coordinates}}</div>
-
-
+    <div id= "business_name"  > <p> -- {{business.business_name}}</div>
+    <div id= "business_type"  > <p> -- {{business.business_type}}</div>
+    <div id= "business_description"  > <p> -- {{business.business_description}}</div>
+    <div id = "business_coordinates"  > <p> {{business.business_coordinates}}</p></div>
 </div>
 
+
+
 <button (click)="goBack()">Return To Feed</button>
+</div>
+
+<div class="main">
+  <div #mapWrapper id="map"></div>
+</div>

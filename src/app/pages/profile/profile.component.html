@@ -51,12 +51,13 @@
       <label id="Desc"><b>Please describe your Business</b></label>
       <textarea type='text' id='description' (keyup)="updateDescription($event)" autocomplete="off"name='description' required></textarea><br>
 
-      <div class="card-block" id="geometry"></div>
+      <div class="card-block" id="Business_geometry"></div>
     </div>
 
     <div id="ifUser">
-      <label id="User_Address"><b>Your Address</b></label>
-      <input type="text" placeholder="Enter Your Address" (keyup)="updateUserAddress($event)" autocomplete="off" name="Food_type" required>
+      <label id="u_Address"><b>Your Address</b></label>
+      <input id ="User_Address"type="text" placeholder="Enter Your Address" (keyup)="updateUserAddress($event)" autocomplete="off" name="Food_type" required>
+      <div class="card-block" id="User_geometry"></div>
     </div>
 
   </form>

@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {PostsApiService} from '../feed/posts-api.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import {tap} from "rxjs/operators";
+import {FoodApiService} from "./food-api.service";
+import {Food} from "./food.model";
+import {Post} from "../feed/post.model";
+import {Business} from "../profile/business.model";
 
 
 @Component({
@@ -22,16 +27,28 @@ export class MakepostComponent implements OnInit {
   profileJson: string = null;
 
 
-
-  constructor(private postsApi: PostsApiService, private router: Router,public auth: AuthService) {
+  @Input() food: Food;
+  constructor(private FoodService: FoodApiService,private postsApi: PostsApiService ,private router: Router,public auth: AuthService) {
   }
 
   ngOnInit() {
+  this.getFoods("Meat");
     this.auth.userProfile$.subscribe(
       profile => this.profileJson = JSON.stringify(profile, null, 2)
     );
     console.log("hello",this.profileJson);
   }
+
+  getFoods(food_group: string): void {
+    this.FoodService.get_foodbygroup(food_group)
+      .pipe(
+        tap(food=> console.log(food))
+      ).pipe(
+      tap(food=> food=> console.log(food))
+    )
+      .subscribe(food=> this.food = food);
+  }
+
   updateTitle(event: any) {
     this.post.title = event.target.value;
   }
@@ -57,7 +74,6 @@ export class MakepostComponent implements OnInit {
   }
 
   SavePost(sub: string) {
-
     this.post.picture = document.getElementById('base64').innerHTML;
     this.post.business=sub.replace(/\|/g, "");
     this.postsApi
