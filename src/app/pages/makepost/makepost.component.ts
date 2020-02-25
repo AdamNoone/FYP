@@ -2,11 +2,12 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {PostsApiService} from '../feed/posts-api.service';
 import { AuthService } from 'src/app/auth/auth.service';
-import {tap} from "rxjs/operators";
+import {exhaustMap, filter, map, switchMap, takeUntil, tap} from "rxjs/operators";
 import {FoodApiService} from "./food-api.service";
 import {Food} from "./food.model";
 import {Post} from "../feed/post.model";
 import {Business} from "../profile/business.model";
+import {Observable, ReplaySubject, Subject} from "rxjs";
 
 
 @Component({
@@ -26,27 +27,28 @@ export class MakepostComponent implements OnInit {
   };
   profileJson: string = null;
 
+  private destroyed$ = new Subject<void>()
+  private foods$ = new ReplaySubject<Food[]>();
 
-  @Input() food: Food;
+  ingredientSearch: string = '';
+
   constructor(private FoodService: FoodApiService,private postsApi: PostsApiService ,private router: Router,public auth: AuthService) {
   }
 
   ngOnInit() {
   this.getFoods("Meat");
-    this.auth.userProfile$.subscribe(
+    this.auth.userProfile$.pipe(
+      takeUntil(this.destroyed$)
+    ).subscribe(
       profile => this.profileJson = JSON.stringify(profile, null, 2)
     );
     console.log("hello",this.profileJson);
   }
 
   getFoods(food_group: string): void {
-    this.FoodService.get_foodbygroup(food_group)
-      .pipe(
-        tap(food=> console.log(food))
-      ).pipe(
-      tap(food=> food=> console.log(food))
-    )
-      .subscribe(food=> this.food = food);
+    this.FoodService.get_foodbygroup(food_group).pipe(
+      takeUntil(this.destroyed$)
+    ).subscribe(foods => this.foods$.next(foods));
   }
 
   updateTitle(event: any) {
@@ -85,14 +87,14 @@ export class MakepostComponent implements OnInit {
 
   }
 
-
-}
-
-
-function wait(ms){
-  const start = new Date().getTime();
-  let end = start;
-  while(end < start + ms) {
-    end = new Date().getTime();
+  getIngredientSearch() : Observable<Food[]> {
+    return this.foods$.pipe(
+     map(foods => foods.filter(f => f.food_name.includes(this.ingredientSearch)))
+    );
   }
+  ngOnDestroy() {
+    this.destroyed$.next();
+    this.destroyed$.complete();
+  }
+
 }

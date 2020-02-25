@@ -38,11 +38,18 @@ export class ProfileComponent implements OnInit {
     this.auth.userProfile$.subscribe(
       profile => this.profileJson = JSON.stringify(profile, null, 2)
     );
+
     console.log(this.profileJson);
-    var str = this.profileJson;
-    let n = str.slice(41, 45);
+    var test = JSON.parse(this.profileJson);
+    console.log(test);
+    var firstLoginKey = "http://localhost:3000/first_login"
+    //console.log(test[firstLoginKey]);
+   // var str = this.profileJson;
+   // let n = str.slice(41, 45);
+    let n = test[firstLoginKey];
     console.log(n);
-    if (n === "true") {
+    debugger;
+    if (n === true) {
       this.openForm();
     }
   }
