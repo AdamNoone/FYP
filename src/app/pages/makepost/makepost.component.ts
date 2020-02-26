@@ -27,28 +27,23 @@ export class MakepostComponent implements OnInit {
   };
   profileJson: string = null;
 
-  private destroyed$ = new Subject<void>()
+  private destroyed$ = new Subject<void>();
   private foods$ = new ReplaySubject<Food[]>();
 
   ingredientSearch: string = '';
+  food_name: any;
 
   constructor(private FoodService: FoodApiService,private postsApi: PostsApiService ,private router: Router,public auth: AuthService) {
   }
 
   ngOnInit() {
-  this.getFoods("Meat");
+  this.getFoods();
     this.auth.userProfile$.pipe(
       takeUntil(this.destroyed$)
     ).subscribe(
       profile => this.profileJson = JSON.stringify(profile, null, 2)
     );
-    console.log("hello",this.profileJson);
-  }
-
-  getFoods(food_group: string): void {
-    this.FoodService.get_foodbygroup(food_group).pipe(
-      takeUntil(this.destroyed$)
-    ).subscribe(foods => this.foods$.next(foods));
+    //console.log("hello",this.profileJson);
   }
 
   updateTitle(event: any) {
@@ -87,14 +82,33 @@ export class MakepostComponent implements OnInit {
 
   }
 
+
+  getFoods(): void {
+    this.FoodService.getFoods().pipe(
+      takeUntil(this.destroyed$)
+    ).subscribe(foods => this.foods$.next(foods));
+  }
+
   getIngredientSearch() : Observable<Food[]> {
-    return this.foods$.pipe(
+     return this.foods$.pipe(
      map(foods => foods.filter(f => f.food_name.includes(this.ingredientSearch)))
     );
   }
+
+
   ngOnDestroy() {
     this.destroyed$.next();
     this.destroyed$.complete();
   }
 
+
+  InsertIngredient(name:string,cf:string){
+
+    alert(name +cf )
 }
+}
+
+
+
+
+

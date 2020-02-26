@@ -34,15 +34,15 @@
   </div>
 
 
-  <div class="form-div" id ="middle-form">Column 2
+  <div class="form-div" id ="middle-form">
     <ul>
       <li>
-        <div id="food_info"*ngIf="foods$ | async as foods ">
+          <label for="Ingredients">Please Choose the Ingredients in your Food </label>
+          <input id="Ingredients" name="Ingredients" [(ngModel)]="ingredientSearch" autocomplete="off">
+      </li>
 
+      <li>
 
-          <label for="Ingred">Ingred</label>
-          <input id="Ingred" name="Ingred" [(ngModel)]="ingredientSearch" autocomplete="off">
-        </div>
       </li>
     </ul>
   </div>
@@ -50,11 +50,18 @@
 
 
 
-  <div class="form-div" id ="right-form">Column 3
-   Value is {{ getIngredientSearch() | async | json }}
+  <div class="form-div" id ="right-form">
+    <div *ngIf="getIngredientSearch() | async as ingredients">
+      <div *ngFor="let ingredient of ingredients">
+        <ul id="bulk">
+          <li (click)="InsertIngredient(ingredient.food_name, ingredient.food_cf)">{{ ingredient.food_name }}{{ ingredient.food_cf }} </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 </form>
+
 
 
 

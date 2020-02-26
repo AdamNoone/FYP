@@ -22,14 +22,14 @@ export class FoodApiService {
 
 
   getFoods(): Observable<Food[]> {
-    return this.http
-      .get< Food[] >(`${API_URL}/food`)
+    let foods = this.http.get<Food[]>(`${this.FoodUrl}`)
       .catch(FoodApiService._handleError);
+    return foods ;
   }
 
-  /** GET business by business_id. Will 404 if id not found */
+  /** GET food by group. Will 404 if id not found */
   get_foodbygroup(food_group: string): Observable<Food[]> {
-    let foods = this.http.get<Food[]>(`${this.FoodUrl}/${food_group}`);
+    let foods = this.http.get<Food[]>(`${this.FoodUrl}`);
     console.log(foods[food_group]);
     return foods ;
   }

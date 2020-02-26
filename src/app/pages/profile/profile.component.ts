@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
     console.log(this.profileJson);
     var test = JSON.parse(this.profileJson);
     console.log(test);
-    var firstLoginKey = "http://localhost:3000/first_login"
+    var firstLoginKey = "http://localhost:3000/first_login";
     //console.log(test[firstLoginKey]);
    // var str = this.profileJson;
    // let n = str.slice(41, 45);
