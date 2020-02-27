@@ -9,19 +9,10 @@ p:before{
 
 }
 button{
-  height:50px;
-  margin-bottom:140px;
-  margin-left:680px;
-  font-family:'Montserrat',sans-serif;
-  border:2px solid #000000;
-  background:0;
-  color: #000000;
-  cursor:pointer;
-  transition:all .3s
+
 }
 button:hover{
-  background: #20ee43;
-  color: #000000;
+
 }
 
 
@@ -108,11 +99,63 @@ section {
 
 }
 
-#bulk {
-  height: 200px;
-  border: 1px solid;
+
+
+
+
+#bulk > #list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  max-height: 200px; /* Fix a max-height here */
+  overflow: auto;
 }
-#bulk > li {
-  background: red;
-  margin: 10px;
+
+
+#bulk > #list li {
+  font: 100 15px/1.5 Helvetica, Verdana, sans-serif;
+  border: 1px solid #020002;
+  text-decoration: none;
+  color: #020002;
+  display: block;
+  width: 300px;
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+
+}
+
+#bulk >li:last-child {
+
+}
+
+#bulk >  #list li:hover {
+  font-size: 30px;
+  background: #4cff39;
+}
+
+#hello {
+  max-height:405px;/*The important part*/
+  overflow-y:auto;/*Also...*/
+  overflow-x:hidden;/*And the end of the important part*/
+}
+
+
+#gauge1-txt {
+  font-weight: bold;
+  font-size:80%;
+  display: block;
+  text-align: center;
+}
+
+#foo {
+  width: 100%;
+  height: 100%;
+}
+
+
+#base64{
+  display: none;
 }

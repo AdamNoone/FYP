@@ -1,5 +1,7 @@
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.1/raphael-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.3.5/justgage.js"></script>
 
 
 
@@ -41,9 +43,13 @@
           <input id="Ingredients" name="Ingredients" [(ngModel)]="ingredientSearch" autocomplete="off">
       </li>
 
-      <li>
-
-      </li>
+      <div id="hello" *ngIf="getIngredientSearch() | async as ingredients">
+        <ul id="bulk">
+        <div id = "list" *ngFor="let ingredient of ingredients">
+            <li (click)="InsertIngredient(ingredient.food_name, ingredient.food_cf)">{{ ingredient.food_name }} </li>
+        </div>
+        </ul>
+      </div>
     </ul>
   </div>
 
@@ -51,18 +57,30 @@
 
 
   <div class="form-div" id ="right-form">
-    <div *ngIf="getIngredientSearch() | async as ingredients">
-      <div *ngFor="let ingredient of ingredients">
-        <ul id="bulk">
-          <li (click)="InsertIngredient(ingredient.food_name, ingredient.food_cf)">{{ ingredient.food_name }}{{ ingredient.food_cf }} </li>
-        </ul>
-      </div>
-    </div>
+
+    <table id = "Chosen_InIngredients">
+      <tr>
+        <th>Company</th>
+        <th>Carbon Footprint</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <span id="val"></span>
+    <rg-gauge-chart
+      [canvasWidth]="canvasWidth"
+      [needleValue]="needleValue"
+      [centralLabel]="centralLabel"
+      [options]="options"
+      [name]="name"
+      [bottomLabel]="bottomLabel"></rg-gauge-chart>
   </div>
 </section>
 </form>
 
-
+<p id = base64></p>
 
 
 <!--<form class="form">
