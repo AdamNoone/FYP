@@ -7,28 +7,32 @@ import {FeedComponent} from './pages/feed/feed.component';
 import {MakepostComponent} from './pages/makepost/makepost.component';
 import { PostDetailComponent }  from './components/post-detail/post-detail.component';
 import { TypeofpostComponent } from './pages/typeofpost/typeofpost.component';
+import {RecyclepostComponent} from "./pages/recyclepost/recyclepost.component";
 
 const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard], //used to make sure user is logged in when they click on profile component
   },
   {
     path: '',
     component: HomeComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+
   },
 
   {
     path: 'feed',
     component: FeedComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    //canActivate: [AuthGuard]
   },
   {
     path: 'makepost',
     component:  MakepostComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    //canActivate: [AuthGuard]
   },
   {
     path: 'detail/:id',
@@ -41,6 +45,10 @@ const routes: Routes = [
   {
     path: 'typeofpost',
     component: TypeofpostComponent
+  },
+  {
+    path: 'recyclepost',
+    component: RecyclepostComponent
   },
   {
     path: 'food/:food_group:',

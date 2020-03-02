@@ -22,6 +22,7 @@ export class PostsApiService {
 
   // GET list of public, future events
   private postsUrl = `${API_URL}/feed`;
+  private BusinesspostsUrl = `${API_URL}/feed/business`;
   private BusinessesUrl = `${API_URL}/businesses`;
 
 
@@ -44,9 +45,15 @@ export class PostsApiService {
    return posts;
   }
 
+  getPostbyBusiness(business: string): Observable<Post[]> {
+    let posts = this.http.get<Post[]>(`${this.BusinesspostsUrl}/${business}`);
+    console.log(posts[business]);
+    return posts;
+  }
 
 
-  savePost(post: Post): Observable<any> {
+
+  savePost(post: { business: string; description: string; ingredients: string; title: string; carbon_footprint: number; picture: string, portion: number }): Observable<any> {
     return this.http
       .post(`${API_URL}/feed`, post);
   }

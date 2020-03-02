@@ -24,6 +24,8 @@ import {PostDetailComponent } from './components/post-detail/post-detail.compone
 import {FormsModule} from "@angular/forms";
 import { TypeofpostComponent } from './pages//typeofpost/typeofpost.component';
 import {FoodApiService} from "./pages/makepost/food-api.service";
+import { GaugeChartModule } from 'angular-gauge-chart';
+import { RecyclepostComponent } from './pages/recyclepost/recyclepost.component'
 
 export function hljsLanguages() {
   return [{ name: 'json', func: json }];
@@ -42,6 +44,7 @@ export function hljsLanguages() {
     MakepostComponent,
     PostDetailComponent,
     TypeofpostComponent,
+    RecyclepostComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ export function hljsLanguages() {
       languages: hljsLanguages
     }),
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    GaugeChartModule,
   ],
   providers: [PostsApiService, BusinessApiService, UserApiService,FoodApiService],
   bootstrap: [AppComponent]

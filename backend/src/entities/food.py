@@ -15,6 +15,7 @@ class Food(Entity, Base):
 
 
 
+
     def __init__(self, id, food_name, food_cf, food_group, created_by, updated_by):
         Entity.__init__(self, created_by)
         self.id = id
@@ -22,7 +23,6 @@ class Food(Entity, Base):
         self.food_cf= food_cf
         self.food_group= food_group
         self.updated_by= updated_by
-
 
 
 class FoodSchema(Schema):
@@ -34,4 +34,3 @@ class FoodSchema(Schema):
       updated_by = fields.Str()
       last_updated_by = fields.Str()
       updated_at = fields.DateTime()
-

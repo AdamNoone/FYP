@@ -52,12 +52,28 @@ def get_postsbyID(id):
     return jsonify(post)
 
 
+@app.route('/feed/business/<business>')
+def get_postsbyBusiness(business):
+      # fetching from the database
+      session = Session()
+      post_object = session.query(Post).filter(Post.business== business).all()
+
+      # transforming into JSON-serializable objects
+      schema = PostSchema(many=True)
+      post = schema.dump(post_object)
+
+      # serializing as JSON
+      session.close()
+      return jsonify(post)
+
+
+
 
 
 @app.route('/feed', methods=['POST'])
 def add_post():
     # mount post object
-    posted_post = PostSchema(only=('title', 'description', 'picture', 'business'))\
+    posted_post = PostSchema(only=('title', 'description', 'picture', 'business', 'ingredients', 'carbon_footprint', 'portion'))\
         .load(request.get_json())
 
     post = Post(**posted_post, created_by="HTTP post request")

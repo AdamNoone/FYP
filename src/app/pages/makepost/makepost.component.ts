@@ -1,14 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {PostsApiService} from '../feed/posts-api.service';
-import { AuthService } from 'src/app/auth/auth.service';
-import {exhaustMap, filter, map, switchMap, takeUntil, tap} from "rxjs/operators";
+import {AuthService} from 'src/app/auth/auth.service';
+import {map, takeUntil} from "rxjs/operators";
 import {FoodApiService} from "./food-api.service";
 import {Food} from "./food.model";
-import {Post} from "../feed/post.model";
-import {Business} from "../profile/business.model";
 import {Observable, ReplaySubject, Subject} from "rxjs";
-import { GaugeModule } from 'angular-gauge';
 
 @Component({
   selector: 'app-makepost',
@@ -23,6 +20,9 @@ export class MakepostComponent implements OnInit {
     description: '',
     picture: '',
     business: '',
+    ingredients:'',
+    carbon_footprint: 0,
+    portion: 0,
 
   };
   profileJson: string = null;
@@ -40,10 +40,10 @@ export class MakepostComponent implements OnInit {
   public options = {
     hasNeedle: true,
     needleColor: 'gray',
-    needleUpdateSpeed: 1000,
-    arcColors: ['rgb(44, 151, 222)', 'lightgray'],
-    arcDelimiters: [30],
-    rangeLabel: ['0', '100'],
+    needleUpdateSpeed: 2500,
+    arcColors: ['rgb(179,255,180)','rgb(119,222,110)','rgb(65,222,15)'],
+    arcDelimiters: [30,70],
+    rangeLabel: ['Good', 'Great'],
     needleStartValue: 0,
   };
 
@@ -84,7 +84,33 @@ export class MakepostComponent implements OnInit {
     }
   }
 
+  updateIngredients(){
+    var table = document.getElementById("Chosen_InIngredients") as HTMLTableElement;
+    let c =0;
+    let ingredients_String = table.rows[2].cells[0].innerHTML;
+   // console.log("this is the 1st ingredient " + ingredients_String);
+    //console.log(table.rows[0].cells[1].innerHTML);
+    for (c = 3; c < table.rows.length ; c++) {
+      //iterate through rows
+      //rows would be accessed using the "row" variable assigned in the for loop
+      let EachIngredient = table.rows[c].cells[0].innerHTML;
+     // console.log("each Ingredient is " +EachIngredient);
+      ingredients_String = ingredients_String + "," + EachIngredient ;
+        //iterate through columns
+        //columns would be accessed using the "col" variable assigned in the for loop
+      console.log(parseFloat(document.getElementById('val').innerHTML));
+    }
+    //console.log("this is the ingredients string " +ingredients_String);
+    return ingredients_String;
+  }
+
+  updatePortion(event: any) {
+    this.post.portion = event.target.value;
+  }
+
   SavePost(sub: string) {
+    this.post.ingredients= this.updateIngredients();
+    this.post.carbon_footprint= parseFloat(document.getElementById('val').innerHTML);
     this.post.picture = document.getElementById('base64').innerHTML;
     this.post.business = sub.replace(/\|/g, "");
     this.postsApi
@@ -148,6 +174,7 @@ export class MakepostComponent implements OnInit {
     newCellCF.appendChild(newCFText);
 
     this.SumOfFootprint()
+    this.updateIngredients();
   }
 
 
@@ -159,7 +186,7 @@ export class MakepostComponent implements OnInit {
     }
 
     sumVal = Math.round(sumVal * 10) / 10;
-    document.getElementById("val").innerHTML = "Sum Value = " + sumVal;
+    document.getElementById("val").innerHTML = String(sumVal);
     console.log(sumVal);
   this.needleValue = sumVal;
     this.bottomLabel = sumVal;

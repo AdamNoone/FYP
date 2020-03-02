@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit {
    // let n = str.slice(41, 45);
     let n = test[firstLoginKey];
     console.log(n);
-    debugger;
+
     if (n === true) {
       this.openForm();
     }

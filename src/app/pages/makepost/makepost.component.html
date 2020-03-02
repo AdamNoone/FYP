@@ -21,6 +21,11 @@
           <input id="post-description" (keyup)="updateDescription($event)" autocomplete="off">
         </li>
 
+        <li>
+          <label for="post-portion">Portions Being Saved</label>
+          <input id="post-portion" (keyup)="updatePortion($event)" autocomplete="off">
+        </li>
+
       <li>
         <input id="file" type="file" (change)="updatePicture()"/>
       </li>
@@ -60,7 +65,7 @@
 
     <table id = "Chosen_InIngredients">
       <tr>
-        <th>Company</th>
+        <th>Food</th>
         <th>Carbon Footprint</th>
       </tr>
       <tr>

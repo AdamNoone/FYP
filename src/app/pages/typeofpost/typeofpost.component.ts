@@ -17,7 +17,7 @@ export class TypeofpostComponent implements OnInit {
 
   RepeatbtnClick() {
 
-      this.router.navigate(['/makepost']);
+      this.router.navigate(['/recyclepost']);
 
   }
 
