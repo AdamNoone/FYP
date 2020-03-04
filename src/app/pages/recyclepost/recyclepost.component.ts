@@ -3,7 +3,7 @@ import {AuthService} from "../../auth/auth.service";
 import {Subscription} from 'rxjs/Subscription';
 import {PostsApiService} from 'src/app/pages/feed/posts-api.service';
 import {Post} from 'src/app/pages/feed/post.model';
-
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-recyclepost',
@@ -17,7 +17,7 @@ export class RecyclepostComponent implements OnInit {
   private posts: Post[];
   private profileJson: string;
 
-  constructor(public auth: AuthService, private postsApi: PostsApiService,) { }
+  constructor(public auth: AuthService, private postsApi: PostsApiService,private location: Location) { }
 
   ngOnInit() {
 
@@ -34,4 +34,8 @@ export class RecyclepostComponent implements OnInit {
         console.error
       );
 }
+
+  goBack(): void {
+    this.location.back();
+  }
 }

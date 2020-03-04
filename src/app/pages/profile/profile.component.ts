@@ -4,6 +4,8 @@ import {BusinessApiService} from 'src/app/pages/profile/businessdetails-api.serv
 import {UserApiService} from 'src/app/pages/profile/userdetails-api.service';
 import {Router} from "@angular/router";
 import axios from 'axios';
+import {tap} from "rxjs/operators";
+import {User} from "./user.model";
 
 
 @Component({
@@ -29,6 +31,9 @@ export class ProfileComponent implements OnInit {
     user_address: '',
     user_coordinates: '',
     user_footprint: '',
+
+
+
   };
 
   constructor(public auth: AuthService, private businessesApi: BusinessApiService,private usersApi: UserApiService, private router: Router) {
@@ -43,16 +48,38 @@ export class ProfileComponent implements OnInit {
     var test = JSON.parse(this.profileJson);
     console.log(test);
     var firstLoginKey = "http://localhost:3000/first_login";
-    //console.log(test[firstLoginKey]);
-   // var str = this.profileJson;
-   // let n = str.slice(41, 45);
     let n = test[firstLoginKey];
     console.log(n);
+    var user_id = test.sub.replace(/\|/g, "")
+
 
     if (n === true) {
       this.openForm();
     }
+
+   this.get_userbyUserID(user_id)
   }
+
+
+
+  get_userbyUserID(user_id: string): void {
+    this.usersApi.get_userbyUserID(user_id)
+      .subscribe(user=> this.user = user);
+  }
+
+
+  /*editUser(user_id: string, changes: Partial<User>) {
+
+    this.user.subscribe(user => {
+      const oldUser = user.filter(u => u.user_id == user_id)[0];
+      const newUser = {
+        ...oldUser,
+        ...changes
+      };
+
+      this.user.next([...foods, ingredient])
+    })
+  }*/
 
   openForm() {
     document.getElementById("TypeUserForm").style.display = "block";
@@ -154,9 +181,7 @@ export class ProfileComponent implements OnInit {
         // Geometry
         var lat = response.data.results[0].geometry.location.lat;
         var lng = response.data.results[0].geometry.location.lng;
-        var geometryOutput = `
-          <p>${lat} ${lng} </p>
-        `;
+        var geometryOutput = ` <p>${lat} ${lng} </p> `;
 
         document.getElementById('Business_geometry').innerHTML = geometryOutput;
       })
@@ -184,9 +209,7 @@ export class ProfileComponent implements OnInit {
         // Geometry
         var lat = response.data.results[0].geometry.location.lat;
         var lng = response.data.results[0].geometry.location.lng;
-        var geometryOutput = `
-          <p>${lat} ${lng} </p>
-        `;
+        var geometryOutput = `<p>${lat} ${lng} </p>`;
 
         document.getElementById('User_geometry').innerHTML = geometryOutput;
       })

@@ -9,3 +9,6 @@
 
 3.run project by pressing green arrow
 
+
+
+4.curl http://0.0.0.0:5000/exams

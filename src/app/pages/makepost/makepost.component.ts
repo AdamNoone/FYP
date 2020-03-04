@@ -87,15 +87,16 @@ export class MakepostComponent implements OnInit {
   updateIngredients(){
     var table = document.getElementById("Chosen_InIngredients") as HTMLTableElement;
     let c =0;
-    let ingredients_String = table.rows[2].cells[0].innerHTML;
+    let ingredients_String = table.rows[2].cells[0].innerHTML + "/" + table.rows[2].cells[1].innerHTML;
    // console.log("this is the 1st ingredient " + ingredients_String);
     //console.log(table.rows[0].cells[1].innerHTML);
     for (c = 3; c < table.rows.length ; c++) {
       //iterate through rows
       //rows would be accessed using the "row" variable assigned in the for loop
       let EachIngredient = table.rows[c].cells[0].innerHTML;
+      let EachCF = table.rows[c].cells[1].innerHTML;
      // console.log("each Ingredient is " +EachIngredient);
-      ingredients_String = ingredients_String + "," + EachIngredient ;
+      ingredients_String = ingredients_String + "," + EachIngredient + "/" + EachCF ;
         //iterate through columns
         //columns would be accessed using the "col" variable assigned in the for loop
       console.log(parseFloat(document.getElementById('val').innerHTML));

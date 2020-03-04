@@ -3,12 +3,11 @@
 <div id="post_details" style="text-align:center">
   <div *ngIf="post">
     <div id="blah">
-      <img id="pic"  [src]="post.picture" alt="your image">
     </div>
 
     <div id = "title"> <H2>{{post.title}}</H2> </div>
     <div class = "description" > <p> -- {{post.description}}</div>
-    <div class = "ingredients"> <p>{{post.ingredients}}</p> </div>
+    <span id = "ingredients1">{{post.ingredients}}</span>
     <div class = "cf" > <p> -- {{post.carbon_footprint}}</div>
   </div>
 
@@ -35,7 +34,7 @@
         </li>
 
         <li>
-          <input id="file" type="file"(change)="updatePicture()"/>
+          <img id="pic2"  [src]="post.picture" alt="your image">
         </li>
 
         <li>

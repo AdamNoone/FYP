@@ -1,5 +1,7 @@
 <div style="text-align:center">
 </div>
+
+<button (click)="goBack()">Go Back</button>
 <H1>Here are all your previous Posts</H1>
 
 <div class="container" *ngIf="auth.auth0Client$ | async">

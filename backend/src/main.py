@@ -1,6 +1,3 @@
-
-
-
 # coding=utf-8
 from flask_cors import CORS
 from flask import Flask, jsonify, request
@@ -124,6 +121,21 @@ def get_foodbygroup(food_group):
       return jsonify(food)
 
 
+@app.route('/food/name/<food_name>')
+def get_foodbyname(food_name):
+      # fetching from the database
+      session = Session()
+      food_object = session.query(Food).filter(Food.food_name== food_name)
+
+      # transforming into JSON-serializable objects
+      schema = FoodSchema(many=True)
+      food = schema.dump(food_object)
+
+      # serializing as JSON
+      session.close()
+      return jsonify(food)
+
+
 
 @app.route('/food', methods=['POST'])
 def add_food():
@@ -222,6 +234,23 @@ def get_users():
         return jsonify(users)
 
 
+@app.route('/users/<user_id>')
+def get_userbyUserID(user_id):
+      # fetching from the database
+      session = Session()
+      user_object = session.query(User).filter(User.user_id== user_id).first()
+
+      # transforming into JSON-serializable objects
+      schema = UserSchema()
+      user = schema.dump(user_object)
+
+      # serializing as JSON
+      session.close()
+      return jsonify(user)
+
+
+
+
 @app.route('/users', methods=['POST'])
 def add_user():
         # mount post object
@@ -241,7 +270,19 @@ def add_user():
         return jsonify(new_user), 201
 
 
+'''@app.route('/users/edit/<user_id)>', methods=['GET', 'POST'])
+def edit_user(user_id):
 
+        #Edit a user
+        add_user = False
+        user = get_userbyUserID(user_id)
+        user.user_footprint = 10
 
+        session = Session()
+        db.session.commit()
+        new_user = UserSchema().dump(user)
+        session.close()
+        return jsonify(new_user), 201
+'''
 
 

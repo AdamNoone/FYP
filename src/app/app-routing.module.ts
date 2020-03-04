@@ -8,6 +8,7 @@ import {MakepostComponent} from './pages/makepost/makepost.component';
 import { PostDetailComponent }  from './components/post-detail/post-detail.component';
 import { TypeofpostComponent } from './pages/typeofpost/typeofpost.component';
 import {RecyclepostComponent} from "./pages/recyclepost/recyclepost.component";
+import {MakeRecycledPostComponent} from "./pages/make-recycled-post/make-recycled-post.component";
 
 const routes: Routes = [
   {
@@ -49,6 +50,10 @@ const routes: Routes = [
   {
     path: 'recyclepost',
     component: RecyclepostComponent
+  },
+  {
+    path: 'recyclepost/:id',
+    component: MakeRecycledPostComponent
   },
   {
     path: 'food/:food_group:',

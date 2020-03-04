@@ -1,19 +1,16 @@
 import { Component, OnInit, Input,AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import {Post} from 'src/app/pages/feed/post.model';
 import {ActivatedRoute, Router} from '@angular/router';
-import { Location } from '@angular/common';
-
 import {PostsApiService} from 'src/app/pages/feed/posts-api.service';
 import {map, takeUntil, tap} from "rxjs/operators";
-import {BusinessApiService} from "../../pages/profile/businessdetails-api.service";
-import {Business} from "../../pages/profile/business.model";
-import {} from 'googlemaps';
+import {BusinessApiService} from "../profile/businessdetails-api.service";
+import {Business} from "../profile/business.model";
 import {Observable, ReplaySubject, Subject} from "rxjs";
 import {Food} from "../makepost/food.model";
 import {FoodApiService} from "../makepost/food-api.service";
 import {AuthService} from "../../auth/auth.service";
 import {RecyclepostApiService} from "./recyclepost-api.service";
-import {readTsconfig} from "@angular-devkit/build-angular/src/angular-cli-files/utilities/read-tsconfig";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-make-recycled-post',
@@ -21,7 +18,7 @@ import {readTsconfig} from "@angular-devkit/build-angular/src/angular-cli-files/
   styleUrls: ['./make-recycled-post.component.css']
 })
 export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
-  newpost = {
+  post = {
     title: '',
     description: '',
     picture: '',
@@ -31,10 +28,15 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
     portion: 0,
   };
 
-  @ViewChild('mapWrapper', {static: false}) mapElement: ElementRef;
-  @Input() post: Post;
-  @Input() business: Business;
+  food: Food = {
+    food_name: '',
+    food_group: '',
+    food_cf: '',
 
+  };
+
+  @ViewChild('mapWrapper', {static: false}) mapElement: ElementRef;
+  @Input() business: Business;
   profileJson: string = null;
 
   private destroyed$ = new Subject<void>();
@@ -46,7 +48,7 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
   public needleValue: number = 0;
   public centralLabel = '';
   public name = 'Gauge chart';
-  public bottomLabel :number = 0;location: any;
+  public bottomLabel :number = 0;
 
   public options = {
     hasNeedle: true,
@@ -57,6 +59,7 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
     rangeLabel: ['Good', 'Great'],
     needleStartValue: 0,
   };
+
   constructor(
     private route: ActivatedRoute,
     private postService: PostsApiService,
@@ -65,7 +68,8 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
     private postsApi: PostsApiService,
     private recycleApi: RecyclepostApiService,
     private router: Router,
-    public auth: AuthService) {
+    public auth: AuthService,
+    private location: Location) {
 
   }
 
@@ -77,21 +81,19 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
     ).subscribe(
       profile => this.profileJson = JSON.stringify(profile, null, 2)
     );
-    this.createTable();
   }
 
   ngAfterViewInit() {
 
-    //this.initializeMap();
   }
 
 
   updateTitle(event: any) {
-    this.newpost.title = event.target.value;
+    this.post.title = event.target.value;
   }
 
   updateDescription(event: any) {
-    this.newpost.description = event.target.value;
+    this.post.description = event.target.value;
   }
 
   updatePicture() {
@@ -131,19 +133,16 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
   }
 
 
-
-
-
-
-
-
-  ///ON TRYING TO POPULATE TABLE WITH INGREDIENTS
+//WHY DOESNT THIS WORK ??
+  //this.createTable();
   createTable() {
-    var table = document.getElementById("Chosen_InIngredients")[0] as HTMLTableElement;
+    var table = document.getElementById("Chosen_InIngredients") as HTMLTableElement;
     let c = 0;
+    //let ingredients_String ='Lamb/39.2,Beef/27,Turkey/10.9,Salmon/4.14';
     let ingredients_String = this.post.ingredients;
-    console.log(ingredients_String);
+    console.log("ingredients are" + ingredients_String);
     var result;
+    var result2;
     result = ingredients_String.split(",");
     console.log(result);
     // console.log("this is the 1st ingredient " + ingredients_String);
@@ -152,39 +151,39 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
       //iterate through rows
       //rows would be accessed using the "row" variable assigned in the for loop
       var newRow   = table.insertRow(table.rows.length);
-      var newCell  = newRow.insertCell(0);
-      var newText  = document.createTextNode(result[c]);
-      newCell.appendChild(newText);
+      var newCell1  = newRow.insertCell(0);
+      var newCell2  = newRow.insertCell(1);
+      result2 = result[c].split("/");
+      console.log("this is the result" + result2);
+      var newText1  = document.createTextNode(result2[0]);
+      var newText2  = document.createTextNode(result2[1]);
+      newCell1.appendChild(newText1);
+      newCell2.appendChild(newText2);
     }
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
   updatePortion(event: any) {
-    this.newpost.portion = event.target.value;
+    this.post.portion = event.target.value;
   }
 
   SavePost(sub: string) {
-    this.newpost.ingredients= this.updateIngredients();
-    this.newpost.carbon_footprint= parseFloat(document.getElementById('val').innerHTML);
-    this.newpost.picture = document.getElementById('base64').innerHTML;
-    this.newpost.business = sub.replace(/\|/g, "");
+    this.post.ingredients= this.updateIngredients();
+    this.post.carbon_footprint= parseFloat(document.getElementById('val').innerHTML);
+    this.post.picture = document.getElementById('base64').innerHTML;
+    this.post.business = sub.replace(/\|/g, "");
     this.postsApi
-      .savePost(this.newpost)
+      .savePost(this.post)
       .subscribe(
         () => this.router.navigate(['/feed']),
         error => alert(error.message)
       );
+
+  }
+
+  get_foodbyname(name): any {
+    this.recycleApi.get_foodbyname(name)
+      .subscribe(food=> this.food = food)
 
   }
 
@@ -219,7 +218,6 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
 
 
   InsertIngredient(name: string, cf: string) {
-
     let tableRef = document.getElementById("Chosen_InIngredients") as HTMLTableElement;
 
     // Insert a row at the end of the table

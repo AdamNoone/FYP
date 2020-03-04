@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import {API_URL} from 'src/app/env';
 import {User} from './user.model';
+import {Post} from "../feed/post.model";
 
 @Injectable()
 export class UserApiService {
@@ -16,13 +17,20 @@ export class UserApiService {
   }
 
   // GET list of public, future events
-
+  private userUrl = `${API_URL}/users`;
 
 
   getUsers(): Observable<User[]> {
     return this.http
       .get< User[] >(`${API_URL}/users`)
       .catch(UserApiService._handleError);
+  }
+
+
+  get_userbyUserID(user_id:string): Observable<User> {
+    let users = this.http.get<User>(`${this.userUrl}/${user_id}`);
+    console.log(users[user_id]);
+    return users;
   }
 
   saveUser(user: User): Observable<any> {

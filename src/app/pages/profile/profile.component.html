@@ -67,7 +67,7 @@
 </div>
 
 
-<h1>How Many Meals Have You Saved ?</h1>
+<!--<h1>How Many Meals Have You Saved ?</h1>
 <figure aria-hidden="true">
   <div class="graph">
     <span class="graphRowLabel">10</span>
@@ -94,30 +94,16 @@
   </div>
 
 </figure>
+-->
+
+<div *ngIf="user">
+  <div id = "user_id"> <p>{{user.user_id}}</p> </div>
+  <div id = "title"> <p>{{user.user_address}}</p> </div>
+  <div class = "description" > <p> -- {{user.user_coordinates}}</div>
+  <div class = "ingredients"> <p>{{user.user_footprint}}</p> </div>
+</div>
 
 
-
-<!---<div class="form-popup" id="myForm">
-  <form class="form-container">
-    <h1>Please provide some more details about your profile</h1>
-
-    <label id="email"><b>Name of your Business</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
-
-    <label id="business type"><b>Type of Business</b></label>
-    <input type="text" placeholder="Enter Type of Business" name="Business_type" required>
-
-
-    <label id="food_type"><b>Type of Food You Sell</b></label>
-    <input type="text" placeholder="Enter Type of Food" name="Food_type" required>
-
-    <label id="Address"><b>Business Address</b></label>
-    <input type="text" placeholder="Enter Type of Food" name="Food_type" required>
-
-    <button type="submit" class="btn">Login</button>
-   <button type="button" class="btn cancel" (click)="closeForm()">Close</button>
-  </form>
-</div>--->
 
 
 

@@ -18,7 +18,7 @@ export class RecyclepostApiService {
 
   // GET list of public, future events
   private FoodUrl = `${API_URL}/food`;
-
+  private nameFoodUrl = `${API_URL}/food/name`;
 
 
   getFoods(): Observable<Food[]> {
@@ -34,8 +34,19 @@ export class RecyclepostApiService {
     return foods ;
   }
 
+  get_foodbyname(food_name: string): Observable<Food> {
+    let foods = this.http.get<Food>(`${this.nameFoodUrl}/${food_name}`);
+    console.log(foods[food_name]);
+    return foods ;
+  }
+
   saveFood(food: Food): Observable<any> {
     return this.http
       .post(`${API_URL}/food`, food);
+  }
+
+  savePost(post: { business: string; description: string; ingredients: string; title: string; carbon_footprint: number; picture: string, portion: number }): Observable<any> {
+    return this.http
+      .post(`${API_URL}/feed`, post);
   }
 }
