@@ -6,6 +6,7 @@ export class User {
     public user_address : string,
     public user_coordinates: string,
     public user_footprint: string,
+    public user_level: number,
     public id?: number,
     public updatedAt?: Date,
     public createdAt?: Date,

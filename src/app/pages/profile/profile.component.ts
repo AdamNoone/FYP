@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
     user_address: '',
     user_coordinates: '',
     user_footprint: '',
+    user_level: 0,
 
 
 
@@ -43,6 +44,8 @@ export class ProfileComponent implements OnInit {
     this.auth.userProfile$.subscribe(
       profile => this.profileJson = JSON.stringify(profile, null, 2)
     );
+
+
 
     console.log(this.profileJson);
     var test = JSON.parse(this.profileJson);
@@ -57,7 +60,8 @@ export class ProfileComponent implements OnInit {
       this.openForm();
     }
 
-   this.get_userbyUserID(user_id)
+   this.get_userbyUserID(user_id);
+    //this.FootprintAnimate();
   }
 
 
@@ -68,18 +72,18 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  /*editUser(user_id: string, changes: Partial<User>) {
+/*editUser(user_id: string, changes: Partial<User>) {
 
-    this.user.subscribe(user => {
-      const oldUser = user.filter(u => u.user_id == user_id)[0];
-      const newUser = {
-        ...oldUser,
-        ...changes
-      };
+  this.user.subscribe(user => {
+    const oldUser = user.filter(u => u.user_id == user_id)[0];
+    const newUser = {
+      ...oldUser,
+      ...changes
+    };
 
-      this.user.next([...foods, ingredient])
-    })
-  }*/
+    this.user.next([...foods, ingredient])
+  })
+}*/
 
   openForm() {
     document.getElementById("TypeUserForm").style.display = "block";
@@ -98,9 +102,11 @@ export class ProfileComponent implements OnInit {
     if (business_check.checked) {
       this.SaveBusiness(sub);
       closeForm();
+      console.log("business checked, close from")
     } else if (user_check.checked) {
       this.SaveUser(sub,email,name);
       closeForm();
+      console.log("user checked, close from")
     }
 
   }
@@ -149,7 +155,8 @@ export class ProfileComponent implements OnInit {
     this.user.user_email = email;
     this.user.user_name = name;
     this.user.user_coordinates = document.getElementById('User_geometry').innerText;
-    this.user.user_footprint = '0';
+    this.user.user_footprint = '500';
+    this.user.user_level = 5;
     this.usersApi
       .saveUser(this.user)
       .subscribe(
@@ -157,13 +164,14 @@ export class ProfileComponent implements OnInit {
         error => alert(error.message)
       );
 
-
   }
 
 
 
 
-  Business_geocode(){
+
+
+Business_geocode(){
 
     var location = (<HTMLInputElement>document.getElementById('Business_Address')).value;
 
@@ -217,5 +225,93 @@ export class ProfileComponent implements OnInit {
         console.log(error);
       });
   }
-}
 
+
+
+
+   FootprintAnimate()
+  {
+
+    var Donations=0;
+    let heartPath = document.getElementById("heartPath") as unknown as  SVGAElement;
+    let heartRect = document.getElementById("heartRect") as unknown as  SVGAElement;
+        var footprint = this.user.user_footprint;
+        var percent = parseInt(footprint)/10;
+        console.log("percent is "  + percent);
+        heartRect.setAttribute("y",String(percent))
+  }
+
+
+  getTrophies() {
+    var level = this.user.user_level;
+
+    if(level > 0)
+    {
+      document.getElementById('HaveTrophy1').style.display ='block';
+      document.getElementById('NoTrophy1').style.display ='none';
+
+    }
+
+    if(level > 1)
+    {
+      document.getElementById('HaveTrophy2').style.display ='block';
+      document.getElementById('NoTrophy2').style.display ='none';
+
+    }
+
+    if(level > 2)
+    {
+      document.getElementById('HaveTrophy3').style.display ='block';
+      document.getElementById('NoTrophy3').style.display ='none';
+
+    }
+
+    if(level > 3)
+    {
+      document.getElementById('HaveTrophy4').style.display ='block';
+      document.getElementById('NoTrophy4').style.display ='none';
+
+    }
+
+    if(level > 4)
+    {
+      document.getElementById('HaveTrophy5').style.display ='block';
+      document.getElementById('NoTrophy5').style.display ='none';
+
+    }
+
+    if(level > 5)
+    {
+      document.getElementById('HaveTrophy6').style.display ='block';
+      document.getElementById('NoTrophy6').style.display ='none';
+
+    }
+
+    if(level > 6)
+    {
+      document.getElementById('HaveTrophy7').style.display ='block';
+      document.getElementById('NoTrophy7').style.display ='none';
+
+    }
+    if(level > 7)
+    {
+      document.getElementById('HaveTrophy8').style.display ='block';
+      document.getElementById('NoTrophy8').style.display ='none';
+
+    }
+    if(level > 8)
+    {
+      document.getElementById('HaveTrophy9').style.display ='block';
+      document.getElementById('NoTrophy9').style.display ='none';
+
+    }
+    if(level > 9)
+    {
+      document.getElementById('HaveTrophy10').style.display ='block';
+      document.getElementById('NoTrophy10').style.display ='none';
+
+    }
+  }
+
+
+}
