@@ -254,7 +254,7 @@ def get_userbyUserID(user_id):
 @app.route('/users', methods=['POST'])
 def add_user():
         # mount post object
-        posted_user = UserSchema(only=('user_id', 'user_email', 'user_name', 'user_address', 'user_coordinates', 'user_footprint'))\
+        posted_user = UserSchema(only=('user_id', 'user_email', 'user_name', 'user_address', 'user_coordinates', 'user_footprint','user_level'))\
             .load(request.get_json())
 
         user = User(**posted_user, created_by="HTTP post request")
