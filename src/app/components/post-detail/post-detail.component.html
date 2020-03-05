@@ -24,7 +24,8 @@
     <div class = "description" > <p> -- {{post.description}}</div>
     <div class = "ingredients"> <p>{{post.ingredients}}</p> </div>
     <div class = "cf" > <p> -- {{post.carbon_footprint}}</div>
-  </div>
+  <div class = "cf" > <p> Portion: {{post.portion}}</div>
+
 
   <div *ngIf="business">
     <div id= "business_name"  > <p> -- {{business.business_name}}</div>
@@ -33,9 +34,12 @@
     <div id = "business_coordinates"  > <p> {{business.business_coordinates}}</p></div>
 </div>
 
+</div>
 
 
-
+  <div *ngIf="user">
+  <button (click)=update(user.user_id,user.user_footprint)>I Want The Food</button>
+    <div>
 </div>
 
 <div class="main">

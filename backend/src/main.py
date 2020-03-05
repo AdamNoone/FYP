@@ -1,4 +1,5 @@
 # coding=utf-8
+import math
 from flask_cors import CORS
 from flask import Flask, jsonify, request
 
@@ -270,19 +271,25 @@ def add_user():
         return jsonify(new_user), 201
 
 
-'''@app.route('/users/edit/<user_id)>', methods=['GET', 'POST'])
-def edit_user(user_id):
 
-        #Edit a user
-        add_user = False
-        user = get_userbyUserID(user_id)
-        user.user_footprint = 10
 
+
+@app.route('/edit/<user_id>/<user_footprint>')
+def updateUser(user_id,user_footprint):
         session = Session()
-        db.session.commit()
-        new_user = UserSchema().dump(user)
+        GetUserData = session.query(User).filter(User.user_id==user_id).first()
+        print (GetUserData )
+        OldUserfootprint = GetUserData.user_footprint
+        NewFootPrint = int(OldUserfootprint) + int(user_footprint)
+
+        print (int(NewFootPrint))
+
+        dataToUpdate = {User.user_footprint: NewFootPrint,User.user_level:  math.floor(NewFootPrint/100)  +1 }
+
+        UserData = session.query(User).filter(User.user_id==user_id)
+        UserData.update(dataToUpdate)
+        session.commit()
+
+        new_user = UserSchema().dump(UserData)
         session.close()
         return jsonify(new_user), 201
-'''
-
-

@@ -142,108 +142,13 @@
 
 <h1>Your Trophies</h1>
 
-<button (click)=getTrophies()>Show Footprint</button>
+<button (click)=getTrophies()>Show Trophies</button>
 <ul>
-  <li id="HaveTrophy1" class="TrophyEarned">
+  <li *ngFor="let trophy of trophies" [ngClass]="trophy.dateEarned == null ? 'TrophyNotEarned' : 'TrophyEarned'">
     <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-     <p>HaveTrophy1</p>
-  </li>
-
-  <li id="HaveTrophy2" class="TrophyEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>HaveTrophy2</p>
-  </li>
-
-  <li id="HaveTrophy3" class="TrophyEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>HaveTrophy3</p>
-  </li>
-
-  <li id="HaveTrophy4" class="TrophyEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>HaveTrophy4</p>
-  </li>
-
-  <li id="HaveTrophy5" class="TrophyEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>HaveTrophy5</p>
-  </li>
-
-  <li id="HaveTrophy6" class="TrophyEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>HaveTrophy6</p>
-  </li>
-
-  <li id="HaveTrophy7" class="TrophyEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>HaveTrophy7</p>
-  </li>
-
-  <li id="HaveTrophy8" class="TrophyEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>HaveTrophy8</p>
-  </li>
-
-  <li id="HaveTrophy9" class="TrophyEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>HaveTrophy9</p>
-  </li>
-
-  <li id="HaveTrophy10" class="TrophyEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>HaveTrophy10</p>
-  </li>
-
-
-  <li id="NoTrophy1" class="TrophyNotEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>NoTrophy1</p>
-  </li>
-
-  <li id="NoTrophy2" class="TrophyNotEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>NoTrophy2</p>
-  </li>
-
-  <li id="NoTrophy3" class="TrophyNotEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>NoTrophy3</p>
-  </li>
-
-  <li id="NoTrophy4" class="TrophyNotEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>NoTrophy4</p>
-  </li>
-
-  <li id="NoTrophy5" class="TrophyNotEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>NoTrophy5</p>
-  </li>
-
-  <li id="NoTrophy6" class="TrophyNotEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>NoTrophy6</p>
-  </li>
-
-  <li id="NoTrophy7" class="TrophyNotEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>NoTrophy7</p>
-  </li>
-
-  <li id="NoTrophy8" class="TrophyNotEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>NoTrophy8</p>
-  </li>
-
-  <li id="NoTrophy9" class="TrophyNotEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>NoTrophy9</p>
-  </li>
-
-  <li id="NoTrophy10" class="TrophyNotEarned">
-    <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
-    <p>NoTrophy10</p>
-
+    <p>{{trophy.name}}</p>
+    <p>{{trophy.description}}</p>
+    <p>{{trophy.dateEarned | date }}</p>
   </li>
 </ul>
 

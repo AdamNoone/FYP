@@ -10,7 +10,7 @@ import {Food} from "../makepost/food.model";
 import {FoodApiService} from "../makepost/food-api.service";
 import {AuthService} from "../../auth/auth.service";
 import {RecyclepostApiService} from "./recyclepost-api.service";
-import { Location } from '@angular/common';
+import {Location } from '@angular/common';
 
 @Component({
   selector: 'app-make-recycled-post',
@@ -62,7 +62,6 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
 
   constructor(
     private route: ActivatedRoute,
-    private postService: PostsApiService,
     private BusinessService: BusinessApiService,
     private FoodService: FoodApiService,
     private postsApi: PostsApiService,
@@ -133,8 +132,7 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
   }
 
 
-//WHY DOESNT THIS WORK ??
-  //this.createTable();
+
   createTable() {
     var table = document.getElementById("Chosen_InIngredients") as HTMLTableElement;
     let c = 0;
@@ -190,8 +188,11 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
 
   getPost(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.postService.getPostbyID(id)
-      .subscribe(post=> this.post = post);
+    this.postsApi.getPostbyID(id)
+      .subscribe(post=> {
+        this.post = post
+        this.createTable()})
+
   }
 
   goBack(): void {

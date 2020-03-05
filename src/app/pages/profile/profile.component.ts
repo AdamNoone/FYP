@@ -7,6 +7,11 @@ import axios from 'axios';
 import {tap} from "rxjs/operators";
 import {User} from "./user.model";
 
+export interface Trophy {
+  name: string;
+  description: string;
+  dateEarned: Date;
+}
 
 @Component({
   selector: 'app-profile',
@@ -32,10 +37,9 @@ export class ProfileComponent implements OnInit {
     user_coordinates: '',
     user_footprint: '',
     user_level: 0,
-
-
-
   };
+
+  trophies = [];
 
   constructor(public auth: AuthService, private businessesApi: BusinessApiService,private usersApi: UserApiService, private router: Router) {
   }
@@ -62,13 +66,18 @@ export class ProfileComponent implements OnInit {
 
    this.get_userbyUserID(user_id);
     //this.FootprintAnimate();
+
   }
 
 
 
   get_userbyUserID(user_id: string): void {
     this.usersApi.get_userbyUserID(user_id)
-      .subscribe(user=> this.user = user);
+      .subscribe(user=> {
+        this.user = user
+        this.getTrophies()
+        this.FootprintAnimate()
+      });
   }
 
 
@@ -244,73 +253,15 @@ Business_geocode(){
 
   getTrophies() {
     var level = this.user.user_level;
-
-    if(level > 0)
-    {
-      document.getElementById('HaveTrophy1').style.display ='block';
-      document.getElementById('NoTrophy1').style.display ='none';
-
+    debugger;
+    for (var x = 0; x <11; x++) {
+      this.trophies.push({
+        name: 'HaveTrophy' + x,
+        description: 'Description for trophy ' + x,
+        dateEarned: this.user.user_level >= x ? new Date(): null
+      })
     }
 
-    if(level > 1)
-    {
-      document.getElementById('HaveTrophy2').style.display ='block';
-      document.getElementById('NoTrophy2').style.display ='none';
-
-    }
-
-    if(level > 2)
-    {
-      document.getElementById('HaveTrophy3').style.display ='block';
-      document.getElementById('NoTrophy3').style.display ='none';
-
-    }
-
-    if(level > 3)
-    {
-      document.getElementById('HaveTrophy4').style.display ='block';
-      document.getElementById('NoTrophy4').style.display ='none';
-
-    }
-
-    if(level > 4)
-    {
-      document.getElementById('HaveTrophy5').style.display ='block';
-      document.getElementById('NoTrophy5').style.display ='none';
-
-    }
-
-    if(level > 5)
-    {
-      document.getElementById('HaveTrophy6').style.display ='block';
-      document.getElementById('NoTrophy6').style.display ='none';
-
-    }
-
-    if(level > 6)
-    {
-      document.getElementById('HaveTrophy7').style.display ='block';
-      document.getElementById('NoTrophy7').style.display ='none';
-
-    }
-    if(level > 7)
-    {
-      document.getElementById('HaveTrophy8').style.display ='block';
-      document.getElementById('NoTrophy8').style.display ='none';
-
-    }
-    if(level > 8)
-    {
-      document.getElementById('HaveTrophy9').style.display ='block';
-      document.getElementById('NoTrophy9').style.display ='none';
-
-    }
-    if(level > 9)
-    {
-      document.getElementById('HaveTrophy10').style.display ='block';
-      document.getElementById('NoTrophy10').style.display ='none';
-
-    }
   }
 
 

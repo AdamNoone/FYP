@@ -113,7 +113,6 @@ export class MakepostComponent implements OnInit {
     this.post.ingredients= this.updateIngredients();
     this.post.carbon_footprint= parseFloat(document.getElementById('val').innerHTML);
     this.post.picture = document.getElementById('base64').innerHTML;
-    this.post.business = sub.replace(/\|/g, "");
     this.postsApi
       .savePost(this.post)
       .subscribe(

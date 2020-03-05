@@ -1,0 +1,169 @@
+ if(level > 0)
+    {
+      document.getElementById('HaveTrophy1').style.display ='block';
+      document.getElementById('NoTrophy1').style.display ='none';
+
+    }
+
+    if(level > 1)
+    {
+      document.getElementById('HaveTrophy2').style.display ='block';
+      document.getElementById('NoTrophy2').style.display ='none';
+
+    }
+
+    if(level > 2)
+    {
+      document.getElementById('HaveTrophy3').style.display ='block';
+      document.getElementById('NoTrophy3').style.display ='none';
+
+    }
+
+    if(level > 3)
+    {
+      document.getElementById('HaveTrophy4').style.display ='block';
+      document.getElementById('NoTrophy4').style.display ='none';
+
+    }
+
+    if(level > 4)
+    {
+      document.getElementById('HaveTrophy5').style.display ='block';
+      document.getElementById('NoTrophy5').style.display ='none';
+
+    }
+
+    if(level > 5)
+    {
+      document.getElementById('HaveTrophy6').style.display ='block';
+      document.getElementById('NoTrophy6').style.display ='none';
+
+    }
+
+    if(level > 6)
+    {
+      document.getElementById('HaveTrophy7').style.display ='block';
+      document.getElementById('NoTrophy7').style.display ='none';
+
+    }
+    if(level > 7)
+    {
+      document.getElementById('HaveTrophy8').style.display ='block';
+      document.getElementById('NoTrophy8').style.display ='none';
+
+    }
+    if(level > 8)
+    {
+      document.getElementById('HaveTrophy9').style.display ='block';
+      document.getElementById('NoTrophy9').style.display ='none';
+
+    }
+    if(level > 9)
+    {
+      document.getElementById('HaveTrophy10').style.display ='block';
+      document.getElementById('NoTrophy10').style.display ='none';
+
+    }
+
+
+    <li id="HaveTrophy1" class="TrophyEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+         <p>HaveTrophy1</p>
+      </li>
+
+      <li id="HaveTrophy2" class="TrophyEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>HaveTrophy2</p>
+      </li>
+
+      <li id="HaveTrophy3" class="TrophyEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>HaveTrophy3</p>
+      </li>
+
+      <li id="HaveTrophy4" class="TrophyEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>HaveTrophy4</p>
+      </li>
+
+      <li id="HaveTrophy5" class="TrophyEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>HaveTrophy5</p>
+      </li>
+
+      <li id="HaveTrophy6" class="TrophyEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>HaveTrophy6</p>
+      </li>
+
+      <li id="HaveTrophy7" class="TrophyEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>HaveTrophy7</p>
+      </li>
+
+      <li id="HaveTrophy8" class="TrophyEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>HaveTrophy8</p>
+      </li>
+
+      <li id="HaveTrophy9" class="TrophyEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>HaveTrophy9</p>
+      </li>
+
+      <li id="HaveTrophy10" class="TrophyEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>HaveTrophy10</p>
+      </li>
+
+
+      <li id="NoTrophy1" class="TrophyNotEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>NoTrophy1</p>
+      </li>
+
+      <li id="NoTrophy2" class="TrophyNotEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>NoTrophy2</p>
+      </li>
+
+      <li id="NoTrophy3" class="TrophyNotEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>NoTrophy3</p>
+      </li>
+
+      <li id="NoTrophy4" class="TrophyNotEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>NoTrophy4</p>
+      </li>
+
+      <li id="NoTrophy5" class="TrophyNotEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>NoTrophy5</p>
+      </li>
+
+      <li id="NoTrophy6" class="TrophyNotEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>NoTrophy6</p>
+      </li>
+
+      <li id="NoTrophy7" class="TrophyNotEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>NoTrophy7</p>
+      </li>
+
+      <li id="NoTrophy8" class="TrophyNotEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>NoTrophy8</p>
+      </li>
+
+      <li id="NoTrophy9" class="TrophyNotEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>NoTrophy9</p>
+      </li>
+
+      <li id="NoTrophy10" class="TrophyNotEarned">
+        <img class="trophy_image"  src="../../../assets/Trophy.jpg" alt="your image">
+        <p>NoTrophy10</p>
+
+      </li>

@@ -9,6 +9,7 @@ import {tap} from "rxjs/operators";
 import {BusinessApiService} from "../../pages/profile/businessdetails-api.service";
 import {Business} from "../../pages/profile/business.model";
 import {} from 'googlemaps';
+import {UserApiService} from "../../pages/profile/userdetails-api.service";
 
 
 @Component({
@@ -22,16 +23,40 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
   @Input() post: Post;
   @Input() business: Business;
   auth: any;
+  private profileJson: string;
+
+  user = {
+    user_id : '',
+    user_email : '',
+    user_name: '',
+    user_address: '',
+    user_coordinates: '',
+    user_footprint: '',
+    user_level: 0,
+
+
+
+  };
+
   constructor(
     private route: ActivatedRoute,
     private postService: PostsApiService,
     private BusinessService: BusinessApiService,
+    private usersApi: UserApiService,
     private location: Location) {
 
   }
 
   ngOnInit(): void {
     this.getPost();
+    this.auth.userProfile$.subscribe(
+      profile => this.profileJson = JSON.stringify(profile, null, 2))
+
+
+    var test = JSON.parse(this.profileJson);
+    var user_id = test.sub.replace(/\|/g, "")
+    this.get_userbyUserID(user_id);
+
   }
 
   ngAfterViewInit() {
@@ -57,6 +82,17 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
         tap(business=> this.initializeMap(business.business_coordinates,business.business_name,))
       )
       .subscribe(business=> this.business = business);
+  }
+
+  get_userbyUserID(user_id: string): void {
+    this.usersApi.get_userbyUserID(user_id)
+      .subscribe(user=> this.user = user);
+  }
+
+
+  update(user_id,user_footprint)
+  {
+   //need to define a posts api service
   }
 
   goBack(): void {
