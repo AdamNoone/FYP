@@ -34,7 +34,7 @@ export class FoodApiService {
     return foods ;
   }
 
-  saveFood(food: Food): Observable<any> {
+  saveFood(food: { food_group: string; food_name: string; food_cf: number }): Observable<any> {
     return this.http
       .post(`${API_URL}/food`, food);
   }

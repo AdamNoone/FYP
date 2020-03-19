@@ -19,18 +19,18 @@
       <ul>
         <li>
           <label for="post-title">What Food Are you Saving ?</label>
-          <input id="post-title" value={{post.title}} (keyup)="updateTitle($event)" autocomplete="off">
+          <input id="post-title" value={{post.title}} autocomplete="off">
         </li>
 
 
         <li>
           <label for="post-description">Description of Food</label>
-          <input id="post-description" value={{post.description}} (keyup)="updateDescription($event)" autocomplete="off">
+          <input id="post-description" value={{post.description}} autocomplete="off">
         </li>
 
         <li>
           <label for="post-portion">Portions Being Saved</label>
-          <input id="post-portion" value={{post.portion}} (keyup)="updatePortion($event)" autocomplete="off">
+          <input id="post-portion" value={{post.portion}} autocomplete="off">
         </li>
 
         <li>
@@ -69,7 +69,7 @@
 
 
     <div class="form-div" id ="right-form">
-
+      <div *ngIf="post">
       <table id = "Chosen_InIngredients">
         <tr>
           <th>Food</th>
@@ -80,7 +80,7 @@
           <td></td>
         </tr>
       </table>
-      <span id="val"></span>
+      <span id="val"  >{{post.carbon_footprint}}</span>
       <rg-gauge-chart
         [canvasWidth]="canvasWidth"
         [needleValue]="needleValue"
@@ -88,6 +88,7 @@
         [options]="options"
         [name]="name"
         [bottomLabel]="bottomLabel"></rg-gauge-chart>
+    </div>
     </div>
   </section>
 </form>

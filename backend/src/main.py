@@ -74,7 +74,7 @@ def add_post():
     posted_post = PostSchema(only=('title', 'description', 'picture', 'business', 'ingredients', 'carbon_footprint', 'portion'))\
         .load(request.get_json())
 
-    post = Post(**posted_post, created_by="HTTP post request")
+    post = Post(**posted_post, created_by="HTTP post request" )
 
     # persist post
     session = Session()
@@ -141,7 +141,7 @@ def get_foodbyname(food_name):
 @app.route('/food', methods=['POST'])
 def add_food():
     # mount post object
-    posted_food = FoodSchema(only=('food_id', 'food_name', 'food_cf', 'food_group'))\
+    posted_food = FoodSchema(only=('food_name', 'food_cf', 'food_group','updated_by'))\
         .load(request.get_json())
 
     food = Food(**posted_food, created_by="HTTP post request")
@@ -200,7 +200,7 @@ def get_businessbyBusinessID(business_id):
 @app.route('/businesses', methods=['POST'])
 def add_business():
         # mount post object
-        posted_business = BusinessSchema(only=('business_id', 'business_name', 'business_type', 'business_address', 'business_coordinates', 'business_description'))\
+        posted_business = BusinessSchema(only=('business_id', 'business_name', 'business_type', 'business_address', 'business_coordinates', 'business_description', 'business_footprint','business_level'))\
             .load(request.get_json())
 
         business = Business(**posted_business, created_by="HTTP post request")
@@ -280,9 +280,9 @@ def updateUser(user_id,user_footprint):
         GetUserData = session.query(User).filter(User.user_id==user_id).first()
         print (GetUserData )
         OldUserfootprint = GetUserData.user_footprint
-        NewFootPrint = int(OldUserfootprint) + int(user_footprint)
+        NewFootPrint = float(OldUserfootprint) + float(user_footprint)
 
-        print (int(NewFootPrint))
+        print (float(NewFootPrint))
 
         dataToUpdate = {User.user_footprint: NewFootPrint,User.user_level:  math.floor(NewFootPrint/100)  +1 }
 
@@ -293,3 +293,45 @@ def updateUser(user_id,user_footprint):
         new_user = UserSchema().dump(UserData)
         session.close()
         return jsonify(new_user), 201
+
+
+@app.route('/edit/<business_id>/<business_footprint>')
+def updateBusiness(business_id,business_footprint):
+        session = Session()
+        GetBusinessData = session.query(Business).filter(Business.business_id==business_id).first()
+        print (GetBusinessData )
+        OldBusinessfootprint = GetBusinessData.business_footprint
+        NewFootPrint = float(OldBusinessfootprint) + float(business_footprint)
+
+        print (float(NewFootPrint))
+
+        dataToUpdate = {Business.business_footprint: NewFootPrint,Business.business_level:  math.floor(NewFootPrint/100)  +1 }
+
+        BusinessData = session.query(Business).filter(Business.business_id==business_id)
+        BusinessData.update(dataToUpdate)
+        session.commit()
+
+        new_business = BusinessSchema().dump(BusinessData)
+        session.close()
+        return jsonify(new_business), 201
+
+
+@app.route('/editpost/<post_id>')
+def updatePost(post_id,):
+        session = Session()
+        GetPostData = session.query(Post).filter(Post.id==post_id).first()
+        print (GetPostData)
+        OldPostPortion = GetPostData.portion
+        NewPortion = OldPostPortion - 1
+
+        print (NewPortion)
+
+        dataToUpdate = {Post.portion: NewPortion}
+
+        PostData = session.query(Post).filter(Post.id==post_id)
+        PostData.update(dataToUpdate)
+        session.commit()
+
+        new_post = PostSchema().dump(PostData)
+        session.close()
+        return jsonify(new_post), 201

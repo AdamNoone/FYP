@@ -1,5 +1,6 @@
 
 
+<script src="../make-recycled-post/make-recycled-post.component.ts"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.1/raphael-min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.3.5/justgage.js"></script>
 
@@ -45,6 +46,7 @@
     <ul>
       <li>
           <label for="Ingredients">Please Choose the Ingredients in your Food </label>
+        <app-modal></app-modal>
           <input id="Ingredients" name="Ingredients" [(ngModel)]="ingredientSearch" autocomplete="off">
       </li>
 
@@ -88,21 +90,8 @@
 <p id = base64></p>
 
 
-<!--<form class="form">
-  <h2>New Post</h2>
-  <label for="post-title">Title</label>
-  <label for="post-title"></label>
-  <input id="post-title" (keyup)="updateTitle($event)" autocomplete="off">
-  <label for="post-description">Description</label>
-  <input id="post-description" (keyup)="updateDescription($event)" autocomplete="off">
-  <input id="file" type="file" (change)="updatePicture()"/>
-</form>
-<p id = base64></p>
 
 
-<div id="profile_info"*ngIf="auth.userProfile$ | async as profile">
-<button (click)="SavePost(profile.sub)">Make Post</button>
-</div>-->
 
 
 

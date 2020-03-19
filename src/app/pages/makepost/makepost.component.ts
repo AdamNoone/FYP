@@ -6,6 +6,9 @@ import {map, takeUntil} from "rxjs/operators";
 import {FoodApiService} from "./food-api.service";
 import {Food} from "./food.model";
 import {Observable, ReplaySubject, Subject} from "rxjs";
+import {FormControl, FormGroup, Validators} from "@angular/forms"
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModalComponent } from "../../components/modal/modal.component";
 
 @Component({
   selector: 'app-makepost',
@@ -26,7 +29,7 @@ export class MakepostComponent implements OnInit {
 
   };
   profileJson: string = null;
-
+  validatingForm: FormGroup;
   private destroyed$ = new Subject<void>();
   private foods$ = new ReplaySubject<Food[]>();
 
@@ -47,7 +50,7 @@ export class MakepostComponent implements OnInit {
     needleStartValue: 0,
   };
 
-  constructor(private FoodService: FoodApiService, private postsApi: PostsApiService, private router: Router, public auth: AuthService) {
+  constructor(private FoodService: FoodApiService, private postsApi: PostsApiService, private router: Router, public auth: AuthService, public matDialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -58,6 +61,17 @@ export class MakepostComponent implements OnInit {
       profile => this.profileJson = JSON.stringify(profile, null, 2)
     );
     //console.log("hello",this.profileJson);
+  }
+
+  openModal() {
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "350px";
+    dialogConfig.width = "600px";
+    // https://material.angular.io/components/dialog/overview
+    const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
   }
 
   updateTitle(event: any) {
@@ -113,6 +127,7 @@ export class MakepostComponent implements OnInit {
     this.post.ingredients= this.updateIngredients();
     this.post.carbon_footprint= parseFloat(document.getElementById('val').innerHTML);
     this.post.picture = document.getElementById('base64').innerHTML;
+    this.post.business = sub.replace(/\|/g, "");
     this.postsApi
       .savePost(this.post)
       .subscribe(

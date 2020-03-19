@@ -3,7 +3,7 @@ import { Component, OnInit, Input,AfterViewInit, ViewChild, ElementRef } from '@
 import {Post} from 'src/app/pages/feed/post.model';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-
+import {AuthService} from 'src/app/auth/auth.service';
 import {PostsApiService} from 'src/app/pages/feed/posts-api.service';
 import {tap} from "rxjs/operators";
 import {BusinessApiService} from "../../pages/profile/businessdetails-api.service";
@@ -22,7 +22,6 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
   @ViewChild('mapWrapper', {static: false}) mapElement: ElementRef;
   @Input() post: Post;
   @Input() business: Business;
-  auth: any;
   private profileJson: string;
 
   user = {
@@ -43,7 +42,8 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
     private postService: PostsApiService,
     private BusinessService: BusinessApiService,
     private usersApi: UserApiService,
-    private location: Location) {
+    private location: Location,
+    public auth: AuthService) {
 
   }
 
@@ -90,9 +90,14 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
   }
 
 
-  update(user_id,user_footprint)
-  {
-   //need to define a posts api service
+  update(user_id: string, post_footprint: number, post_id: number) :void {
+    console.log("button pressed");
+    this.usersApi.UpdateUser(user_id,String(post_footprint))
+      .subscribe(user=> this.user);
+
+    this.postService.UpdatePortion(String(post_id))
+      .subscribe(post=> this.post);
+       location.reload();
   }
 
   goBack(): void {

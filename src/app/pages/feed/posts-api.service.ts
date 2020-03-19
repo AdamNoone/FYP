@@ -8,6 +8,7 @@ import {Business} from "../profile/business.model";
 
 import {of} from "rxjs";
 import {map, catchError, tap} from 'rxjs/operators';
+import {User} from "../profile/user.model";
 
 
 @Injectable()
@@ -24,7 +25,7 @@ export class PostsApiService {
   private postsUrl = `${API_URL}/feed`;
   private BusinesspostsUrl = `${API_URL}/feed/business`;
   private BusinessesUrl = `${API_URL}/businesses`;
-
+  private updatepostUrl = `${API_URL}/editpost`;
 
   //old function
   /* getPosts(): Observable<Post[]> {
@@ -52,6 +53,11 @@ export class PostsApiService {
   }
 
 
+  UpdatePortion(post_id:string): Observable<Post> {
+    let posts = this.http.get<Post>(`${this.updatepostUrl }/${post_id}`);
+    console.log(posts[post_id]);
+    return posts;
+  }
 
   savePost(post: { business: string; description: string; ingredients: string; title: string; carbon_footprint: number; picture: string, portion: number }): Observable<any> {
     return this.http

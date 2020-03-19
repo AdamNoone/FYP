@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+<!-- Trigger/Open The Modal -->
+<button id="myBtn" (click)="btnfunction()">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Modal Header</h2>
+      <span class="close" (click)="spanfunction()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <label for="post-title">What Food Are you Saving ?</label>
+      <input id="post-title" (keyup)="updateFoodname($event)" autocomplete="off">
+
+      <p>
+        Please Select a Food Type
+      </p>
+
+
+      <input (click)="updateFoodGroup($event)" type="radio" name="type" value="Meat">Meat
+      <input (click)="updateFoodGroup($event)" type="radio" name="type" value="Fish">Fish
+      <input (click)="updateFoodGroup($event)" type="radio" name="type" value="Starch">Starch
+      <input (click)="updateFoodGroup($event)"  type="radio" name="type" value="Dairy">Dairy
+      <input (click)="updateFoodGroup($event)"  type="radio" name="type" value="Fruit">Fruit
+      <input (click)="updateFoodGroup($event)" type="radio" name="type" value="Vegetable">Vegetable
+      <input (click)="updateFoodGroup($event)" type="radio" name="type" value="Nuts">Nuts
+      <input (click)="updateFoodGroup($event)" type="radio" name="type" value="Seasoning">Seasoning
+
+      <br>
+
+      <button type="button" (click)="SaveFood()">
+        Add Food
+      </button>
+
+      <br>
+
+      <div id="result"></div>
+
+    </div>
+    </div>
+  </div>
+
+
+
+</body>
+</html>

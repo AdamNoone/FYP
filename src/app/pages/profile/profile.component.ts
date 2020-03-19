@@ -27,6 +27,8 @@ export class ProfileComponent implements OnInit {
     business_address: '',
     business_coordinates: '',
     business_description: '',
+    business_footprint: '',
+    business_level: 0,
   };
 
   user = {
@@ -81,18 +83,6 @@ export class ProfileComponent implements OnInit {
   }
 
 
-/*editUser(user_id: string, changes: Partial<User>) {
-
-  this.user.subscribe(user => {
-    const oldUser = user.filter(u => u.user_id == user_id)[0];
-    const newUser = {
-      ...oldUser,
-      ...changes
-    };
-
-    this.user.next([...foods, ingredient])
-  })
-}*/
 
   openForm() {
     document.getElementById("TypeUserForm").style.display = "block";
@@ -142,8 +132,9 @@ export class ProfileComponent implements OnInit {
 
   SaveBusiness(sub:string) {
     this.business.business_id = sub.replace(/\|/g, "");
-    //console.log(document.getElementById('Business_geometry').innerText);
     this.business.business_coordinates = document.getElementById('Business_geometry').innerText;
+    this.business.business_footprint = '500';
+    this.business.business_level = 5;
     this.businessesApi
       .saveBusiness(this.business)
       .subscribe(
@@ -253,7 +244,7 @@ Business_geocode(){
 
   getTrophies() {
     var level = this.user.user_level;
-    debugger;
+    //debugger;
     for (var x = 0; x <11; x++) {
       this.trophies.push({
         name: 'HaveTrophy' + x,

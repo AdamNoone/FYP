@@ -16,9 +16,8 @@ class Food(Entity, Base):
 
 
 
-    def __init__(self, id, food_name, food_cf, food_group, created_by, updated_by):
+    def __init__(self, food_name, food_cf, food_group, created_by, updated_by):
         Entity.__init__(self, created_by)
-        self.id = id
         self.food_name = food_name
         self.food_cf= food_cf
         self.food_group= food_group

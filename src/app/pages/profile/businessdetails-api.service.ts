@@ -34,7 +34,7 @@ export class BusinessApiService {
     return businesses ;
   }
 
-  saveBusiness(business: Business): Observable<any> {
+  saveBusiness(business: { business_name: string; business_address: string; business_type: string; business_description: string; business_id: string; business_coordinates: string }): Observable<any> {
     return this.http
       .post(`${API_URL}/businesses`, business);
   }

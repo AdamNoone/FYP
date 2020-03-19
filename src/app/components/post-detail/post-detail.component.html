@@ -38,10 +38,13 @@
 
 
   <div *ngIf="user">
-  <button (click)=update(user.user_id,user.user_footprint)>I Want The Food</button>
+    <div id= "user_name"  > <p> -- {{user.user_name}}</div>
+  <button (click)=update(user.user_id,post.carbon_footprint,post.id)>I Want The Food</button>
     <div>
 </div>
 
 <div class="main">
   <div #mapWrapper id="map"></div>
+</div>
+  </div>
 </div>

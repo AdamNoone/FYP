@@ -28,6 +28,16 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
     portion: 0,
   };
 
+  post2 = {
+    title: '',
+    description: '',
+    picture: '',
+    business: '',
+    ingredients: '',
+    carbon_footprint: 0,
+    portion: 0,
+  };
+
   food: Food = {
     food_name: '',
     food_group: '',
@@ -48,7 +58,7 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
   public needleValue: number = 0;
   public centralLabel = '';
   public name = 'Gauge chart';
-  public bottomLabel :number = 0;
+  public bottomLabel :number = this.post.carbon_footprint;
 
   public options = {
     hasNeedle: true,
@@ -87,42 +97,31 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
   }
 
 
-  updateTitle(event: any) {
-    this.post.title = event.target.value;
+  updateTitle() {
+    return (this.post2.title = (<HTMLInputElement>document.getElementById("post-title")).value);
   }
 
-  updateDescription(event: any) {
-    this.post.description = event.target.value;
+  updateDescription() {
+    return (this.post2.description = (<HTMLInputElement>document.getElementById("post-description")).value);
   }
 
   updatePicture() {
-    const files = (<HTMLInputElement>document.getElementById('file')).files;
-    if (files.length > 0) {
-      const reader = new FileReader();
-      reader.readAsDataURL(files[0]);
-      reader.onload = function () {
-        console.log(reader.result);
-        if (typeof reader.result === "string") {
-          document.getElementById('base64').innerHTML = reader.result;
-        }
-
-
-      };
-    }
+    return (this.post2.description = (<HTMLInputElement>document.getElementById(" base64")).value);
   }
 
   updateIngredients(){
     var table = document.getElementById("Chosen_InIngredients") as HTMLTableElement;
     let c =0;
-    let ingredients_String = table.rows[2].cells[0].innerHTML;
+    let ingredients_String = table.rows[2].cells[0].innerHTML + "/" + table.rows[2].cells[1].innerHTML;
     // console.log("this is the 1st ingredient " + ingredients_String);
     //console.log(table.rows[0].cells[1].innerHTML);
     for (c = 3; c < table.rows.length ; c++) {
       //iterate through rows
       //rows would be accessed using the "row" variable assigned in the for loop
       let EachIngredient = table.rows[c].cells[0].innerHTML;
+      let EachCF = table.rows[c].cells[1].innerHTML;
       // console.log("each Ingredient is " +EachIngredient);
-      ingredients_String = ingredients_String + "," + EachIngredient ;
+      ingredients_String = ingredients_String + "," + EachIngredient + "/" + EachCF ;
       //iterate through columns
       //columns would be accessed using the "col" variable assigned in the for loop
       console.log(parseFloat(document.getElementById('val').innerHTML));
@@ -161,17 +160,20 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
   }
 
 
-  updatePortion(event: any) {
-    this.post.portion = event.target.value;
+  updatePortion() {
+   return (this.post2.portion = parseInt((<HTMLInputElement>document.getElementById("post-portion")).value));
   }
 
   SavePost(sub: string) {
-    this.post.ingredients= this.updateIngredients();
-    this.post.carbon_footprint= parseFloat(document.getElementById('val').innerHTML);
-    this.post.picture = document.getElementById('base64').innerHTML;
-    this.post.business = sub.replace(/\|/g, "");
+    this.post2.title = this.updateTitle();
+    this.post2.description = this.updateDescription();
+    this.post2.portion = this.updatePortion();
+    this.post2.ingredients= this.updateIngredients();
+    this.post2.carbon_footprint= parseFloat(document.getElementById('val').innerHTML);
+    this.post2.picture = this.post.picture;
+    this.post2.business = sub.replace(/\|/g, "");
     this.postsApi
-      .savePost(this.post)
+      .savePost(this.post2)
       .subscribe(
         () => this.router.navigate(['/feed']),
         error => alert(error.message)
@@ -190,8 +192,11 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.postsApi.getPostbyID(id)
       .subscribe(post=> {
-        this.post = post
-        this.createTable()})
+        this.post = post;
+        this.createTable();
+        //this.options.needleStartValue = this.post.carbon_footprint;
+        this.needleValue = this.post.carbon_footprint;
+        this.bottomLabel = this.post.carbon_footprint;})
 
   }
 
