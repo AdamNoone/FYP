@@ -26,7 +26,9 @@ export class FeedComponent implements OnInit, OnDestroy {
     this.postsListSubs = this.postsApi
       .getPosts()
       .subscribe(res => {
-          this.postsList = res;
+        this.postsList = res
+
+
         },
         console.error
       );

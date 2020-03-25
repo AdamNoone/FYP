@@ -16,9 +16,12 @@ class Business(Entity, Base):
     business_description = Column(String)
     business_footprint = Column(String)
     business_level = Column(Integer)
+    business_county= Column(String)
+    business_town = Column(String)
 
 
-    def __init__(self, business_id, business_name , business_type, business_address ,business_coordinates, business_description, business_footprint, business_level, created_by):
+
+    def __init__(self, business_id, business_name , business_type, business_address ,business_coordinates, business_description, business_footprint, business_level, business_county, business_town, created_by):
         Entity.__init__(self, created_by)
         self.business_id = business_id
         self.business_name= business_name
@@ -28,6 +31,8 @@ class Business(Entity, Base):
         self.business_description=  business_description
         self.business_footprint=  business_footprint
         self.business_level=  business_level
+        self.business_county= business_county
+        self.business_town= business_town
 
 
 class BusinessSchema(Schema):
@@ -40,5 +45,7 @@ class BusinessSchema(Schema):
       business_description= fields.Str()
       business_footprint= fields.Str()
       business_level= fields.Number()
+      business_county= fields.Str()
+      business_town= fields.Str()
       created_at = fields.DateTime()
       updated_at = fields.DateTime()

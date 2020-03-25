@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import {API_URL} from 'src/app/env';
 import {Business} from './business.model';
+import {User} from "./user.model";
 
 @Injectable()
 export class BusinessApiService {
@@ -18,7 +19,7 @@ export class BusinessApiService {
 
   // GET list of public, future events
   private BusinessesUrl = `${API_URL}/businesses`;
-
+  private EditBusinessesUrl = `${API_URL}/editbusiness`;
 
 
   getBusinesses(): Observable<Business[]> {
@@ -32,6 +33,12 @@ export class BusinessApiService {
     let businesses = this.http.get<Business>(`${this.BusinessesUrl}/${business_id}`);
     console.log(businesses[business_id]);
     return businesses ;
+  }
+
+  UpdateBusiness(business_id:string,post_footprint:string): Observable<Business> {
+    let businesses = this.http.get<Business>(`${this.EditBusinessesUrl}/${business_id}/${post_footprint}`);
+    console.log(businesses[business_id]);
+    return businesses;
   }
 
   saveBusiness(business: { business_name: string; business_address: string; business_type: string; business_description: string; business_id: string; business_coordinates: string }): Observable<any> {

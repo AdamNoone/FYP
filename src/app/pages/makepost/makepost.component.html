@@ -27,6 +27,16 @@
           <input id="post-portion" (keyup)="updatePortion($event)" autocomplete="off">
         </li>
 
+        <li>
+          <label for="post-price">Price od Food </label>
+          <input id="post-price" (keyup)="updatePrice($event)" autocomplete="off">
+        </li>
+
+        <li>
+          <label for="post-time">Tiem of Collection</label>
+          <input id="post-time" (keyup)="updateTime($event)" autocomplete="off">
+        </li>
+
       <li>
         <input id="file" type="file" (change)="updatePicture()"/>
       </li>

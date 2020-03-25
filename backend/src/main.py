@@ -71,7 +71,7 @@ def get_postsbyBusiness(business):
 @app.route('/feed', methods=['POST'])
 def add_post():
     # mount post object
-    posted_post = PostSchema(only=('title', 'description', 'picture', 'business', 'ingredients', 'carbon_footprint', 'portion'))\
+    posted_post = PostSchema(only=('title', 'description', 'picture', 'business', 'ingredients', 'carbon_footprint', 'portion', 'price', 'collection_time'))\
         .load(request.get_json())
 
     post = Post(**posted_post, created_by="HTTP post request" )
@@ -200,7 +200,7 @@ def get_businessbyBusinessID(business_id):
 @app.route('/businesses', methods=['POST'])
 def add_business():
         # mount post object
-        posted_business = BusinessSchema(only=('business_id', 'business_name', 'business_type', 'business_address', 'business_coordinates', 'business_description', 'business_footprint','business_level'))\
+        posted_business = BusinessSchema(only=('business_id', 'business_name', 'business_type', 'business_address', 'business_coordinates', 'business_description', 'business_footprint','business_level','business_county','business_town'))\
             .load(request.get_json())
 
         business = Business(**posted_business, created_by="HTTP post request")
@@ -295,7 +295,7 @@ def updateUser(user_id,user_footprint):
         return jsonify(new_user), 201
 
 
-@app.route('/edit/<business_id>/<business_footprint>')
+@app.route('/editbusiness/<business_id>/<business_footprint>')
 def updateBusiness(business_id,business_footprint):
         session = Session()
         GetBusinessData = session.query(Business).filter(Business.business_id==business_id).first()

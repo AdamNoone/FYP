@@ -1,14 +1,13 @@
 /// <reference types="@types/googlemaps" />
-import { Component, OnInit, Input,AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Post} from 'src/app/pages/feed/post.model';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 import {AuthService} from 'src/app/auth/auth.service';
 import {PostsApiService} from 'src/app/pages/feed/posts-api.service';
 import {tap} from "rxjs/operators";
 import {BusinessApiService} from "../../pages/profile/businessdetails-api.service";
 import {Business} from "../../pages/profile/business.model";
-import {} from 'googlemaps';
 import {UserApiService} from "../../pages/profile/userdetails-api.service";
 
 
@@ -23,6 +22,7 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
   @Input() post: Post;
   @Input() business: Business;
   private profileJson: string;
+  private user_pos;
 
   user = {
     user_id : '',
@@ -52,16 +52,16 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
     this.auth.userProfile$.subscribe(
       profile => this.profileJson = JSON.stringify(profile, null, 2))
 
-
     var test = JSON.parse(this.profileJson);
     var user_id = test.sub.replace(/\|/g, "")
     this.get_userbyUserID(user_id);
+
 
   }
 
   ngAfterViewInit() {
 
-    //this.initializeMap();
+    getLocation();
   }
 
 
@@ -106,28 +106,83 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
 
 
   initializeMap(business_coordinates: string | any, business_name: string | any) {
-    console.log("this is x",business_coordinates);
 
-     let lat = parseFloat(business_coordinates.split(" ")[0]); ///before;
-     let lng = parseFloat(business_coordinates.split(" ")[1]); ///after;
+        var directionsService = new google.maps.DirectionsService();
+        var directionsRenderer = new google.maps.DirectionsRenderer();
+        //console.log("this is x", business_coordinates);
 
-    const lngLat = new google.maps.LatLng(lat , lng);
-    const mapOptions: google.maps.MapOptions = {
-      center: lngLat,
-      zoom: 14,
-      fullscreenControl: false,
-      mapTypeControl: false,
-      streetViewControl: false
-    };
+     var user_location = document.getElementById("demo").innerText;
+      let userLat = parseFloat(user_location.split(" ")[0]); ///before;
+      let userLng = parseFloat(user_location.split(" ")[1]); ///after;
 
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    var pos = {lat: lat,lng: lng};
-    var marker = new google.maps.Marker({
-      position: pos,
-      map: this.map,
-      title: business_name
-    });
-  }
+
+
+        let lat = parseFloat(business_coordinates.split(" ")[0]); ///before;
+        let lng = parseFloat(business_coordinates.split(" ")[1]); ///after;
+
+
+        const lngLat = new google.maps.LatLng(lat, lng);
+        const mapOptions: google.maps.MapOptions = {
+          center: lngLat,
+          zoom: 14,
+          fullscreenControl: false,
+          mapTypeControl: false,
+          streetViewControl: false
+        };
+
+        this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+        var pos = {lat: lat, lng: lng};
+        var marker = new google.maps.Marker({
+          position: pos,
+          map: this.map,
+          title: business_name
+        });
+
+    var user_pos = {lat: userLat, lng: userLng};
+        var marker2 = new google.maps.Marker({
+          position: user_pos,
+          map: this.map,
+          title: "your position"
+        });
+        directionsRenderer.setMap(this.map);
+
+        calculateAndDisplayRoute(directionsService, directionsRenderer, pos, user_pos);
+
+        function calculateAndDisplayRoute(directionsService, directionsRenderer, pos, pos2) {
+          directionsService.route(
+            {
+              origin: pos,
+              destination: pos2,
+              travelMode: 'DRIVING'
+            },
+            function (response, status) {
+              if (status === 'OK') {
+                directionsRenderer.setDirections(response);
+              } else {
+                window.alert('Directions request failed due to ' + status);
+              }
+            });
+        }
+      }
+
+
 }
 
 
+
+
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    var x = document.getElementById("demo");
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  var x = document.getElementById("demo");
+  x.innerHTML = position.coords.latitude +
+    " " + position.coords.longitude;
+}

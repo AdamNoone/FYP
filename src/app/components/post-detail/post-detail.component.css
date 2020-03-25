@@ -1,6 +1,5 @@
 
 
-
 #post_details {
   text-align: center;
   border: 3px solid #000000;
@@ -139,4 +138,8 @@ button:hover{
 #map {
   height: 300px; /* like this */
   width: 500px;
+}
+
+#demo{
+  display:none;
 }

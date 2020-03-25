@@ -8,6 +8,8 @@ export class Business {
     public business_description: string,
     public business_footprint: string,
     public business_level: number,
+    public business_county: string,
+    public business_town: string,
     public id?: number,
     public updatedAt?: Date,
     public createdAt?: Date,

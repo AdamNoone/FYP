@@ -26,6 +26,8 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
     ingredients: '',
     carbon_footprint: 0,
     portion: 0,
+    price:'',
+    collection_time:'',
   };
 
   post2 = {
@@ -36,6 +38,8 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
     ingredients: '',
     carbon_footprint: 0,
     portion: 0,
+    price:'',
+    collection_time:'',
   };
 
   food: Food = {
@@ -109,6 +113,14 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
     return (this.post2.description = (<HTMLInputElement>document.getElementById(" base64")).value);
   }
 
+  updatePrice() {
+    return (this.post2.price = (<HTMLInputElement>document.getElementById("post-price")).value);
+  }
+
+  updateTime() {
+    return (this.post2.collection_time = (<HTMLInputElement>document.getElementById("post-time")).value);
+  }
+
   updateIngredients(){
     var table = document.getElementById("Chosen_InIngredients") as HTMLTableElement;
     let c =0;
@@ -169,6 +181,8 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
     this.post2.description = this.updateDescription();
     this.post2.portion = this.updatePortion();
     this.post2.ingredients= this.updateIngredients();
+    this.post2.price = this.updatePrice();
+    this.post2.collection_time = this.updateTime();
     this.post2.carbon_footprint= parseFloat(document.getElementById('val').innerHTML);
     this.post2.picture = this.post.picture;
     this.post2.business = sub.replace(/\|/g, "");

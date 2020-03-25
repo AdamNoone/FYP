@@ -7,6 +7,8 @@
 }
 
 
+
+
 .graph {
   display: grid;
   grid: repeat(10, auto) max-content / max-content repeat(5, auto);
@@ -118,9 +120,10 @@ h1 {
 /* The popup form - hidden by default */
 .type_of_user-popup {
   display: none;
-  width: 40%;
-
+  width: 100%;
+  background-color: #1a1a1a;
 }
+
 
 
 
@@ -178,6 +181,13 @@ h1 {
 
 
 
+#user{
+  display: none;
+}
+
+#business{
+  display: none;
+}
 
 
 
@@ -278,6 +288,13 @@ padding-left: 200px;
 }
 
 
+#test2{
+
+  padding-left: 200px;
+  padding-top: 50px;
+}
+
+
 
 div {
 
@@ -339,6 +356,38 @@ div {
   padding-bottom: 10px;
   text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 }
+
+#business_img {
+  width: 150px;
+  height:150px;
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#business_name {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #020002;
+  border-top: 3px solid #000000;
+  border-bottom: 3px solid #000000;
+  text-align: center;
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 40px;
+  letter-spacing: -0.6px;
+  word-spacing: 2px;
+  color: #ffffff;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+}
+
 
 
 p{

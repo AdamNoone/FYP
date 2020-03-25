@@ -1,27 +1,26 @@
 
 
-.Section1{
+#Section1{
   background-color: #ffffff;
-  width: 100%;
+
   text-align: right;
   height: 400px;
 }
 
-.Section1 #motto{
-  width: 40%;
+#Section1 #motto{
   height: 600px;
   float: right;
 
 }
 
-.Section1 #earth{
-  width: 50%;
+#Section1 #earth{
+
   height: 400px;
   float: left;
 
 }
 
-.Section1 p {
+#Section1 p {
   color: #000000;
   font-family: 'Raleway',sans-serif;
   font-size: 80px;

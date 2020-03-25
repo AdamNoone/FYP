@@ -9,6 +9,7 @@ import { PostDetailComponent }  from './components/post-detail/post-detail.compo
 import { TypeofpostComponent } from './pages/typeofpost/typeofpost.component';
 import {RecyclepostComponent} from "./pages/recyclepost/recyclepost.component";
 import {MakeRecycledPostComponent} from "./pages/make-recycled-post/make-recycled-post.component";
+import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
 
 const routes: Routes = [
   {
@@ -58,6 +59,11 @@ const routes: Routes = [
   {
     path: 'food/:food_group:',
     component: MakepostComponent,
+  },
+
+  {
+    path: 'leaderboard',
+    component: LeaderboardComponent,
   },
 
 ];

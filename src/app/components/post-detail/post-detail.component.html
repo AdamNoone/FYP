@@ -24,7 +24,9 @@
     <div class = "description" > <p> -- {{post.description}}</div>
     <div class = "ingredients"> <p>{{post.ingredients}}</p> </div>
     <div class = "cf" > <p> -- {{post.carbon_footprint}}</div>
-  <div class = "cf" > <p> Portion: {{post.portion}}</div>
+    <div class = "portion" > <p> Portion: {{post.portion}}</div>
+    <div class = "price" > <p> Price € {{post.price}}</div>
+    <div class = "time" > <p> Collect at: {{post.collection_time}}</div>
 
 
   <div *ngIf="business">
@@ -43,8 +45,15 @@
     <div>
 </div>
 
+
+
 <div class="main">
   <div #mapWrapper id="map"></div>
+  <p id="demo"></p>
 </div>
+
   </div>
 </div>
+
+
+

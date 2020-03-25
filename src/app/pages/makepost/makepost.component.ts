@@ -9,6 +9,8 @@ import {Observable, ReplaySubject, Subject} from "rxjs";
 import {FormControl, FormGroup, Validators} from "@angular/forms"
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from "../../components/modal/modal.component";
+import {BusinessApiService} from "../../pages/profile/businessdetails-api.service";
+import {Business} from "../../pages/profile/business.model";
 
 @Component({
   selector: 'app-makepost',
@@ -26,7 +28,8 @@ export class MakepostComponent implements OnInit {
     ingredients:'',
     carbon_footprint: 0,
     portion: 0,
-
+    price:'',
+    collection_time:'',
   };
   profileJson: string = null;
   validatingForm: FormGroup;
@@ -50,7 +53,7 @@ export class MakepostComponent implements OnInit {
     needleStartValue: 0,
   };
 
-  constructor(private FoodService: FoodApiService, private postsApi: PostsApiService, private router: Router, public auth: AuthService, public matDialog: MatDialog) {
+  constructor(private FoodService: FoodApiService, private BusinessService: BusinessApiService, private postsApi: PostsApiService, private router: Router, public auth: AuthService, public matDialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -80,6 +83,14 @@ export class MakepostComponent implements OnInit {
 
   updateDescription(event: any) {
     this.post.description = event.target.value;
+  }
+
+  updatePrice(event: any) {
+    this.post.price = event.target.value;
+  }
+
+  updateTime(event: any) {
+    this.post.collection_time = event.target.value;
   }
 
   updatePicture() {
@@ -133,7 +144,11 @@ export class MakepostComponent implements OnInit {
       .subscribe(
         () => this.router.navigate(['/feed']),
         error => alert(error.message)
+
       );
+
+    this.BusinessService.UpdateBusiness(this.post.business, String(this.post.carbon_footprint))
+      .subscribe(post=> this.post);
 
   }
 
@@ -207,7 +222,6 @@ export class MakepostComponent implements OnInit {
     this.bottomLabel = sumVal;
 
   }
-
 
 
 }
