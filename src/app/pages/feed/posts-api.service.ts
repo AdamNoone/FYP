@@ -59,7 +59,7 @@ export class PostsApiService {
     return posts;
   }
 
-  savePost(post: { business: string; description: string; ingredients: string; title: string; carbon_footprint: number; picture: string, portion: number }): Observable<any> {
+  savePost(post: { business: string; business_address: string; business_name: string; description: string; ingredients: string; title: string; carbon_footprint: number; picture: string, portion: number }): Observable<any> {
     return this.http
       .post(`${API_URL}/feed`, post);
   }

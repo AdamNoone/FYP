@@ -19,10 +19,11 @@ import {UserApiService} from "../../pages/profile/userdetails-api.service";
 export class PostDetailComponent implements OnInit,AfterViewInit {
   map: google.maps.Map;
   @ViewChild('mapWrapper', {static: false}) mapElement: ElementRef;
-  @Input() post: Post;
+
   @Input() business: Business;
   private profileJson: string;
   private user_pos;
+  private pos;
 
   user = {
     user_id : '',
@@ -35,6 +36,18 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
 
 
 
+  };
+
+  post = {
+    title: '',
+    description: '',
+    picture: '',
+    business: '',
+    ingredients:'',
+    carbon_footprint: 0,
+    portion: 0,
+    price:'',
+    collection_time:'',
   };
 
   constructor(
@@ -72,14 +85,17 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
       .pipe(
       tap(post=> this.getBusiness(post.business))
       )
-      .subscribe(post=> this.post = post);
+      .subscribe(post=> {
+        this.post = post;
+        this.InsertIngredient(this.post.ingredients);
+      })
   }
 
 
   getBusiness(buisness_id: string): void {
     this.BusinessService.getBusinessbyBusinessID(buisness_id)
       .pipe(
-        tap(business=> this.initializeMap(business.business_coordinates,business.business_name,))
+        tap(business=> this.initializeMap(business.business_coordinates,business.business_name))
       )
       .subscribe(business=> this.business = business);
   }
@@ -96,11 +112,17 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
       .subscribe(user=> this.user);
 
     this.postService.UpdatePortion(String(post_id))
-      .subscribe(post=> this.post);
-       location.reload();
+      .subscribe(post=> {
+        this.post;
+        this.DeleteTable();
+        this.getPost();
+
+      })
   }
 
   goBack(): void {
+    this.user_pos = {};
+    this.pos = {};
     this.location.back();
   }
 
@@ -131,22 +153,22 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
         };
 
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-        var pos = {lat: lat, lng: lng};
+         this.pos = {lat: lat, lng: lng};
         var marker = new google.maps.Marker({
-          position: pos,
+          position: this.pos,
           map: this.map,
           title: business_name
         });
 
-    var user_pos = {lat: userLat, lng: userLng};
+        this.user_pos = {lat: userLat, lng: userLng};
         var marker2 = new google.maps.Marker({
-          position: user_pos,
+          position: this.user_pos,
           map: this.map,
           title: "your position"
         });
         directionsRenderer.setMap(this.map);
 
-        calculateAndDisplayRoute(directionsService, directionsRenderer, pos, user_pos);
+        calculateAndDisplayRoute(directionsService, directionsRenderer,this.user_pos, this.pos);
 
         function calculateAndDisplayRoute(directionsService, directionsRenderer, pos, pos2) {
           directionsService.route(
@@ -164,6 +186,41 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
             });
         }
       }
+
+  InsertIngredient(ingredients: string) {
+
+    console.log(ingredients);
+    let tableRef = document.getElementById("Chosen_InIngredients") as HTMLTableElement;
+
+    var food = ingredients.split(',');
+    console.log(food);
+    var i;
+    for(i =0; i < food.length; i++)
+    {
+      var single = food[i].split('/');
+
+        // Insert a row at the end of the table
+        let newRow = tableRef.insertRow(-1);
+        // Insert a cell in the row at index 0
+        let newCellFood = newRow.insertCell(0);
+        let newCellCF = newRow.insertCell(1);
+
+        // Append a text node to the cell
+        let newFoodText = document.createTextNode(single[0]);
+        let newCFText = document.createTextNode(single[1]);
+        newCellFood.appendChild(newFoodText);
+        newCellCF.appendChild(newCFText);
+    }
+
+
+  }
+
+  DeleteTable() {
+    let table = document.getElementById("Chosen_InIngredients") as HTMLTableElement;
+    while(table.rows.length > 1) {
+      table.deleteRow(1);
+    }
+}
 
 
 }

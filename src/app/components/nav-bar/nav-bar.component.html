@@ -20,18 +20,17 @@
           id="navbarNav"
           [ngbCollapse]="isCollapsed"
         >
-
-          <ul class="navbar-nav mr-auto" >
+          <ul class="navbar-nav mr-auto">
             <li class="nav-item" >
               <a routerLink="/" class="nav-link">Home</a>
             </li>
-            <li class="nav-item" id="feed_link"  *ngIf="auth.userProfile$ | async as profile">
+            <li class="nav-item">
               <a routerLink="/feed" class="nav-link">Feed</a>
             </li>
-            <li id="post_link" class="nav-item"  *ngIf="auth.userProfile$ | async as profile">
-              <a routerLink="/typeofpost" class="nav-link">Make Post</a>
+            <li class="nav-item">
+              <a routerLink="/typeofpost" class="nav-link" *ngIf="business">Make Post</a>
             </li>
-            <li class="nav-item" id="leaderboard_link" *ngIf="auth.userProfile$ | async as profile">
+            <li class="nav-item">
               <a routerLink="/leaderboard" class="nav-link">Leaderboards</a>
             </li>
           </ul>

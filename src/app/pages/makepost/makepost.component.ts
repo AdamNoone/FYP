@@ -6,11 +6,10 @@ import {map, takeUntil} from "rxjs/operators";
 import {FoodApiService} from "./food-api.service";
 import {Food} from "./food.model";
 import {Observable, ReplaySubject, Subject} from "rxjs";
-import {FormControl, FormGroup, Validators} from "@angular/forms"
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ModalComponent } from "../../components/modal/modal.component";
+import {FormGroup} from "@angular/forms"
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {ModalComponent} from "../../components/modal/modal.component";
 import {BusinessApiService} from "../../pages/profile/businessdetails-api.service";
-import {Business} from "../../pages/profile/business.model";
 
 @Component({
   selector: 'app-makepost',
@@ -25,12 +24,28 @@ export class MakepostComponent implements OnInit {
     description: '',
     picture: '',
     business: '',
+    business_address:'',
+    business_name: '',
     ingredients:'',
     carbon_footprint: 0,
     portion: 0,
     price:'',
     collection_time:'',
   };
+
+  business = {
+    business_id : '',
+    business_name: '',
+    business_type : '',
+    business_address: '',
+    business_coordinates: '',
+    business_description: '',
+    business_footprint: '',
+    business_level: 0,
+    business_county: '',
+    business_town: '',
+  };
+
   profileJson: string = null;
   validatingForm: FormGroup;
   private destroyed$ = new Subject<void>();
@@ -61,8 +76,12 @@ export class MakepostComponent implements OnInit {
     this.auth.userProfile$.pipe(
       takeUntil(this.destroyed$)
     ).subscribe(
-      profile => this.profileJson = JSON.stringify(profile, null, 2)
+      profile => {
+        this.profileJson = JSON.stringify(profile, null, 2)
+        this.getBusinessbyBusinessID(profile.sub.replace (/\|/g, ""));
+      }
     );
+
     //console.log("hello",this.profileJson);
   }
 
@@ -76,6 +95,8 @@ export class MakepostComponent implements OnInit {
     // https://material.angular.io/components/dialog/overview
     const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
   }
+
+
 
   updateTitle(event: any) {
     this.post.title = event.target.value;
@@ -138,7 +159,6 @@ export class MakepostComponent implements OnInit {
     this.post.ingredients= this.updateIngredients();
     this.post.carbon_footprint= parseFloat(document.getElementById('val').innerHTML);
     this.post.picture = document.getElementById('base64').innerHTML;
-    this.post.business = sub.replace(/\|/g, "");
     this.postsApi
       .savePost(this.post)
       .subscribe(
@@ -147,11 +167,22 @@ export class MakepostComponent implements OnInit {
 
       );
 
-    this.BusinessService.UpdateBusiness(this.post.business, String(this.post.carbon_footprint))
+    this.BusinessService.UpdateBusiness(this.business.business_id, String(this.post.carbon_footprint))
       .subscribe(post=> this.post);
 
   }
 
+
+  getBusinessbyBusinessID(business_id: string) {
+
+    this.BusinessService.getBusinessbyBusinessID(business_id)
+      .subscribe(business=> {
+        this.business = business;
+        this.post.business = this.business.business_id;
+        this.post.business_name = this.business.business_name;
+        this.post.business_address = this.business.business_address;
+      });
+  }
 
   getFoods(): void {
     this.FoodService.getFoods().pipe(
@@ -160,10 +191,9 @@ export class MakepostComponent implements OnInit {
   }
 
   getIngredientSearch(): Observable<Food[]> {
-    const foodsObservable = this.foods$.pipe(
+    return this.foods$.pipe(
       map(ingredients => ingredients.filter(i => i.food_name.includes(this.ingredientSearch)))
     );
-    return foodsObservable;
   }
 
 

@@ -1,10 +1,200 @@
 
+.container {
+  margin: 15px;
+  align-items: center;
+
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 110%;
+  justify-content: space-between;
+  margin: 5vw;
 
 
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex: 0 32%;
+  border: 5px solid black;
+  margin-bottom: 2%; /* (100-32*3)/2 */
+  height: 99vh;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: fill
+
+}
+#post_picture
+{
+  height: 35vh;
+  background-color: black;
+
+}
+
+
+#post_title
+{
+  min-height: 20vh;
+  background-color: #17b50c;
+  border-top: 5px solid black ;
+  border-bottom: 5px solid black ;
+
+}
+
+#post_title h2
+{
+  text-align: center;
+  margin-bottom: 1vh;
+  margin-top: 2vh;
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 5vh;
+  color: #ffffff;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+
+}
+
+
+#post_description
+{
+  min-height: 20vh;
+  background-color: white;
+
+}
+
+#post_description p
+{
+  text-align: center;
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 3vh;
+  color: #020002;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  text-align: center;
+}
+
+
+#post_footprint
+{
+  height: 7vh;
+  background-color: #69ef7b;
+  border-top: 5px solid black ;
+  border-bottom: 5px solid black ;
+
+}
+
+#post_footprint p
+{
+  text-align: center;
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 2.5vh;
+  color: #ffffff;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  text-align: center;
+}
+
+
+#post_price
+{
+  height: 7vh;
+  background-color: #f9e11b;
+  border-bottom: 5px solid black ;
+
+}
+
+#post_price p
+{
+  text-align: center;
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 2.5vh;
+  color: #ffffff;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  text-align: center;
+}
+
+
+
+#expand {
+  background-color: #000000;
+  border-top: 3px solid #000000;
+  border-bottom: 3px solid #000000;
+}
+
+#expand:hover {
+  background-color: rgba(20, 24, 30, 0.56);
+}
+
+
+#expand h5 {
+  text-align: center;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 3vh;
+  color: #ffffff;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+
+a:hover {
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 640px) {
+
+  .column {
+    flex-basis: 80%;
+    margin-bottom:5vh ;
+  }
+
+}
+
+/*
 .container {
   display: grid;
-  grid-gap: 12px;  /* Simply adjust this value !*/
-  grid-template-columns: repeat(3, 1fr); /* OR grid-template-columns: 1fr 1fr 1fr;*/
+  grid-gap: 12px;
+  grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 1fr;
   border:1px solid #ffffff
 }
@@ -33,15 +223,6 @@ img {
   border-bottom: 3px solid #000000;
 }
 
-#description{
-
-
-}
-
-#picture{
-
-
-}
 
 h1 {
   text-align: center;
@@ -131,47 +312,5 @@ button:hover{
   color: #000000;
 }
 
-/* HeroesComponent's private CSS styles */
-.heroes {
-  margin: 0 0 2em 0;
-  list-style-type: none;
-  padding: 0;
-  width: 15em;
-}
-.heroes li {
-  cursor: pointer;
-  position: relative;
-  left: 0;
-  background-color: #EEE;
-  margin: .5em;
-  padding: .3em 0;
-  height: 1.6em;
-  border-radius: 4px;
-}
-.heroes li:hover {
-  color: #607D8B;
-  background-color: #DDD;
-  left: .1em;
-}
-.heroes li.selected {
-  background-color: #CFD8DC;
-  color: white;
-}
-.heroes li.selected:hover {
-  background-color: #BBD8DC;
-  color: white;
-}
-.heroes .badge {
-  display: inline-block;
-  font-size: small;
-  color: white;
-  padding: 0.8em 0.7em 0 0.7em;
-  background-color:#405061;
-  line-height: 1em;
-  position: relative;
-  left: -1px;
-  top: -4px;
-  height: 1.8em;
-  margin-right: .8em;
-  border-radius: 4px 0 0 4px;
-}
+
+*/

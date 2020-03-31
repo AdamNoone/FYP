@@ -4,6 +4,8 @@ export class Post {
     public description: string,
     public picture: string,
     public business: string,
+    public business_address: string,
+    public business_name: string,
     public ingredients:string,
     public carbon_footprint:number,
     public portion: number,

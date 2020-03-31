@@ -1,13 +1,90 @@
 
 
-<script src="../make-recycled-post/make-recycled-post.component.ts"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.1/raphael-min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.3.5/justgage.js"></script>
+<!--<div class='conatainer'>
+
+    <div class='row'>
+      <div class='column'>
+            <div class='headings'>
+              <p>Step 1 : Enter Meal Details<p>
+            </div>
+
+       <div class="post_questions">
+              <p class="item">What Food Are you Saving ?</p>
+              <input class="post_input" id="post-title" (keyup)="updateTitle($event)" autocomplete="off">
+         </div>
+
+
+
+               <div class="post_questions">
+             <p  class="item" >Describe the Food</p>
+             <input class="post_input" id="post-description" (keyup)="updateDescription($event)" autocomplete="off">
+             </div>
+
+             <div class="post_questions">
+              <p  class="item" >Portions Being Saved</p>
+              <input class="post_input" id="post-portion" (keyup)="updatePortion($event)" autocomplete="off">
+               </div>
+
+               <div class="post_questions">
+              <p  class="item" >Price of Food </p>
+              <input class="post_input" id="post-price" (keyup)="updatePrice($event)" autocomplete="off">
+                 </div>
+
+                 <div class="post_questions">
+              <p  class="item"  for="post-time">Time of Collection</p>
+              <input class="post_input" id="post-time" (keyup)="updateTime($event)" autocomplete="off">
+                   </div>
+
+                   <div class="post_questions">
+              <p class="item ">Please Upload a photo</p>
+              <input id="file" type="file" (change)="updatePicture()"/>
+                     </div>
+
+
+
+        </div>
+
+
+      <div class='column'>
+        <div class='headings'>
+          <p>Step 2 : Choose Ingredients<p>
+        </div>
+
+
+
+             <div class="post_ingredients">
+              <p>Please Choose the Ingredients in your Food </p>
+             </div>
+
+            <div class="post_ingredients">
+              <p>Search Ingredient</p>
+              <input id="Ingredients" name="Ingredients" [(ngModel)]="ingredientSearch" autocomplete="off">
+             </div>
+
+            <div id="hello" *ngIf="getIngredientSearch() | async as ingredients">
+              <ul id="bulk">
+                <div id = "list" *ngFor="let ingredient of ingredients">
+                  <li (click)="InsertIngredient(ingredient.food_name, ingredient.food_cf)">{{ ingredient.food_name }} </li>
+                </div>
+              </ul>
+            </div>
+        <app-modal></app-modal>
+
+
+
+      </div>
+
+      <div class='column'>
+        <div class='headings'>
+          <p>Step 3 : View Meal Carbon Footprint<p>
+        </div>
+      </div>
+    </div>
 
 
 
 
-<form>
+--><form>
 <section>
   <div class="form-div" id ="left-form">
       <ul>
@@ -28,12 +105,12 @@
         </li>
 
         <li>
-          <label for="post-price">Price od Food </label>
+          <label for="post-price">Price of Food </label>
           <input id="post-price" (keyup)="updatePrice($event)" autocomplete="off">
         </li>
 
         <li>
-          <label for="post-time">Tiem of Collection</label>
+          <label for="post-time">Time of Collection</label>
           <input id="post-time" (keyup)="updateTime($event)" autocomplete="off">
         </li>
 

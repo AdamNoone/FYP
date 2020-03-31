@@ -14,18 +14,22 @@ class Post(Entity, Base):
     description = Column(String)
     picture = Column(String)
     business = Column(String)
+    business_address = Column(String)
+    business_name = Column(String)
     ingredients = Column(String)
     carbon_footprint = Column(Float)
     portion = Column(Integer)
     price = Column(String)
     collection_time = Column(String)
 
-    def __init__(self, title, description, picture , business, created_by, ingredients, carbon_footprint, portion, price, collection_time):
+    def __init__(self, title, description, picture , business, business_address, business_name, created_by, ingredients, carbon_footprint, portion, price, collection_time):
         Entity.__init__(self, created_by, )
         self.title = title
         self.description = description
         self.picture = picture
         self.business= business
+        self.business_address = business_address
+        self.business_name= business_name
         self.ingredients = ingredients
         self.carbon_footprint = carbon_footprint
         self.portion = portion
@@ -39,6 +43,8 @@ class PostSchema(Schema):
     description = fields.Str()
     picture = fields.Str()
     business = fields.Str()
+    business_address = fields.Str()
+    business_name = fields.Str()
     ingredients= fields.Str()
     carbon_footprint = fields.Number()
     portion = fields.Number()

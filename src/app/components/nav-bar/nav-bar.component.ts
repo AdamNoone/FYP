@@ -14,18 +14,7 @@ export class NavBarComponent implements OnInit {
   faUser = faUser;
   faPowerOff = faPowerOff;
   private profileJson: string;
-  business = {
-    business_id : '',
-    business_name: '',
-    business_type : '',
-    business_address: '',
-    business_coordinates: '',
-    business_description: '',
-    business_footprint: '',
-    business_level: 0,
-    business_county: '',
-    business_town: '',
-  };
+  business = null;
 
   user = {
     user_id : '',
@@ -42,26 +31,30 @@ export class NavBarComponent implements OnInit {
   ngOnInit() {
 
     this.auth.userProfile$.subscribe(
-      profile => this.profileJson = JSON.stringify(profile, null, 2)
-    );
+      profile => {
+        if(profile) {
+        this.profileJson = JSON.stringify(profile, null, 2);
+
+          console.log(this.profileJson);
+          var test = JSON.parse(this.profileJson);
+          console.log(test);
+          var firstLoginKey = "http://localhost:3000/first_login";
+          let n = test[firstLoginKey];
+          console.log(n);
+          var user_id = test.sub.replace(/\|/g, "");
+          this.get_userbyUserID(user_id);
+          this.getBusinessbyBusinessID(user_id);
+        }
+      });
 
 
 
-    console.log(this.profileJson);
-    var test = JSON.parse(this.profileJson);
-    console.log(test);
-    var firstLoginKey = "http://localhost:3000/first_login";
-    let n = test[firstLoginKey];
-    console.log(n);
-    var user_id = test.sub.replace(/\|/g, "");
-    this.get_userbyUserID(user_id);
-    this.getBusinessbyBusinessID(user_id);
+
   }
 
   get_userbyUserID(user_id: string) {
     this.usersApi.get_userbyUserID(user_id)
       .subscribe(user=> {
-        alert("hello");
         this.user = user;
 
 
@@ -76,8 +69,12 @@ export class NavBarComponent implements OnInit {
   getBusinessbyBusinessID(business_id: string) {
     this.businessesApi.getBusinessbyBusinessID(business_id)
       .subscribe(business=> {
-        alert("hello");
-        this.business = business;
+        //debugger
+        if(Object.keys(business).length > 0)
+        {
+          this.business = business;
+        }
+
       });
 
   }

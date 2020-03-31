@@ -71,7 +71,7 @@ def get_postsbyBusiness(business):
 @app.route('/feed', methods=['POST'])
 def add_post():
     # mount post object
-    posted_post = PostSchema(only=('title', 'description', 'picture', 'business', 'ingredients', 'carbon_footprint', 'portion', 'price', 'collection_time'))\
+    posted_post = PostSchema(only=('title', 'description', 'picture', 'business', 'business_address', 'business_name', 'ingredients', 'carbon_footprint', 'portion', 'price', 'collection_time'))\
         .load(request.get_json())
 
     post = Post(**posted_post, created_by="HTTP post request" )
@@ -195,6 +195,20 @@ def get_businessbyBusinessID(business_id):
       session.close()
       return jsonify(business)
 
+
+@app.route('/businesses/name/<business_name>')
+def get_businessbyBusinessName(business_name):
+      # fetching from the database
+      session = Session()
+      business_object = session.query(Business).filter(Business.business_name== business_name).first()
+
+      # transforming into JSON-serializable objects
+      schema = BusinessSchema()
+      business = schema.dump(business_object)
+
+      # serializing as JSON
+      session.close()
+      return jsonify(business)
 
 
 @app.route('/businesses', methods=['POST'])

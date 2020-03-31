@@ -23,6 +23,8 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
     description: '',
     picture: '',
     business: '',
+    business_address:'',
+    business_name: '',
     ingredients: '',
     carbon_footprint: 0,
     portion: 0,
@@ -35,6 +37,8 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
     description: '',
     picture: '',
     business: '',
+    business_address:'',
+    business_name: '',
     ingredients: '',
     carbon_footprint: 0,
     portion: 0,
@@ -49,8 +53,21 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
 
   };
 
+
+  business = {
+    business_id : '',
+    business_name: '',
+    business_type : '',
+    business_address: '',
+    business_coordinates: '',
+    business_description: '',
+    business_footprint: '',
+    business_level: 0,
+    business_county: '',
+    business_town: '',
+  };
+
   @ViewChild('mapWrapper', {static: false}) mapElement: ElementRef;
-  @Input() business: Business;
   profileJson: string = null;
 
   private destroyed$ = new Subject<void>();
@@ -92,8 +109,10 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
     this.auth.userProfile$.pipe(
       takeUntil(this.destroyed$)
     ).subscribe(
-      profile => this.profileJson = JSON.stringify(profile, null, 2)
-    );
+      profile => {
+        this.profileJson = JSON.stringify(profile, null, 2)
+        this.getBusinessbyBusinessID(profile.sub.replace(/\|/g, ""));
+      });
   }
 
   ngAfterViewInit() {
@@ -193,6 +212,21 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
         error => alert(error.message)
       );
 
+    this.BusinessService.UpdateBusiness(this.business.business_id, String(this.post.carbon_footprint))
+      .subscribe(post=> this.post);
+
+  }
+
+
+  getBusinessbyBusinessID(business_id: string) {
+
+    this.BusinessService.getBusinessbyBusinessID(business_id)
+      .subscribe(business=> {
+        this.business = business;
+        this.post2.business = this.business.business_id;
+        this.post2.business_name = this.business.business_name;
+        this.post2.business_address = this.business.business_address;
+      });
   }
 
   get_foodbyname(name): any {

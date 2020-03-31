@@ -35,6 +35,7 @@ export class BusinessApiService {
     return businesses ;
   }
 
+
   UpdateBusiness(business_id:string,post_footprint:string): Observable<Business> {
     let businesses = this.http.get<Business>(`${this.EditBusinessesUrl}/${business_id}/${post_footprint}`);
     console.log(businesses[business_id]);

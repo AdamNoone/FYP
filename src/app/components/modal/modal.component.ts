@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Host, Input, OnInit} from '@angular/core';
 import {FoodApiService} from "../../pages/makepost/food-api.service";
 import {Router} from "@angular/router";
 import {Observable, ReplaySubject, Subject} from "rxjs";
+import {MakepostComponent} from "../../pages/makepost/makepost.component";
 
 @Component({
   selector: 'app-modal',
@@ -17,8 +18,10 @@ export class ModalComponent implements OnInit {
     updated_by :'',
   };
 
+  @Input() myMethod: Function;
 
-  constructor(private FoodService: FoodApiService,  private router: Router) { }
+
+  constructor(private FoodService: FoodApiService,  private router: Router , private postComp: MakepostComponent) { }
 
   ngOnInit() {
   }
@@ -26,6 +29,7 @@ export class ModalComponent implements OnInit {
   spanfunction() {
     this.modal = document.getElementById("myModal");
     this.modal.style.display = "none";
+    this.postComp.getFoods();
   }
 
   btnfunction() {
@@ -93,6 +97,7 @@ export class ModalComponent implements OnInit {
         {
           this.food.food_cf = parseFloat("2.15");
           this.food.food_group = ele[i].value;
+
         }
 
 
@@ -111,7 +116,9 @@ export class ModalComponent implements OnInit {
       .subscribe(
         () =>  this.spanfunction(),
         error => alert(error.message)
-      );
+
+
+  );
 
   }
 

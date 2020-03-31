@@ -1,4 +1,109 @@
-body{
+/*
+.container {
+  margin: 15px;
+
+
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+  justify-content: space-between;
+  margin: 5vw;
+
+
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex: 0 32%;
+  border: 5px solid black;
+  margin-bottom: 2%;
+  height: 85vh;
+}
+
+.headings {
+  background-color: black;
+}
+
+.headings p {
+  color: #ffffff;
+  font-family: 'Raleway',sans-serif;
+  font-size: 2vh;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+  padding-top: 3vh;
+
+}
+
+.post_questions{
+   background-color: #4CAF50;
+   border-bottom: 3px solid black;
+}
+
+input {
+  border:2px solid black;
+  margin-left: 10vw;
+  width: 10vw;
+  margin-bottom: 2vh;
+}
+
+#post-description{
+ height: 3vh;
+}
+
+.post_questions p {
+  text-align: center;
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 2.5vh;
+  color: #ffffff;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  text-align: center;
+}
+
+.post_ingredients{
+  background-color: #e0ac23;
+  border-bottom: 3px solid black;
+}
+
+
+.post_ingredients p {
+  text-align: center;
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 2.5vh;
+  color: #ffffff;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  text-align: center;
+}
+
+@media only screen and (max-width: 640px) {
+
+  .column {
+    flex-basis: 80%;
+    margin-bottom:5vh ;
+  }
+
+}
+*/body{
   background:#59ABE3;
   margin:0
 }
@@ -100,14 +205,11 @@ section {
 }
 
 
-
-
-
 #bulk > #list {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  max-height: 200px; /* Fix a max-height here */
+  max-height: 200px;
   overflow: auto;
 }
 
@@ -137,9 +239,9 @@ section {
 }
 
 #hello {
-  max-height:405px;/*The important part*/
-  overflow-y:auto;/*Also...*/
-  overflow-x:hidden;/*And the end of the important part*/
+  max-height:405px;
+  overflow-y:auto;
+  overflow-x:hidden;
 }
 
 
@@ -172,3 +274,4 @@ mat-dialog-container#modal-component {
   background-color: #4b4b4b;
   border: 1px solid black;
 }
+
