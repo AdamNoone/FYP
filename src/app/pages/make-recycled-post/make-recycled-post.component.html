@@ -1,106 +1,215 @@
 
-<button (click)="goBack()">Return To Feed</button>
-<div id="post_details" style="text-align:center">
-  <div *ngIf="post">
-    <div id="blah">
-    </div>
-
-    <div id = "title"> <H2>{{post.title}}</H2> </div>
-    <div class = "description" > <p> -- {{post.description}}</div>
-    <span id = "ingredients1">{{post.ingredients}}</span>
-    <div class = "cf" > <p> -- {{post.carbon_footprint}}</div>
-  </div>
-
-</div>
-
-<form>
-  <section>
-    <div class="form-div" id ="left-form">
-      <ul>
-        <li>
-          <label for="post-title">What Food Are you Saving ?</label>
-          <input id="post-title" value={{post.title}} autocomplete="off">
-        </li>
 
 
-        <li>
-          <label for="post-description">Description of Food</label>
-          <input id="post-description" value={{post.description}} autocomplete="off">
-        </li>
+<div class='conatainer'>
 
-        <li>
-          <label for="post-portion">Portions Being Saved</label>
-          <input id="post-portion" value={{post.portion}} autocomplete="off">
-        </li>
+  <div class='row'>
+    <div class='column'>
+      <div class='headings'>
+        <p>Step 1 : Enter Meal Details<p>
+      </div>
 
-        <li>
-          <label for="post-price">Price of Food </label>
-          <input id="post-price" value={{post.price}} autocomplete="off">
-        </li>
+      <div class="post_questions">
+        <p class="item">What Food Are you Saving ?</p>
+        <input class="post_input" id="post-title" value={{post.title}} autocomplete="off">
+      </div>
 
-        <li>
-          <label for="post-time">Time of Collection</label>
-          <input id="post-time" value={{post.collection_time}} autocomplete="off">
-        </li>
 
-        <li>
+
+      <div class="post_questions">
+        <p  class="item" >Describe the Food</p>
+        <input class="post_input" id="post-description" value={{post.description}} autocomplete="off">
+      </div>
+
+      <div class="post_questions">
+        <p  class="item" >Portions Being Saved</p>
+        <input class="post_input" id="post-portion" value={{post.portion}} autocomplete="off">
+      </div>
+
+      <div class="post_questions">
+        <p  class="item" >Price of Food </p>
+        <input class="post_input" id="post-price" value={{post.price}}  autocomplete="off">
+      </div>
+
+      <div class="post_questions">
+        <p  class="item"  for="post-time">Time of Collection</p>
+        <input class="post_input" id="post-time" value={{post.collection_time}} autocomplete="off">
+      </div>
+
+      <div class="post_questions">
           <img id="pic2"  [src]="post.picture" alt="your image">
-        </li>
+      </div>
 
-        <li>
-          <div id="profile_info"*ngIf="auth.userProfile$ | async as profile">
-            <button (click)="SavePost(profile.sub)">Make Post</button>
+
+
+    </div>
+
+
+    <div class='column'>
+      <div class='headings'>
+        <p>Step 2 : Choose Ingredients<p>
+      </div>
+
+
+
+      <div class="post_ingredients">
+        <p>Please Choose the Ingredients in your Food </p>
+      </div>
+
+      <div class="post_ingredients">
+        <p>Search Ingredient</p>
+        <input id="Ingredients" name="Ingredients" [(ngModel)]="ingredientSearch" autocomplete="off">
+      </div>
+
+      <div id="hello" *ngIf="getIngredientSearch() | async as ingredients">
+        <ul id="option">
+          <div id = "list" *ngFor="let ingredient of ingredients">
+            <li (click)="InsertIngredient(ingredient.food_name, ingredient.food_cf)">{{ ingredient.food_name }} </li>
           </div>
-        </li>
-      </ul>
+        </ul>
+      </div>
+
+
 
 
     </div>
 
+    <div class='column'>
+      <div class='headings'>
+        <p>Step 3 : View Meal Carbon Footprint<p>
+      </div>
 
-    <div class="form-div" id ="middle-form">
-      <ul>
-        <li>
-          <label for="Ingredients">Please Choose the Ingredients in your Food </label>
-          <input id="Ingredients" name="Ingredients" [(ngModel)]="ingredientSearch" autocomplete="off">
-        </li>
-
-        <div id="hello" *ngIf="getIngredientSearch() | async as ingredients">
-          <ul id="bulk">
-            <div id = "list" *ngFor="let ingredient of ingredients">
-              <li (click)="InsertIngredient(ingredient.food_name, ingredient.food_cf)">{{ ingredient.food_name }} </li>
-            </div>
-          </ul>
-        </div>
-      </ul>
-    </div>
-
-
-
-
-    <div class="form-div" id ="right-form">
-      <div *ngIf="post">
-      <table id = "Chosen_InIngredients">
+      <table id = "Ingredient_headings">
         <tr>
           <th>Food</th>
           <th>Carbon Footprint</th>
         </tr>
-        <tr>
-          <td></td>
-          <td></td>
-        </tr>
       </table>
-      <span id="val"  >{{post.carbon_footprint}}</span>
+
+      <div id = "height_control" >
+        <table id = "Chosen_InIngredients">
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+
+      <div id="footprint">
+        <p>Carbon Footprint of Meal</p>
+      <span id="val">
+        </span>
+      </div>
       <rg-gauge-chart
         [canvasWidth]="canvasWidth"
         [needleValue]="needleValue"
         [centralLabel]="centralLabel"
         [options]="options"
         [name]="name"
-        [bottomLabel]="bottomLabel"></rg-gauge-chart>
+      ></rg-gauge-chart>
     </div>
+
+    <div id="make_post"*ngIf="auth.userProfile$ | async as profile">
+      <button (click)="SavePost(profile.sub)">Make Post</button>
     </div>
-  </section>
+
+    <p id = base64></p>
+  </div>
+
+
+
+
+
+
+
+<!-- <button (click)="goBack()">Return To Feed</button>
+
+<form>
+ <section>
+   <div class="form-div" id ="left-form">
+     <ul>
+       <li>
+         <label for="post-title">What Food Are you Saving ?</label>
+         <input id="post-title" value={{post.title}} autocomplete="off">
+       </li>
+
+
+       <li>
+         <label for="post-description">Description of Food</label>
+         <input id="post-description" autocomplete="off">
+       </li>
+
+       <li>
+         <label for="post-portion">Portions Being Saved</label>
+         <input id="post-portion" value={{post.portion}} autocomplete="off">
+       </li>
+
+       <li>
+         <label for="post-price">Price of Food </label>
+         <input id="post-price" value={{post.price}} autocomplete="off">
+       </li>
+
+       <li>
+         <label for="post-time">Time of Collection</label>
+         <input id="post-time" value={{post.collection_time}} autocomplete="off">
+       </li>
+
+       <li>
+         <img id="pic2"  [src]="post.picture" alt="your image">
+       </li>
+
+       <li>
+         <div id="profile_info"*ngIf="auth.userProfile$ | async as profile">
+           <button (click)="SavePost(profile.sub)">Make Post</button>
+         </div>
+       </li>
+     </ul>
+
+
+   </div>
+
+
+   <div class="form-div" id ="middle-form">
+     <ul>
+       <li>
+         <label for="Ingredients">Please Choose the Ingredients in your Food </label>
+         <input id="Ingredients" name="Ingredients" [(ngModel)]="ingredientSearch" autocomplete="off">
+       </li>
+
+       <div id="hello" *ngIf="getIngredientSearch() | async as ingredients">
+         <ul id="bulk">
+           <div id = "list" *ngFor="let ingredient of ingredients">
+             <li (click)="InsertIngredient(ingredient.food_name, ingredient.food_cf)">{{ ingredient.food_name }} </li>
+           </div>
+         </ul>
+       </div>
+     </ul>
+   </div>
+
+
+   <div class="form-div" id ="right-form">
+     <div *ngIf="post">
+     <table id = "Chosen_InIngredients">
+       <tr>
+         <th>Food</th>
+         <th>Carbon Footprint</th>
+       </tr>
+       <tr>
+         <td></td>
+         <td></td>
+       </tr>
+     </table>
+     <span id="val"  >{{post.carbon_footprint}}</span>
+     <rg-gauge-chart
+       [canvasWidth]="canvasWidth"
+       [needleValue]="needleValue"
+       [centralLabel]="centralLabel"
+       [options]="options"
+       [name]="name"
+       [bottomLabel]="bottomLabel"></rg-gauge-chart>
+   </div>
+   </div>
+ </section>
 </form>
 
-<p id = base64></p>
+<p id = base64></p> -->

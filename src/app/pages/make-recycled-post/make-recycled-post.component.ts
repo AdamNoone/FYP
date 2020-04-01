@@ -11,6 +11,7 @@ import {FoodApiService} from "../makepost/food-api.service";
 import {AuthService} from "../../auth/auth.service";
 import {RecyclepostApiService} from "./recyclepost-api.service";
 import {Location } from '@angular/common';
+import {ModalComponent} from "../../components/modal/modal.component";
 
 @Component({
   selector: 'app-make-recycled-post',
@@ -205,6 +206,8 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
     this.post2.carbon_footprint= parseFloat(document.getElementById('val').innerHTML);
     this.post2.picture = this.post.picture;
     this.post2.business = sub.replace(/\|/g, "");
+    this.post2.business_address = this.post.business_address;
+    this.post2.business_name = this.post.business_name;
     this.postsApi
       .savePost(this.post2)
       .subscribe(
@@ -244,7 +247,9 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
         this.createTable();
         //this.options.needleStartValue = this.post.carbon_footprint;
         this.needleValue = this.post.carbon_footprint;
-        this.bottomLabel = this.post.carbon_footprint;})
+        this.bottomLabel = this.post.carbon_footprint;
+        document.getElementById("val").innerHTML =  String(this.post.carbon_footprint);
+      })
 
   }
 
@@ -295,12 +300,12 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
   SumOfFootprint() {
     var table = document.getElementById("Chosen_InIngredients") as HTMLTableElement, sumVal = 0;
 
-    for (var i = 2; i < table.rows.length; i++) {
+    for (var i = 1; i < table.rows.length; i++) {
       sumVal = sumVal + parseFloat(table.rows[i].cells[1].innerHTML);
     }
 
     sumVal = Math.round(sumVal * 10) / 10;
-    document.getElementById("val").innerHTML = String(sumVal);
+    document.getElementById("val").innerHTML =  String(sumVal);
     console.log(sumVal);
     this.needleValue = sumVal;
     this.bottomLabel = sumVal;

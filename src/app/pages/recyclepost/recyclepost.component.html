@@ -1,22 +1,41 @@
-<div style="text-align:center">
+<div class='container'>
+
+<div id="search_bar">
+  <H2 id="search_header">Here are all your previous Posts</H2>
 </div>
 
-<button (click)="goBack()">Go Back</button>
-<H1>Here are all your previous Posts</H1>
 
-<div class="container" *ngIf="auth.auth0Client$ | async">
-  <div class="container2" *ngFor="let post of postsList">
-    <div id="blah">
-      <img id="pic"  [src]="post.picture" alt="your image">
+
+
+
+<div class='row'>
+  <div class='column' *ngFor="let post of postsList" >
+
+    <div id="post_picture" >
+      <img [src]="post.picture" alt="your image">
     </div>
 
-    <div id = "title"> <H2>{{post.title}}</H2> </div>
-    <div id = "description"  > <p> -- {{post.description}}</div>
+    <div id="post_title">
+      <H2>{{post.title}}</H2>
+    </div>
+
+
+    <div id="post_description">
+      <p>{{post.description}}</p>
+    </div>
+
+
+
+    <div id="post_footprint">
+      <p> Carbon Footprint : {{post.carbon_footprint}}</p>
+    </div>
 
     <div id = "expand">
       <a routerLink="/recyclepost/{{post.id}}">
-        <h5>Click For More Information</h5>
+        <h5>Click To Recycle</h5>
       </a>
     </div>
+
+
   </div>
 </div>

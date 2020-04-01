@@ -1,4 +1,4 @@
-/*
+
 .container {
   margin: 15px;
 
@@ -22,7 +22,7 @@
   flex: 0 32%;
   border: 5px solid black;
   margin-bottom: 2%;
-  height: 85vh;
+  height: 120vh;
 }
 
 .headings {
@@ -32,7 +32,7 @@
 .headings p {
   color: #ffffff;
   font-family: 'Raleway',sans-serif;
-  font-size: 2vh;
+  font-size: 2.2vh;
   font-weight: 800;
   text-align: center;
   text-transform: uppercase;
@@ -42,7 +42,7 @@
 }
 
 .post_questions{
-   background-color: #4CAF50;
+   background-color: #ffde00;
    border-bottom: 3px solid black;
 }
 
@@ -74,12 +74,66 @@ input {
 }
 
 .post_ingredients{
-  background-color: #e0ac23;
+  background-color: #8BBEE8FF;
   border-bottom: 3px solid black;
 }
 
 
 .post_ingredients p {
+  text-align: center;
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 3vh;
+  color: #ffffff;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  text-align: center;
+}
+#option {
+  margin: 0;
+  padding: 0;
+  height: 63vh;
+  overflow: auto;
+}
+
+
+
+
+#list li {
+  font: 100 15px/1.5 Helvetica, Verdana, sans-serif;
+  border: 2px solid #020002;
+  text-decoration: none;
+  color: #020002;
+  display: block;
+  width: 30vw;
+  text-align: center;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 2.5vh;
+  font-weight: normal;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+
+}
+
+#Add_ingredient
+{
+  background-color: #000000;
+  width: 30vw;
+  text-align:center;
+}
+
+#Add_ingredient p {
   text-align: center;
   margin-bottom: 1vh;
   margin-top: 1vh;
@@ -95,6 +149,138 @@ input {
   text-align: center;
 }
 
+#list li:hover {
+  font-size: 30px;
+  background: rgba(63, 82, 112, 0.64);
+}
+
+#height_control th{
+  text-align: center;
+  border: 2px solid black;
+  width: 20vw;
+  max-height: 10vh;
+
+}
+
+#Ingredient_headings th{
+  text-align: center;
+  border: 2px solid black;
+  width: 20vw;
+  max-height: 10vh;
+  margin-bottom: 1vh;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 2.5vh;
+  color: #f6fffc;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  background-color: #A8D5BAFF;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+
+}
+
+#height_control td{
+  text-align: center;
+  width: 20vw;
+  max-height: 10vh;
+
+}
+
+#height_control {
+  height: 79vh;
+  overflow: auto;
+  text-align: center;
+  margin-bottom: 1vh;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 2.5vh;
+  color: #14181e;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: fill
+
+}
+#post_pic
+{
+  border-top: 3px solid black;
+  height: 35vh;
+  background-color: #ffde00 ;
+
+}
+
+#base64{
+  display: none;
+}
+
+#footprint
+{
+  background-color: #A8D5BAFF;
+  text-align: center;
+  border: 2px solid black;
+  padding: 2vh;
+  margin-bottom: 1vh;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 2.5vh;
+  color: #f6fffc;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  height :20vh
+}
+
+rg-gauge-chart{
+  background-color: #f6fffc;
+  margin-left: 8vh;
+
+
+}
+
+#make_post{
+  background-color: #000000;
+  width: 94.5vw;
+  height: 15vh;
+  text-align:center;
+}
+
+#make_post button{
+  height:6vh;
+  width: 30vw;
+  border:2px solid #26b734;
+  background-color:#26b734;;
+  color: #f6fffc;
+  cursor:pointer;
+  transition:all .3s;
+  text-align: center;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 2.5vh;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  margin: 2vw;
+
+}
+#make_post button:hover{
+  background-color: #cb83c2;
+  border: 3px solid #cb83c2;
+}
+
+
+
 @media only screen and (max-width: 640px) {
 
   .column {
@@ -102,8 +288,14 @@ input {
     margin-bottom:5vh ;
   }
 
+  rg-gauge-chart{
+    background-color: #f6fffc;
+    margin-left: 0vh;
+
+  }
+
 }
-*/body{
+/*body{
   background:#59ABE3;
   margin:0
 }
@@ -273,5 +465,5 @@ mat-dialog-container#modal-component {
   color: white;
   background-color: #4b4b4b;
   border: 1px solid black;
-}
+}*/
 

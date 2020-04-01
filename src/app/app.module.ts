@@ -80,7 +80,7 @@ export function hljsLanguages() {
     MatDialogModule,
     MatFormFieldModule,
   ],
-  providers: [PostsApiService, BusinessApiService, UserApiService,FoodApiService,RecyclepostApiService],
+  providers: [PostsApiService, BusinessApiService, UserApiService, FoodApiService, RecyclepostApiService],
   bootstrap: [AppComponent],
   entryComponents: [ModalComponent]
 })

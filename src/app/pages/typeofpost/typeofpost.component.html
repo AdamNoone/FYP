@@ -1,5 +1,21 @@
 <br><br>
 <div id="container">
-  <button type="button home-button" id="button1" (click)="NewbtnClick()" >Create a New Post </button>
-  <button type="button contact-button" id="button2" (click)="RepeatbtnClick()">Recycle a Previous Post</button>
+
+  <div class='row'>
+    <div class='column' (click)="NewbtnClick()">
+      <div class="heading">
+        <p>Make a New Post</p>
+      </div>
+      <img id="new_image"  src="../../../assets/new_post.svg" />
+    </div>
+
+
+    <div class='column' (click)="RepeatbtnClick()">
+      <div class="heading">
+        <p>Recycle an Old Post</p>
+      </div>
+      <img id="recycle_image" src="../../../assets/recycle_post.svg" />
+    </div>
+  </div>
+
 </div>

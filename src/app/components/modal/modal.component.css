@@ -1,4 +1,11 @@
-body {font-family: Arial, Helvetica, sans-serif;}
+body {
+
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+  max-width: 30vw;
+  max-height: 13vh;
+
+}
 
 /* The Modal (background) */
 .modal {
@@ -71,4 +78,32 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
   background-color: #5cb85c;
   color: white;
+}
+
+
+button{
+  border:2px solid #8BBEE8FF;
+  background-color:#8BBEE8FF;;
+  color: #f6fffc;
+  cursor:pointer;
+  transition:all .3s;
+  text-align: center;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 2.5vh;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  margin-left: 5vw;
+  width: 20vw;
+  margin-top: 2vh;
+
+}
+button:hover{
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  transition:all 0.3s ease;
 }

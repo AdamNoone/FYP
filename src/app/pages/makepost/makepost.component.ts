@@ -9,7 +9,7 @@ import {Observable, ReplaySubject, Subject} from "rxjs";
 import {FormGroup} from "@angular/forms"
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {ModalComponent} from "../../components/modal/modal.component";
-import {BusinessApiService} from "../../pages/profile/businessdetails-api.service";
+import {BusinessApiService} from "../profile/businessdetails-api.service";
 
 @Component({
   selector: 'app-makepost',
@@ -53,15 +53,15 @@ export class MakepostComponent implements OnInit {
 
   ingredientSearch: string = '';
   food_name: any;
-  public canvasWidth = 300;
+  public canvasWidth = 270;
   public needleValue: number = 0;
   public centralLabel = '';
-  public name = 'Gauge chart';
-  public bottomLabel :number = 0;
+  public name = '';
+  //public bottomLabel :
   public options = {
     hasNeedle: true,
     needleColor: 'gray',
-    needleUpdateSpeed: 2500,
+    needleUpdateSpeed: 2000,
     arcColors: ['rgb(179,255,180)','rgb(119,222,110)','rgb(65,222,15)'],
     arcDelimiters: [30,70],
     rangeLabel: ['Good', 'Great'],
@@ -123,6 +123,9 @@ export class MakepostComponent implements OnInit {
         console.log(reader.result);
         if (typeof reader.result === "string") {
           document.getElementById('base64').innerHTML = reader.result;
+          let picture_src = document.getElementById('base64').innerHTML;
+         let picture = (<HTMLImageElement>document.getElementById("post_pic"))
+          picture.src = picture_src
         }
 
 
@@ -197,19 +200,6 @@ export class MakepostComponent implements OnInit {
   }
 
 
-  /*editIngredient(id: number, changes: Partial<Ingredient>) {
-
-    this.foods$.subscribe(foods => {
-      const oldFood = foods.filter(f => f.id == id)[0];
-      const newFood = {
-        ...oldFood,
-        ...changes
-      };
-
-      this.foods$.next([...foods, ingredient])
-    })
-  }*/
-
   ngOnDestroy() {
     this.destroyed$.next();
     this.destroyed$.complete();
@@ -222,6 +212,7 @@ export class MakepostComponent implements OnInit {
 
     // Insert a row at the end of the table
     let newRow = tableRef.insertRow(-1);
+    newRow.style.textAlign = "center";
 
     // Insert a cell in the row at index 0
     let newCellFood = newRow.insertCell(0);
@@ -241,15 +232,14 @@ export class MakepostComponent implements OnInit {
   SumOfFootprint() {
     var table = document.getElementById("Chosen_InIngredients") as HTMLTableElement, sumVal = 0;
 
-    for (var i = 2; i < table.rows.length; i++) {
+    for (var i = 1; i < table.rows.length; i++) {
       sumVal = sumVal + parseFloat(table.rows[i].cells[1].innerHTML);
     }
 
     sumVal = Math.round(sumVal * 10) / 10;
-    document.getElementById("val").innerHTML = String(sumVal);
+    document.getElementById("val").innerHTML =  String(sumVal);
     console.log(sumVal);
   this.needleValue = sumVal;
-    this.bottomLabel = sumVal;
 
   }
 
