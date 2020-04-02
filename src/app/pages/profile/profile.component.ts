@@ -313,11 +313,10 @@ Business_geocode(){
 
   getTrophies() {
     var level = this.user.user_level;
-    //debugger;
-    for (var x = 0; x <11; x++) {
+    for (var x = 1; x <21; x++) {
       this.trophies.push({
-        name: 'HaveTrophy' + x,
-        description: 'Description for trophy ' + x,
+        name: 'Trophy ' + ' '  + x,
+        description: 'Reach Level ' + ' ' + x,
         dateEarned: this.user.user_level >= x ? new Date(): null
       })
     }
@@ -341,7 +340,7 @@ Business_geocode(){
   getTrophies2() {
     var level = this.business.business_level;
     //debugger;
-    for (var x = 0; x <11; x++) {
+    for (var x = 0; x <21; x++) {
       this.trophies.push({
         name: 'HaveTrophy' + x,
         description: 'Description for trophy ' + x,

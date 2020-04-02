@@ -72,12 +72,34 @@ export class LeaderboardComponent implements OnInit {
 
     var i =1;
     for (var user of res2) {
-
-      tbodyHtml2 += '<tr><td>' + i + '</td><td>' + user.user_name + '</td><td>' + user.user_footprint+ '</td></tr>';
+      var x = user.user_footprint;
+      parseFloat(x);
+      var z =Number(x);
+      var y = Math.round((z + Number.EPSILON) * 100) / 100
+      tbodyHtml2 += '<tr><td>' + i + '</td><td>' + user.user_name + '</td><td>' + y+ '</td></tr>';
       i=i+1
     }
 
     tbody2.innerHTML = tbodyHtml2;
+    tbody2.style.border= "2px solid black"
+
   }
+
+  BusinessbtnClick() {
+    let y =document.getElementById("User_leaderboard")
+    y.style.display = "none"
+   let x =document.getElementById("Business_leaderboard")
+    x.style.display = "block"
+
+
   }
+
+  UserbtnClick() {
+    let x =document.getElementById("Business_leaderboard")
+    x.style.display = "none"
+    let y =document.getElementById("User_leaderboard")
+    y.style.display = "block"
+  }
+}
+
 
