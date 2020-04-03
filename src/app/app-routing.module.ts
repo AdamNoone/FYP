@@ -10,6 +10,7 @@ import { TypeofpostComponent } from './pages/typeofpost/typeofpost.component';
 import {RecyclepostComponent} from "./pages/recyclepost/recyclepost.component";
 import {MakeRecycledPostComponent} from "./pages/make-recycled-post/make-recycled-post.component";
 import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
+import {MypostsComponent} from "./pages/myposts/myposts.component";
 
 const routes: Routes = [
   {
@@ -64,6 +65,11 @@ const routes: Routes = [
   {
     path: 'leaderboard',
     component: LeaderboardComponent,
+  },
+
+  {
+    path: 'myposts',
+    component: MypostsComponent,
   },
 
 ];

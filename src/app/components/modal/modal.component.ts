@@ -48,8 +48,6 @@ export class ModalComponent implements OnInit {
     for(i = 0; i < 8; i++) {
       if(ele[i].checked)
 
-       // document.getElementById("result").innerHTML
-       //   = "Fish loop: "+ele[i].value
 
         if (ele[i].value == "Meat")
         {

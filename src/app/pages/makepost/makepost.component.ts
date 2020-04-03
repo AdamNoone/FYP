@@ -195,8 +195,11 @@ export class MakepostComponent implements OnInit {
 
   getIngredientSearch(): Observable<Food[]> {
     return this.foods$.pipe(
-      map(ingredients => ingredients.filter(i => i.food_name.includes(this.ingredientSearch)))
-    );
+      map(ingredients => ingredients.filter(i => i.food_name.includes(this.ingredientSearch) ||
+        i.food_name.includes(this.ingredientSearch[0].toUpperCase() + this.ingredientSearch.slice(1)) ||
+        i.food_name.includes(this.ingredientSearch[0].toLowerCase() + this.ingredientSearch.slice(1)))
+      )
+  );
   }
 
 

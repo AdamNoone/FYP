@@ -24,14 +24,23 @@
             <li class="nav-item" >
               <a routerLink="/" class="nav-link">Home</a>
             </li>
+
             <li class="nav-item">
-              <a routerLink="/feed" class="nav-link">Feed</a>
+              <a routerLink="/feed" class="nav-link" *ngIf="user">Feed</a>
             </li>
+
             <li class="nav-item">
               <a routerLink="/typeofpost" class="nav-link" *ngIf="business">Make Post</a>
             </li>
             <li class="nav-item">
-              <a routerLink="/leaderboard" class="nav-link">Leaderboards</a>
+              <a routerLink="/myposts" class="nav-link" *ngIf="business">My Posts</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/leaderboard" class="nav-link" *ngIf="business">Leaderboards</a>
+            </li>
+
+            <li class="nav-item">
+              <a routerLink="/leaderboard" class="nav-link" *ngIf="user">Leaderboards</a>
             </li>
           </ul>
 

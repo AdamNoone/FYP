@@ -15,16 +15,8 @@ export class NavBarComponent implements OnInit {
   faPowerOff = faPowerOff;
   private profileJson: string;
   business = null;
+  user = null;
 
-  user = {
-    user_id : '',
-    user_email : '',
-    user_name: '',
-    user_address: '',
-    user_coordinates: '',
-    user_footprint: '',
-    user_level: 0,
-  };
 
   constructor(public auth: AuthService, private businessesApi: BusinessApiService,private usersApi: UserApiService) { }
 
@@ -55,7 +47,12 @@ export class NavBarComponent implements OnInit {
   get_userbyUserID(user_id: string) {
     this.usersApi.get_userbyUserID(user_id)
       .subscribe(user=> {
-        this.user = user;
+
+        if(Object.keys(user).length > 0)
+        {
+          this.user = user;
+        }
+
 
 
 

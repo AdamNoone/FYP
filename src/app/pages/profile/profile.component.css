@@ -1,7 +1,11 @@
-#container{
+#User_container{
   text-align: center;
 }
 
+
+#Business_container{
+  text-align: center;
+}
 
 .row {
   display: flex;
@@ -49,7 +53,7 @@
   width: 90%;
   justify-content: space-between;
   margin: 5vw;
-  height: 172.5vh;;
+  height: 197.5vh;
 
 
 }
@@ -60,7 +64,7 @@
   flex: 0 100%;
   border: 5px solid black;
   margin-bottom: 2%; /* (100-32*3)/2 */
-  height: 172.5vh;
+  height: 198.5vh;
   transition:all 0.3s ease;
   background-color: white;
 }
@@ -175,7 +179,7 @@
 }
 
 
-#greeting{
+.greeting{
   background-color: #87CEEB;
   width: 89.5vw;
   margin-left: 5vw;
@@ -183,7 +187,7 @@
   height: 25vh;
 }
 
-#greeting p{
+.greeting p{
   height:50px;
   color: #f6fffc;
   cursor:pointer;
@@ -223,7 +227,37 @@
   margin :0;
 }
 
+#business p
+{
+  text-align: center;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 3vh;
+  color: #030303;
+  padding: 1vh;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  margin :0;
+}
+
 #stats p
+{
+  text-align: center;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 3vh;
+  color: #030303;
+  padding: 1vh;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  margin :0;
+}
+
+#bis_stats p
 {
   text-align: center;
   font-family: 'Arial Black', Gadget, sans-serif;
@@ -346,10 +380,10 @@
 #new_image
 {
 
-  height: 25vh;
-  width: 25vw;
+  height: 20vh;
+  width: 20vw;
   margin-top: 3vh;
-  margin-left: 8vw;
+  margin-left: 10vw;
 }
 
 #recycle_image
@@ -408,75 +442,13 @@
 
 
 
-/* The popup form - hidden by default */
-.type_of_user-popup {
-  display: none;
-  width: 100%;
-  background-color: #1a1a1a;
-}
 
 
-
-
-/* Add styles to the form container */
-.TypeUserForm-container {
-  width: 440px;
-  height: 740px;
-  background: #e6e6e6;
-  border-radius: 8px;
-  box-shadow: 0 0 40px -10px #000;
-  margin: calc(50vh - 340px) auto;
-  margin-left: 500px;
-  padding: 20px 30px;
-  max-width: calc(100vw - 40px);
-  box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
-  position: relative;
-  autocomplete: "off";
-
-}
-
-/* Set a style for the submit/login button */
-.TypeUserForm-container .btn {
-  background-color: #000000;
-  color: white;
-  padding: 16px 20px;
-  border: 4px solid black;
-  cursor: pointer;
-  width: 40%;
-  opacity: 0.8;
-  display: inline-block;
-  margin-left:  25px;
-  margin-top: 10px;
-}
-
-
-/* Add some hover effects to buttons */
-.TypeUserForm-container .btn:hover {
-  opacity: 1;
-}
-
-.TypeUserForm-container input[type=text], .TypeUserForm-container input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
-}
-
-/* When the inputs get focus, do something */
-.TypeUserForm-container input[type=text]:focus, .TypeUserForm-container input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
-
-
-#user{
+#User_container{
   display: none;
 }
 
-#business{
+#Business_container{
   display: none;
 }
 
@@ -486,6 +458,22 @@
 
 
 
+.SignUpHeading  h1 {
+  color: #ffffff;
+  font-family: 'Raleway',sans-serif;
+  font-size: 4vh;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+  padding: 5vh;
+
+}
+
+
+.SignUpHeading{
+  background-color: black;
+}
 
 
 
@@ -599,7 +587,19 @@ padding-left: 200px;
 {
   width:50%;
   border: 1px solid black;
- display: inline-block;
+  display: inline-block;
+
+}
+
+.TrophyEarned:hover
+{
+
+  border: 3px solid black;
+  background-color: #ffe218;
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  transition:all 0.3s ease;
 
 }
 
@@ -608,7 +608,7 @@ padding-left: 200px;
   width: 120px;
   height:120px;
   display:inline;
-  margin-left: -3vw;
+  margin-left: -10.5vw;
   margin-right: 2vw;
 
 }
@@ -625,7 +625,7 @@ padding-left: 200px;
   text-transform: none;
   display: inline-block;
   border: 2px solid black;
-  padding: 2vh;
+  padding: 1vh;
 
 
 }
@@ -640,10 +640,10 @@ padding-left: 200px;
 
 .TrophyNotEarned:hover
 {
-  width:40%;
+  width:50%;
   border: 1px solid black;
   display: inline-block;
-  background-color: #555555; /* Google Chrome, Safari 6+ & Opera 15+ */
+  background-color: #ff485e; /* Google Chrome, Safari 6+ & Opera 15+ */
 }
 
 
@@ -708,6 +708,17 @@ ul{
   margin-top: 2vh;
 }
 
+
+#bis_img
+{
+
+  height: 25vh;
+  width: 20vw;
+  border-radius:  50%;
+  border:2px solid black;
+  margin-bottom: 2vh;
+  margin-top: 2vh;
+}
 #recycle_image
 {
 
@@ -721,5 +732,188 @@ ul{
 #heartPath{
   height: 200vh;
 }
+
+#Signup_container{
+  display: none;
+}
+
+
+
+.SignUprow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+  justify-content: space-between;
+  margin: 5vw;
+
+
+}
+
+.SignUpColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 0 48%;
+  border: 5px solid black;
+  margin-bottom: 2%; /* (100-32*3)/2 */
+  height: 30vh;
+  transition:all 0.3s ease;
+}
+
+.SignUpColumn:hover {
+  display: flex;
+  flex-direction: column;
+  flex: 0 48%;
+  margin-bottom: 2%; /* (100-32*3)/2 */
+  height: 30vh;
+  background-color: #f9d217;
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  transition:all 0.3s ease;
+
+
+}
+
+
+.SignUprow2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 5vw;
+  align-items: center;
+  justify-content: center;
+
+
+}
+
+.SignUpColumn2 {
+  display: flex;
+  flex-direction: column;
+  flex: 0 50%;
+  margin-bottom: 2%; /* (100-32*3)/2 */
+  height: 50vh;
+  transition:all 0.3s ease;
+}
+
+
+.card-block{
+  display: none;
+}
+
+/* The popup form - hidden by default */
+.type_of_user-popup {
+  display: none;
+  width: 100%;
+  background-color: #1a1a1a;
+}
+
+
+
+
+textarea {
+  width: 50vw;
+  height: 15vh;
+}
+
+label{
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 3vh;
+  color: #030303;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+
+
+}
+
+
+/* Set a style for the submit/login button */
+#Signup_container button {
+  height:50px;
+  width :15vw;
+  border:2px solid #030303;
+  background-color:#26b734;;
+  color: #f6fffc;
+  cursor:pointer;
+  transition:all .3s;
+  text-align: center;
+  margin-bottom: 3vh;
+  margin-top: 1vh;
+  margin-left: 14vw;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 2.5vh;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+
+}
+
+#Signup_container button:hover {
+  background-color: #cb83c2;
+  border: 3px solid #cb83c2;
+
+}
+
+
+/* Add some hover effects to buttons */
+#Signup_container .btn:hover {
+  opacity: 1;
+}
+
+#Signup_container input[type=text], #Signup_container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+#Signup_container input[type=text]:focus, #Signup_container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: table;
+  width: 40%;
+
+}
+
+
+.reveal-if-active {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+#ifBusiness, #ifUser { display: none;}
+#yesBusiness:checked ~ #ifBusiness {display: block;}
+#yesUser:checked ~ #ifUser{display: block;}
+
+
 
 

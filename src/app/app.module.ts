@@ -38,6 +38,7 @@ import {RecyclepostApiService} from "./pages/make-recycled-post/recyclepost-api.
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { LeaderboardComponent } from './pages/leaderboard/leaderboard.component';
+import { MypostsComponent } from './pages/myposts/myposts.component';
 
 
 
@@ -62,6 +63,7 @@ export function hljsLanguages() {
     MakeRecycledPostComponent,
     ModalComponent,
     LeaderboardComponent,
+    MypostsComponent,
   ],
   imports: [
     BrowserModule,

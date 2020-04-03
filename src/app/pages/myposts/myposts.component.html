@@ -1,0 +1,40 @@
+<div class='container'>
+
+  <div id="search_bar">
+    <H2 id="search_header">Here are all your Posts</H2>
+  </div>
+
+
+
+  <div class='row'>
+    <div class='column' *ngFor="let post of postsList" >
+
+      <div id="post_picture" >
+        <img [src]="post.picture" alt="your image">
+      </div>
+
+      <div id="post_title">
+        <H2>{{post.title}}</H2>
+      </div>
+
+
+      <div id="post_description">
+        <p>{{post.description}}</p>
+      </div>
+
+
+
+      <div id="post_footprint">
+        <p> Carbon Footprint : {{post.carbon_footprint}}</p>
+      </div>
+
+      <div id = "expand">
+        <a routerLink="/detail/{{post.id}}">
+          <h5>Click For More Information</h5>
+        </a>
+      </div>
+
+
+    </div>
+  </div>
+</div>

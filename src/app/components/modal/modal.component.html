@@ -1,16 +1,81 @@
-<!DOCTYPE html>
-<html>
-<head>
 
-</head>
 <body>
-<!-- Trigger/Open The Modal -->
+
+
 <button id="myBtn" (click)="btnfunction()">Add Ingredient to our Database</button>
 
-<!-- The Modal -->
+
 <div id="myModal" class="modal">
 
-  <!-- Modal content -->
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Add an Ingredient to Our Database</h2>
+      <span class="close" (click)="spanfunction()">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div id = "foodname">
+      <p>What is the name of the Ingredient ?</p>
+      <input id="post-title" (keyup)="updateFoodname($event)" autocomplete="off">
+      </div>
+      <p>
+        Please Select an Ingredient Type
+      </p>
+
+<label>
+      <input (click)="updateFoodGroup($event)" type="radio" name="type" value="Meat">Meat
+</label>
+      <label>
+      <input (click)="updateFoodGroup($event)" type="radio" name="type" value="Fish">Fish
+      </label>
+        <label>
+      <input (click)="updateFoodGroup($event)" type="radio" name="type" value="Starch">Starch
+        </label>
+          <label>
+      <input (click)="updateFoodGroup($event)"  type="radio" name="type" value="Dairy">Dairy
+          </label>
+            <label>
+      <input (click)="updateFoodGroup($event)"  type="radio" name="type" value="Fruit">Fruit
+            </label>
+              <label>
+      <input (click)="updateFoodGroup($event)" type="radio" name="type" value="Vegetable">Vegetable
+              </label>
+                <label>
+      <input (click)="updateFoodGroup($event)" type="radio" name="type" value="Nuts">Nuts
+                </label>
+                  <label>
+      <input (click)="updateFoodGroup($event)" type="radio" name="type" value="Seasoning">Seasoning
+                  </label>
+
+
+      <button id="add_button" type="button" (click)="SaveFood()">
+        Add Ingredient
+      </button>
+
+      <br>
+
+      <div id="result"></div>
+
+    </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+
+
+
+
+<!--<body>
+
+<button id="myBtn" (click)="btnfunction()">Add Ingredient to our Database</button>
+
+
+<div id="myModal" class="modal">
+
+
   <div class="modal-content">
     <div class="modal-header">
       <h2>Modal Header</h2>
@@ -50,5 +115,5 @@
 
 
 
-</body>
-</html>
+</body>-->
+

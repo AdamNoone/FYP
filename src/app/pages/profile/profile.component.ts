@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
   };
 
   trophies = [];
-
+  control: number;
   constructor(public auth: AuthService, private businessesApi: BusinessApiService,private usersApi: UserApiService, private router: Router) {
   }
 
@@ -67,6 +67,7 @@ export class ProfileComponent implements OnInit {
     if (n === true) {
       this.openForm();
     }
+
     this.get_userbyUserID(user_id);
     this.getBusinessbyBusinessID(user_id);
   }
@@ -83,8 +84,10 @@ export class ProfileComponent implements OnInit {
           this.closeForm();
           this.getTrophies();
           this.FootprintAnimate();
-          document.getElementById("user").style.display = "block";
-          document.getElementById("business").style.display = "none";
+
+          document.getElementById("Signup_container").style.display = "none";
+          document.getElementById("User_container").style.display = "block";
+          document.getElementById("Business_container").style.display = "none";
         }
 
       });
@@ -103,8 +106,9 @@ export class ProfileComponent implements OnInit {
           this.closeForm();
           this.getTrophies2();
           this.FootprintAnimate2();
-          document.getElementById("user").style.display = "none";
-          document.getElementById("business").style.display = "block";
+          document.getElementById("Signup_container").style.display = "none";
+          document.getElementById("User_container").style.display = "none";
+          document.getElementById("Business_container").style.display = "block";
         }
       });
 
@@ -113,11 +117,11 @@ export class ProfileComponent implements OnInit {
 
 
   openForm() {
-    document.getElementById("TypeUserForm").style.display = "block";
+    document.getElementById("Signup_container").style.display = "block";
   }
 
   closeForm() {
-    document.getElementById("TypeUserForm").style.display = "none";
+    document.getElementById("Signup_container").style.display = "none";
   }
 
 
@@ -130,11 +134,11 @@ export class ProfileComponent implements OnInit {
     }
 
 
-    if (business_check.checked) {
+    if (this.control ==1) {
       this.SaveBusiness(sub);
       closeForm();
       console.log("business checked, close from")
-    } else if (user_check.checked) {
+    } else if (this.control ==2) {
       this.SaveUser(sub,email,name);
       closeForm();
       console.log("user checked, close from")
@@ -167,7 +171,7 @@ export class ProfileComponent implements OnInit {
     this.business.business_coordinates = document.getElementById('Business_geometry').innerText;
     this.business.business_county = document.getElementById('Business_county').innerText;
     this.business.business_town= document.getElementById('Business_town').innerText;
-    this.business.business_footprint = '500';
+    this.business.business_footprint = '1';
     this.business.business_level = 5;
     this.businessesApi
       .saveBusiness(this.business)
@@ -193,7 +197,7 @@ export class ProfileComponent implements OnInit {
     this.user.user_id = sub.replace(/\|/g, "");
     this.user.user_email = email;
     this.user.user_coordinates = document.getElementById('User_geometry').innerText;
-    this.user.user_footprint = '437';
+    this.user.user_footprint = '1';
     this.user.user_level = 4;
     this.usersApi
       .saveUser(this.user)
@@ -306,8 +310,13 @@ Business_geocode(){
     let heartRect = document.getElementById("heartRect") as unknown as  SVGAElement;
         var footprint = this.user.user_footprint;
         var percent = parseInt(footprint)/10;
+        if (percent > 120)
+        {
+          percent = 117
+        }
         console.log("percent is "  + percent);
-        heartRect.setAttribute("y",String(percent))
+        var value = 117 - percent;
+        heartRect.setAttribute("y",String(value))
   }
 
 
@@ -332,25 +341,48 @@ Business_geocode(){
     let heartRect2 = document.getElementById("heartRect2") as unknown as  SVGAElement;
     var footprint = this.business.business_footprint;
     var percent = parseInt(footprint)/10;
+    if (percent > 120)
+    {
+      percent = 117
+    }
     console.log("percent is "  + percent);
-    heartRect2.setAttribute("y",String(percent))
+    var value = 117 - percent;
+    heartRect2.setAttribute("y",String(value))
   }
 
 
   getTrophies2() {
     var level = this.business.business_level;
     //debugger;
-    for (var x = 0; x <21; x++) {
+    for (var x = 1; x <21; x++) {
       this.trophies.push({
-        name: 'HaveTrophy' + x,
-        description: 'Description for trophy ' + x,
-        dateEarned: this.business.business_level >= x ? new Date(): null
+        name: 'Trophy ' + ' '  + x,
+        description: 'Reach Level ' + ' ' + x,
+        dateEarned: this.business.business_level  >= x ? new Date(): null
       })
     }
 
   }
 
 
+
+  BusinessClick() {
+    let user = document.getElementById("ifUser");
+    user.style.display = "none";
+    let business = document.getElementById("ifBusiness");
+    business.style.display = "block"
+    this.control =1
+  }
+
+
+  UserClick() {
+    let business = document.getElementById("ifBusiness");
+    business.style.display = "none";
+    let user = document.getElementById("ifUser");
+    user.style.display = "block";
+    this.control =2
+
+  }
 }
 
 

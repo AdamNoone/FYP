@@ -1,8 +1,7 @@
 
 
 .some-page-wrapper {
-  margin: 15px;
-  max-with: 800px
+
 }
 
 .row1 {
@@ -10,6 +9,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
+  background-color: #4CAF50;
 }
 
 .column1 {

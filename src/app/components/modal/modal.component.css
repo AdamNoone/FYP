@@ -24,12 +24,12 @@ body {
 
 /* Modal Content */
 .modal-content {
-  position: relative;
   background-color: #fefefe;
   margin: auto;
   padding: 0;
   border: 1px solid #888;
-  width: 80%;
+  width: 80vw;
+  height: 40vw;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -64,10 +64,29 @@ body {
 }
 
 .modal-header {
-  text-align: center;
-  background-color: #5cb85c;
+  background-color: #030303;
   color: white;
+  margin-bottom: 1vh;
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 5vh;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  padding-top:  2vh;
+  padding-bottom:  2vh;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+  text-align: center;
+
 }
+
+.modal-header h2{
+
+  margin-left: 27vw;
+
+}
+
 
 .modal-body {
   height: 200px;
@@ -107,3 +126,73 @@ button:hover{
   transform: scale(1.1);
   transition:all 0.3s ease;
 }
+
+
+p {
+  text-align: center;;
+  color: #030303;
+  margin-bottom: 1vh;
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 4vh;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  padding-top:  2vh;
+  padding-bottom:  2vh;
+}
+#foodname input {
+  text-align: center;
+  border: 2px solid black;
+  width: 20vw;
+  padding: 15px;
+  background: #f1f1f1;
+  margin-left: 29vw;
+}
+
+#add_button {
+  width: 20vw;
+  padding: 15px;
+  margin-left: 29vw;
+  border:2px solid #8BBEE8FF;
+  background-color:#8BBEE8FF;;
+  color: #f6fffc;
+  cursor:pointer;
+  transition:all .3s;
+  text-align: center;
+  font-family: 'Arial Black', Gadget, sans-serif;
+  font-size: 2.5vh;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  margin-top: 2vh;
+
+}
+
+label {
+  color: #030303;
+  margin-bottom: 1vh;
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 4vh;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: none;
+  margin-left: 1.5vw;
+  padding:  2vh;
+  border: 2px solid black;
+
+}
+
+label:hover {
+  background-color: yellow;
+
+}
+
+
+
