@@ -1,4 +1,4 @@
-.container{
+ .container{
 
   height: 100px;
 
@@ -7,5 +7,7 @@
   background-color: white;
   height: 122px;
 }
+ .nav-item a{
+   color: black;
 
-
+ }

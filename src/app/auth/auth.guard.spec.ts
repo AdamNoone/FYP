@@ -1,7 +1,7 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 
 import { AuthGuard } from './auth.guard';
-
+//auth0 code
 describe('AuthGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({

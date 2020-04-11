@@ -6,16 +6,16 @@ from .entity import Entity, Base
 
 
 class Food(Entity, Base):
+    #define the table name
     __tablename__ = 'food_table'
 
+    #define the variable names and their data types
     food_name = Column(String)
     food_cf = Column(Float)
     food_group = Column(String)
     updated_by = Column(String)
 
-
-
-
+    #initialise the Food class
     def __init__(self, food_name, food_cf, food_group, created_by, updated_by):
         Entity.__init__(self, created_by)
         self.food_name = food_name
@@ -23,7 +23,7 @@ class Food(Entity, Base):
         self.food_group= food_group
         self.updated_by= updated_by
 
-
+#define the food schema
 class FoodSchema(Schema):
       id= fields.Number()
       food_name= fields.Str()

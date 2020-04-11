@@ -290,6 +290,7 @@ def add_user():
 
 @app.route('/edit/<user_id>/<user_footprint>')
 def updateUser(user_id,user_footprint):
+        #create session
         session = Session()
         GetUserData = session.query(User).filter(User.user_id==user_id).first()
         print (GetUserData )
@@ -311,20 +312,27 @@ def updateUser(user_id,user_footprint):
 
 @app.route('/editbusiness/<business_id>/<business_footprint>')
 def updateBusiness(business_id,business_footprint):
+        #create session
         session = Session()
+
+        #get the business that made the post
         GetBusinessData = session.query(Business).filter(Business.business_id==business_id).first()
-        print (GetBusinessData )
+
+        #get the businesses footprint before doing post was made
         OldBusinessfootprint = GetBusinessData.business_footprint
+
+        #calculate the businesses new footprint
         NewFootPrint = float(OldBusinessfootprint) + float(business_footprint)
 
-        print (float(NewFootPrint))
-
+        #update both the Business footprint and the Business level
         dataToUpdate = {Business.business_footprint: NewFootPrint,Business.business_level:  math.floor(NewFootPrint/100)  +1 }
 
+        #perform the update
         BusinessData = session.query(Business).filter(Business.business_id==business_id)
         BusinessData.update(dataToUpdate)
         session.commit()
 
+        #clean up
         new_business = BusinessSchema().dump(BusinessData)
         session.close()
         return jsonify(new_business), 201
@@ -332,20 +340,27 @@ def updateBusiness(business_id,business_footprint):
 
 @app.route('/editpost/<post_id>')
 def updatePost(post_id,):
+        #create session
         session = Session()
+
+        #get the post that needs to be updated
         GetPostData = session.query(Post).filter(Post.id==post_id).first()
-        print (GetPostData)
+
+        #get the old portion value
         OldPostPortion = GetPostData.portion
+
+        #decrement the portion value by 1
         NewPortion = OldPostPortion - 1
 
-        print (NewPortion)
-
+        #update portion to new value
         dataToUpdate = {Post.portion: NewPortion}
 
+        #perfrom the update
         PostData = session.query(Post).filter(Post.id==post_id)
         PostData.update(dataToUpdate)
         session.commit()
 
+        #clean up
         new_post = PostSchema().dump(PostData)
         session.close()
         return jsonify(new_post), 201

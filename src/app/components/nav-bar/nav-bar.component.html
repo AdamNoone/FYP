@@ -1,4 +1,4 @@
-
+<!--Auth0 nav bar-->
 <div class="nav-container">
     <nav class="navbar navbar-expand-md navbar-light bg-light">
       <div class="container">
@@ -57,7 +57,7 @@
             <!-- / Login button -->
 
             <!-- Fullsize dropdown: show if authenticated -->
-            <li class="nav-item dropdown" *ngIf="auth.userProfile$ | async as profile" ngbDropdown>
+            <li class="nav-item dropdown" *ngIf="auth.userProfile$ | async as profile" ngbDropdown >
               <a
                 ngbDropdownToggle
                 class="nav-link dropdown-toggle"
@@ -100,6 +100,7 @@
 
           <!-- Responsive login button: show if NOT authenticated -->
           <ul class="navbar-nav d-md-none" *ngIf="auth.loggedIn === false">
+
             <button
               class="btn btn-primary btn-block"
               id="qsLoginBtn"
@@ -112,9 +113,9 @@
 
           <!-- Responsive profile dropdown: show if authenticated -->
           <ul
-            class="navbar-nav d-md-none justify-content-between"
+            class="navbar-nav d-md-none justify-content-between "
             *ngIf="auth.userProfile$ | async as profile"
-            style="min-height: 170px"
+            style="min-height: 170px;background-color: white"
           >
             <li class="nav-item">
               <span class="user-info" *ngIf="profile">

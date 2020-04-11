@@ -55,12 +55,10 @@ export class ProfileComponent implements OnInit {
 
 
 
-    console.log(this.profileJson);
+
     var test = JSON.parse(this.profileJson);
-    console.log(test);
     var firstLoginKey = "http://localhost:3000/first_login";
     let n = test[firstLoginKey];
-    console.log(n);
     var user_id = test.sub.replace(/\|/g, "")
 
 
@@ -137,11 +135,11 @@ export class ProfileComponent implements OnInit {
     if (this.control ==1) {
       this.SaveBusiness(sub);
       closeForm();
-      console.log("business checked, close from")
+      //console.log("business checked, close from")
     } else if (this.control ==2) {
       this.SaveUser(sub,email,name);
       closeForm();
-      console.log("user checked, close from")
+     // console.log("user checked, close from")
     }
 
   }
@@ -172,12 +170,11 @@ export class ProfileComponent implements OnInit {
     this.business.business_county = document.getElementById('Business_county').innerText;
     this.business.business_town= document.getElementById('Business_town').innerText;
     this.business.business_footprint = '1';
-    this.business.business_level = 5;
+    this.business.business_level = 1;
     this.businessesApi
       .saveBusiness(this.business)
       .subscribe(
-        () => this.router.navigate(['/feed']),
-        error => alert(error.message)
+        () =>  window.location.reload()
       );
 
   }
@@ -198,12 +195,12 @@ export class ProfileComponent implements OnInit {
     this.user.user_email = email;
     this.user.user_coordinates = document.getElementById('User_geometry').innerText;
     this.user.user_footprint = '1';
-    this.user.user_level = 4;
+    this.user.user_level = 1;
     this.usersApi
       .saveUser(this.user)
       .subscribe(
-        () => this.router.navigate(['/feed']),
-        error => alert(error.message)
+        () =>
+    window.location.reload()
       );
 
   }
@@ -230,11 +227,10 @@ Business_geocode(){
     })
       .then(function(response){
         // Log full response
-        console.log(response);
+       // console.log(response);
 
         // Formatted Address
         var formattedAddress = response.data.results[0].formatted_address;
-        console.log("the returned formatted address is " + formattedAddress);
         var formattedAddressOutput = `
           <ul class="list-group">
             <li class="list-group-item">${formattedAddress}</li>
@@ -246,11 +242,9 @@ Business_geocode(){
         var addressComponents = response.data.results[0].address_components;
 
         const postal_town= extractFromAddress(addressComponents, "postal_town");
-        console.log("this is the town" +postal_town);
         var postal_town_Output = ` <p>${postal_town} </p> `;
 
         const county= extractFromAddress(addressComponents, "administrative_area_level_1");
-        console.log("this is the county" +county);
         var  county_Output = ` <p>${county} </p> `;
 
 
@@ -263,7 +257,7 @@ Business_geocode(){
         document.getElementById('Business_town').innerHTML = postal_town_Output;
         document.getElementById('Business_geometry').innerHTML = geometryOutput;
 
-        console.log(geometryOutput);
+
       })
       .catch(function(error){
         console.log(error);
@@ -314,7 +308,7 @@ Business_geocode(){
         {
           percent = 117
         }
-        console.log("percent is "  + percent);
+
         var value = 117 - percent;
         heartRect.setAttribute("y",String(value))
   }
@@ -345,7 +339,7 @@ Business_geocode(){
     {
       percent = 117
     }
-    console.log("percent is "  + percent);
+
     var value = 117 - percent;
     heartRect2.setAttribute("y",String(value))
   }

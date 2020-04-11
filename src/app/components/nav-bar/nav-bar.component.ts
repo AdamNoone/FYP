@@ -27,12 +27,9 @@ export class NavBarComponent implements OnInit {
         if(profile) {
         this.profileJson = JSON.stringify(profile, null, 2);
 
-          console.log(this.profileJson);
           var test = JSON.parse(this.profileJson);
-          console.log(test);
           var firstLoginKey = "http://localhost:3000/first_login";
           let n = test[firstLoginKey];
-          console.log(n);
           var user_id = test.sub.replace(/\|/g, "");
           this.get_userbyUserID(user_id);
           this.getBusinessbyBusinessID(user_id);
@@ -75,6 +72,7 @@ export class NavBarComponent implements OnInit {
       });
 
   }
+
 
 
 }

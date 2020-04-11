@@ -50,16 +50,17 @@ body {
 
 /* The Close Button */
 .close {
-  color: white;
+  color: #ff2f00;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover,
+.close:hover
+{background-color: #ff2f00}
+
 .close:focus {
-  color: #000;
-  text-decoration: none;
+  color: #ff332e;
   cursor: pointer;
 }
 
@@ -195,4 +196,136 @@ label:hover {
 }
 
 
+@media only screen and (max-width: 640px) {
+  button{
+    border:2px solid #8BBEE8FF;
+    background-color:#8BBEE8FF;;
+    color: #f6fffc;
+    cursor:pointer;
+    transition:all .3s;
+    text-align: center;
+    font-family: 'Arial Black', Gadget, sans-serif;
+    font-size: 2.5vh;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: italic;
+    font-variant: small-caps;
+    text-transform: none;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    margin-left: 5vw;
+    width: 75vw;
+    margin-top: 2vh;
 
+  }
+
+  body {
+
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    width: 87vw;
+    height: 83vh;
+
+  }
+
+  .modal-header {
+    background-color: #030303;
+    color: white;
+    margin-bottom: 1vh;
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 2vh;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: italic;
+    font-variant: small-caps;
+    text-transform: none;
+    padding-top:  2vh;
+    padding-bottom:  2vh;
+    text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+    text-align: center;
+    height: 20vh
+
+  }
+
+  .modal-header h2{
+
+    margin-left: 2vw;
+
+  }
+
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80vw;
+    height: 240vw;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+  }
+
+  #foodname input {
+    border: 2px solid black;
+    width: 60vw;
+    padding: 15px;
+    background: #f1f1f1;
+    margin-left: 5vw;
+  }
+
+  label {
+    color: #030303;
+    margin-bottom: 1vh;
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 3vh;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: italic;
+    font-variant: small-caps;
+    text-transform: none;
+    margin-left: 1.5vw;
+    padding:  1vh;
+    border: 2px solid black;
+
+  }
+
+  p {
+    text-align: center;;
+    color: #030303;
+    margin-bottom: 1vh;
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 3vh;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: italic;
+    font-variant: small-caps;
+    text-transform: none;
+    padding-top:  1vh;
+    padding-bottom:  1vh;
+  }
+
+  #add_button {
+    width: 60vw;
+    padding: 12px;
+    margin-left: 7vw;
+    border:2px solid #8BBEE8FF;
+    background-color:#8BBEE8FF;;
+    color: #f6fffc;
+    cursor:pointer;
+    transition:all .3s;
+    text-align: center;
+    font-family: 'Arial Black', Gadget, sans-serif;
+    font-size: 2.5vh;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: italic;
+    font-variant: small-caps;
+    text-transform: none;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    margin-top: 2vh;
+
+  }
+
+}

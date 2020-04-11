@@ -29,47 +29,55 @@ const routes: Routes = [
     path: 'feed',
     component: FeedComponent,
     pathMatch: 'full',
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard], //used to make sure user is logged in when they click on profile component
   },
   {
     path: 'makepost',
     component:  MakepostComponent,
     pathMatch: 'full',
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard], //used to make sure user is logged in when they click on profile component
   },
   {
     path: 'detail/:id',
-    component: PostDetailComponent
+    component: PostDetailComponent,
+    canActivate: [AuthGuard], //used to make sure user is logged in when they click on profile component
   },
   {
     path: 'businesses/:business_id',
-    component: PostDetailComponent
+    component: PostDetailComponent,
+    canActivate: [AuthGuard], //used to make sure user is logged in when they click on profile component
   },
   {
     path: 'typeofpost',
-    component: TypeofpostComponent
+    component: TypeofpostComponent,
+    canActivate: [AuthGuard], //used to make sure user is logged in when they click on profile component
   },
   {
     path: 'recyclepost',
-    component: RecyclepostComponent
+    component: RecyclepostComponent,
+    canActivate: [AuthGuard], //used to make sure user is logged in when they click on profile component
   },
   {
     path: 'recyclepost/:id',
-    component: MakeRecycledPostComponent
+    component: MakeRecycledPostComponent,
+    canActivate: [AuthGuard], //used to make sure user is logged in when they click on profile component
   },
   {
     path: 'food/:food_group:',
     component: MakepostComponent,
+    canActivate: [AuthGuard], //used to make sure user is logged in when they click on profile component
   },
 
   {
     path: 'leaderboard',
     component: LeaderboardComponent,
+    canActivate: [AuthGuard], //used to make sure user is logged in when they click on profile component
   },
 
   {
     path: 'myposts',
     component: MypostsComponent,
+    canActivate: [AuthGuard], //used to make sure user is logged in when they click on profile component
   },
 
 ];

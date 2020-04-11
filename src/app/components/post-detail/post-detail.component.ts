@@ -107,7 +107,6 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
 
 
   update(user_id: string, post_footprint: number, post_id: number) :void {
-    console.log("button pressed");
     this.usersApi.UpdateUser(user_id,String(post_footprint))
       .subscribe(user=> this.user);
 
@@ -131,7 +130,7 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
 
         var directionsService = new google.maps.DirectionsService();
         var directionsRenderer = new google.maps.DirectionsRenderer();
-        //console.log("this is x", business_coordinates);
+
 
      var user_location = document.getElementById("demo").innerText;
       let userLat = parseFloat(user_location.split(" ")[0]); ///before;
@@ -189,11 +188,11 @@ export class PostDetailComponent implements OnInit,AfterViewInit {
 
   InsertIngredient(ingredients: string) {
 
-    console.log(ingredients);
+
     let tableRef = document.getElementById("Chosen_InIngredients") as HTMLTableElement;
 
     var food = ingredients.split(',');
-    console.log(food);
+
     var i;
     for(i =0; i < food.length; i++)
     {

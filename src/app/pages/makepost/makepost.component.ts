@@ -82,7 +82,7 @@ export class MakepostComponent implements OnInit {
       }
     );
 
-    //console.log("hello",this.profileJson);
+
   }
 
   openModal() {
@@ -120,7 +120,6 @@ export class MakepostComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(files[0]);
       reader.onload = function () {
-        console.log(reader.result);
         if (typeof reader.result === "string") {
           document.getElementById('base64').innerHTML = reader.result;
           let picture_src = document.getElementById('base64').innerHTML;
@@ -136,21 +135,19 @@ export class MakepostComponent implements OnInit {
   updateIngredients(){
     var table = document.getElementById("Chosen_InIngredients") as HTMLTableElement;
     let c =0;
-    let ingredients_String = table.rows[2].cells[0].innerHTML + "/" + table.rows[2].cells[1].innerHTML;
-   // console.log("this is the 1st ingredient " + ingredients_String);
-    //console.log(table.rows[0].cells[1].innerHTML);
-    for (c = 3; c < table.rows.length ; c++) {
+    let ingredients_String = table.rows[1].cells[0].innerHTML + "/" + table.rows[1].cells[1].innerHTML;
+    for (c = 2; c < table.rows.length ; c++) {
       //iterate through rows
       //rows would be accessed using the "row" variable assigned in the for loop
       let EachIngredient = table.rows[c].cells[0].innerHTML;
       let EachCF = table.rows[c].cells[1].innerHTML;
-     // console.log("each Ingredient is " +EachIngredient);
+
       ingredients_String = ingredients_String + "," + EachIngredient + "/" + EachCF ;
         //iterate through columns
         //columns would be accessed using the "col" variable assigned in the for loop
-      console.log(parseFloat(document.getElementById('val').innerHTML));
+
     }
-    //console.log("this is the ingredients string " +ingredients_String);
+
     return ingredients_String;
   }
 
@@ -165,7 +162,7 @@ export class MakepostComponent implements OnInit {
     this.postsApi
       .savePost(this.post)
       .subscribe(
-        () => this.router.navigate(['/feed']),
+        () => this.router.navigate(['/myposts']),
         error => alert(error.message)
 
       );
@@ -241,7 +238,6 @@ export class MakepostComponent implements OnInit {
 
     sumVal = Math.round(sumVal * 10) / 10;
     document.getElementById("val").innerHTML =  String(sumVal);
-    console.log(sumVal);
   this.needleValue = sumVal;
 
   }

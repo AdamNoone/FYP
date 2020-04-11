@@ -144,21 +144,20 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
   updateIngredients(){
     var table = document.getElementById("Chosen_InIngredients") as HTMLTableElement;
     let c =0;
-    let ingredients_String = table.rows[2].cells[0].innerHTML + "/" + table.rows[2].cells[1].innerHTML;
-    // console.log("this is the 1st ingredient " + ingredients_String);
-    //console.log(table.rows[0].cells[1].innerHTML);
-    for (c = 3; c < table.rows.length ; c++) {
+    let ingredients_String = table.rows[1].cells[0].innerHTML + "/" + table.rows[2].cells[1].innerHTML;
+
+    for (c = 2; c < table.rows.length ; c++) {
       //iterate through rows
       //rows would be accessed using the "row" variable assigned in the for loop
       let EachIngredient = table.rows[c].cells[0].innerHTML;
       let EachCF = table.rows[c].cells[1].innerHTML;
-      // console.log("each Ingredient is " +EachIngredient);
+
       ingredients_String = ingredients_String + "," + EachIngredient + "/" + EachCF ;
       //iterate through columns
       //columns would be accessed using the "col" variable assigned in the for loop
-      console.log(parseFloat(document.getElementById('val').innerHTML));
+
     }
-    //console.log("this is the ingredients string " +ingredients_String);
+
     return ingredients_String;
   }
 
@@ -167,15 +166,12 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
   createTable() {
     var table = document.getElementById("Chosen_InIngredients") as HTMLTableElement;
     let c = 0;
-    //let ingredients_String ='Lamb/39.2,Beef/27,Turkey/10.9,Salmon/4.14';
+
     let ingredients_String = this.post.ingredients;
-    console.log("ingredients are" + ingredients_String);
     var result;
     var result2;
     result = ingredients_String.split(",");
-    console.log(result);
-    // console.log("this is the 1st ingredient " + ingredients_String);
-    //console.log(table.rows[0].cells[1].innerHTML);
+
     for (c = 0; c < result.length; c++) {
       //iterate through rows
       //rows would be accessed using the "row" variable assigned in the for loop
@@ -183,7 +179,7 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
       var newCell1  = newRow.insertCell(0);
       var newCell2  = newRow.insertCell(1);
       result2 = result[c].split("/");
-      console.log("this is the result" + result2);
+
       var newText1  = document.createTextNode(result2[0]);
       var newText2  = document.createTextNode(result2[1]);
       newCell1.appendChild(newText1);
@@ -211,7 +207,7 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
     this.postsApi
       .savePost(this.post2)
       .subscribe(
-        () => this.router.navigate(['/feed']),
+        () => this.router.navigate(['/myposts']),
         error => alert(error.message)
       );
 
@@ -265,7 +261,10 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
 
   getIngredientSearch(): Observable<Food[]> {
     const foodsObservable = this.foods$.pipe(
-      map(ingredients => ingredients.filter(i => i.food_name.includes(this.ingredientSearch)))
+      map(ingredients => ingredients.filter(i => i.food_name.includes(this.ingredientSearch) ||
+        i.food_name.includes(this.ingredientSearch[0].toUpperCase() + this.ingredientSearch.slice(1)) ||
+        i.food_name.includes(this.ingredientSearch[0].toLowerCase() + this.ingredientSearch.slice(1)))
+      )
     );
     return foodsObservable;
   }
@@ -306,7 +305,6 @@ export class MakeRecycledPostComponent implements OnInit, AfterViewInit {
 
     sumVal = Math.round(sumVal * 10) / 10;
     document.getElementById("val").innerHTML =  String(sumVal);
-    console.log(sumVal);
     this.needleValue = sumVal;
     this.bottomLabel = sumVal;
 

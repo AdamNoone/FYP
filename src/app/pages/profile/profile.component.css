@@ -756,7 +756,7 @@ ul{
   flex: 0 48%;
   border: 5px solid black;
   margin-bottom: 2%; /* (100-32*3)/2 */
-  height: 30vh;
+  height: 37vh;
   transition:all 0.3s ease;
 }
 
@@ -765,7 +765,7 @@ ul{
   flex-direction: column;
   flex: 0 48%;
   margin-bottom: 2%; /* (100-32*3)/2 */
-  height: 30vh;
+  height: 37vh;
   background-color: #f9d217;
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
@@ -815,6 +815,7 @@ ul{
 textarea {
   width: 50vw;
   height: 15vh;
+  border: 2px solid black;
 }
 
 label{
@@ -915,5 +916,168 @@ label{
 #yesUser:checked ~ #ifUser{display: block;}
 
 
+.heading {
+  background-color: black;
+  transition:all 0.3s ease;
+}
 
 
+
+.heading p {
+  color: #ffffff;
+  font-family: 'Raleway',sans-serif;
+  font-size: 2.5vh;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+  padding: 2vh;
+
+}
+
+
+
+@media only screen and (max-width: 640px) {
+
+
+
+  .SignUpColumn {
+    display: flex;
+    flex-direction: column;
+    flex: 0 90%;
+    border: 5px solid black;
+    margin-bottom: 10%; /* (100-32*3)/2 */
+    height: 70vh;
+    transition:all 0.3s ease;
+    margin-left: 5vw;
+  }
+
+  .SignUpColumn:hover {
+    display: flex;
+    flex-direction: column;
+    flex: 0 92%;
+    margin-bottom: 10%; /* (100-32*3)/2 */
+    margin-left: 5vw;
+    height: 70vh;
+    background-color: #f9d217;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition:all 0.3s ease;
+
+
+  }
+
+  #new_image
+  {
+
+    height: 30vh;
+    width: 30vw;
+    margin-top: 6vh;
+    margin-left: 29vw;
+  }
+
+  #recycle_image
+  {
+
+    height: 42vh;
+    width: 42vw;
+    margin-top: 4vh;
+    margin-left: 22vw;
+  }
+
+
+  #Signup_container button {
+    height:50px;
+    width :35vw;
+    margin-bottom: 3vh;
+    margin-top: 1vh;
+    margin-left: 5vw;
+
+
+  }
+
+  #Signup_container button:hover {
+    background-color: #cb83c2;
+    border: 3px solid #cb83c2;
+
+  }
+
+  .greeting{
+    height: 30vh;
+  }
+
+  .greeting p{
+    height:50px;
+    margin-bottom: 3vh;
+    margin-top: 3vh;
+    font-size: 4vh;
+  }
+
+  #user_img
+  {
+
+    height: 25vh;
+    width: 40vw;
+
+  }
+
+
+  #bis_img
+  {
+
+    height: 25vh;
+    width: 20vw;
+    border-radius:  50%;
+    border:2px solid black;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+  }
+
+  .TrophyNotEarned img
+  {
+    width: 120px;
+    height:120px;
+    display:inline;
+    margin-left:3vw;
+    margin-right: 2vw;
+    -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+    filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+
+  }
+
+  .TrophyEarned img
+  {
+    width: 120px;
+    height:120px;
+    display:inline;
+    margin-left:3vw;
+    margin-right: 2vw;
+
+  }
+
+  .SignUprow {
+
+
+margin-top: 7vh;
+
+  }
+
+
+  .column {
+
+    height: 91vh;
+
+  }
+
+  .column2 {
+    display: flex;
+    flex-direction: column;
+    flex: 0 100%;
+    border: 5px solid black;
+    margin-bottom: 2%; /* (100-32*3)/2 */
+    height: 445.5vh;
+    transition:all 0.3s ease;
+    background-color: white;
+  }
+}

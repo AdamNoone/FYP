@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { tap } from 'rxjs/operators';
 
+//Auth0 code
 @Injectable({
   providedIn: 'root'
 })

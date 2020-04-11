@@ -24,7 +24,6 @@ export class RecyclepostComponent implements OnInit {
     this.auth.userProfile$.subscribe(
       profile => this.profileJson = JSON.stringify(profile, null, 2));
     var test = JSON.parse(this.profileJson);
-    console.log(test.sub.replace(/\|/g, ""));
     var business = test.sub;
     this.postsListSubs = this.postsApi
       .getPostbyBusiness(test.sub.replace(/\|/g, ""))

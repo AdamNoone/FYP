@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
+
+//THIS CONFIGURATION CODE BELONGS TO AUTH0
 export class AuthService {
   // Create an observable of Auth0 instance of client
   auth0Client$ = (from(

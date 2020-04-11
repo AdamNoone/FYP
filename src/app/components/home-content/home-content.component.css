@@ -1,7 +1,7 @@
 
 
 .some-page-wrapper {
-
+border: 3px solid black;
 }
 
 .row1 {
@@ -25,7 +25,7 @@
   background: url('../../../assets/Food-Dump.png') center/cover;
   object-fit:cover;
   object-position:50% 50%;
-  background-size: 100% 100%;
+  background-size: 100% 101%;
 }
 
 .head-column p {
@@ -82,7 +82,7 @@
 .column2 {
   flex: 1;
   height: 60vh;
-  border: 2px solid black;
+
 }
 
 .column2 h3 {
@@ -112,6 +112,9 @@
   padding-top: 1vh;
 }
 
+h6{
+  font-weight: 600;
+}
 
 
 .list-numbered2 {
@@ -200,11 +203,12 @@
   .row2 {
     flex-direction: row-reverse;
   }
+
   .column2 {
     flex-basis: 100%;
-    height: 70vh;
+    height: 88vh;
     margin-bottom: 2%; /* (100-32*3)/2 */
-
+    border: 5px solid black;
   }
 
   .list-numbered2 > li:before {
@@ -217,188 +221,16 @@
 
   }
 
+  .some-page-wrapper {
+    border: 0px solid black;
+  }
 
+  .UserPicture
+  {
+
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
 }
-/*
-.Section1{
-  background-color: #ffffff;
-  width: 100%;
-  text-align: right;
-  height: 400px;
-}
-
-.Section1 #motto{
-  width: 40%;
-  height: 600px;
-  float: right;
-
-}
-
-.Section1 #earth{
-  width: 50%;
-  height: 400px;
-  float: left;
-
-}
-
-.Section1 p {
-  color: #000000;
-  font-family: 'Raleway',sans-serif;
-  font-size: 80px;
-  font-weight: 800;
-  line-height: 100px;
-  text-align: center;
-  text-transform: uppercase;
-  padding-top: 40px;
-  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-
-}
-
-
-.Section2 span {
-  display: inline-block;
-  width: 50%;
-
-}
-
-.Section2 #left2{
-  width: 50%;
-  height: 400px;
-  float: left;
-}
-
-.Section2 #right2{
-  width: 50%;
-  height: 400px;
-  float: right;
-  background-color: rgba(255, 255, 255);
-}
-
-.Section2 img{
-  width:100%;
-  height:100%;
-
-}
-
-.Section3 img{
-  width:100%;
-  height:100%;
-
-}
-
-
-.Section3 span {
-  display: inline-block;
-  width: 50%;
-
-
-}
-
-.Section3 #left3{
-  width: 50%;
-  height: 400px;
-  float: left;
-  background-color: rgba(255, 255, 255);
-}
-
-.Section3 #right3{
-  width: 50%;
-  height: 400px;
-  float: right;
-  background-color: rgba(168, 163, 177);
-}
-
-
-
-.How_Work {
-  background-color: rgba(0, 0, 0, 0.99);
-  width: 100%;
-  text-align: right;
-  height: 150px;
-}
-
-.How_Work p {
-  color: #ffffff;
-  font-family: 'Raleway',sans-serif;
-  font-size: 60px;
-  font-weight: 800;
-  line-height: 50px;
-  text-align: center;
-  text-transform: uppercase;
-  padding-top: 50px;
-  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-}
-
-
-
-
-
-.list-numbered2 {
-
-  list-style: none;
-  margin-left: 1em;
-  counter-reset: line;
-}
-
-#right2 h3 {
-  position: relative;
-  padding: 20px;
-  color: #000000;
-  text-align: center;
-}
-.list-numbered2 > li {
-  position: relative;
-  margin-bottom: 1.5em;
-}
-
-.list-numbered2 > li:before {
-  position: absolute;
-  left: -2.25em;
-  display: inline-block;
-  width: 22px;
-  height: 22px;
-  margin-right: 0.5em;
-  background-color: #3fb52e;
-  border-radius: 50%;
-  color: #fff;
-  text-align:center;
-  line-height: 1.25em;
-  counter-increment: line;
-  content: counter(line);
-}
-
-
-.list-numbered3 {
-
-  list-style: none;
-  margin-left: 1em;
-  counter-reset: line;
-}
-
-#left3 h3 {
-  position: relative;
-  padding: 20px;
-  color: #000000;
-  text-align: center;
-}
-.list-numbered3 > li {
-  position: relative;
-  margin-bottom: 1.5em;
-}
-
-.list-numbered3 > li:before {
-  position: absolute;
-  left: -2.25em;
-  display: inline-block;
-  width: 22px;
-  height: 22px;
-  margin-right: 0.5em;
-  background-color: #3fb52e;
-  border-radius: 50%;
-  color: #fff;
-  text-align:center;
-  line-height: 1.25em;
-  counter-increment: line;
-  content: counter(line);
-}
-*/
